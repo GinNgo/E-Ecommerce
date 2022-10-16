@@ -1,3 +1,4 @@
+using E_Ecommerce_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_Backend.Controllers
@@ -28,6 +29,18 @@ namespace E_Ecommerce_Backend.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+        [HttpGet("GetApi")]
+        public IActionResult GetAllProducts()
+        {
+            var data = new List<ProductModel>()
+            {
+                new ProductModel(){ Id = 1, Name = "Product 1", Quantity = 10 },
+                new ProductModel(){ Id = 2, Name = "Product 2", Quantity = 9 },
+                new ProductModel(){ Id = 3, Name = "Product 3", Quantity = 8 }
+            };
+
+            return Ok(data.ToList());
         }
     }
 }
