@@ -33,11 +33,11 @@ namespace E_Ecommerce_Backend.Controllers
         [HttpGet("GetApi")]
         public IActionResult GetAllProducts()
         {
-            var data = new List<ProductModel>()
+            var data = new List<Product>()
             {
-                new ProductModel(){ Id = 1, Name = "Product 1", Quantity = 10 },
-                new ProductModel(){ Id = 2, Name = "Product 2", Quantity = 9 },
-                new ProductModel(){ Id = 3, Name = "Product 3", Quantity = 8 }
+                new Product(){ Id = 1, Name = "Product 1", Quantity = 10 },
+                new Product(){ Id = 2, Name = "Product 2", Quantity = 9 },
+                new Product(){ Id = 3, Name = "Product 3", Quantity = 8 }
             };
 
             return Ok(data.ToList());

@@ -5,16 +5,16 @@ namespace E_Ecommerce_CustomerSite.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductService productService;
+        private readonly IProductService _productService;
 
         public ProductController(IProductService productService)
         {
-            this.productService = productService;
+            _productService = productService;
         }
 
         public async Task<IActionResult> Product()
         {
-            var products = await productService.GetAllProductsAsync();
+            var products = await _productService.GetAllProductsAsync();
 
             return View(products);
         }
