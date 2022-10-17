@@ -28,7 +28,7 @@ namespace E_Ecommerce_Backend.Models
         public string? Origin { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public virtual Category? Category { get; set; }
+        public virtual ICollection<Category>? Categories { get; set; }
        
 
     }
