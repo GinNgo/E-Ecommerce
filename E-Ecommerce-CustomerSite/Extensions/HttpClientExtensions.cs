@@ -7,13 +7,13 @@ namespace E_Ecommerce_CustomerSite.Extensions
     public static class HttpClientExtensions
     {
  
-        public static async Task<List<T>> GetAsJsonAsync<T>(HttpClient httpClient, string url)
+        public static async Task<T?> GetAsJsonAsync<T>(this HttpClient httpClient, string url)
         {
             var response = await httpClient.GetAsync(url);
             var contents = await response.Content.ReadAsStringAsync();
-            var results = JsonConvert.DeserializeObject<List<T>>(contents);
+            var results = JsonConvert.DeserializeObject<T>(contents);
 
-            return results ?? new List<T>();
+            return results;
         }
     }
 }

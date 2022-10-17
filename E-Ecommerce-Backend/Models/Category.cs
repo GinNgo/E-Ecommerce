@@ -14,11 +14,12 @@ namespace E_Ecommerce_Backend.Models
         public string? CategoryName { get; set; }
         public string? CategoryDescription { get; set; }
         public int CategoryLevel { get; set; }
-        [Required]
-        [ForeignKey("CategoryId")]
+
+        [Range(0, int.MaxValue)]
         public int ParentId { get; set; }
-        public int ProductId { get; set; }
+
         [ForeignKey("ProductId")]
+        public int ProductId { get; set; }
         public virtual ICollection<Product>? Products { get; set; }
     }
 }

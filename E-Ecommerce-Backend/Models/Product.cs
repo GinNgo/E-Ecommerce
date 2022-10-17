@@ -26,8 +26,8 @@ namespace E_Ecommerce_Backend.Models
     
         [MaxLength(100)]
         public string? Origin { get; set; }
-        public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
         public virtual ICollection<Category>? Categories { get; set; }
        
 

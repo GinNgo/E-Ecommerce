@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Ecommerce_Backend.Migrations
 {
     [DbContext(typeof(EcommecreDbContext))]
-    [Migration("20221017173129_Reset")]
-    partial class Reset
+    [Migration("20221017183446_DbInit")]
+    partial class DbInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,9 +50,6 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryLevel")
                         .HasColumnType("int");
 
@@ -88,8 +85,6 @@ namespace E_Ecommerce_Backend.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("CategoryId1");
 
                     b.ToTable("Category");
                 });
@@ -167,18 +162,6 @@ namespace E_Ecommerce_Backend.Migrations
                         .HasForeignKey("ProductsProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("E_Ecommerce_Backend.Models.Category", b =>
-                {
-                    b.HasOne("E_Ecommerce_Backend.Models.Category", null)
-                        .WithMany("Parent")
-                        .HasForeignKey("CategoryId1");
-                });
-
-            modelBuilder.Entity("E_Ecommerce_Backend.Models.Category", b =>
-                {
-                    b.Navigation("Parent");
                 });
 #pragma warning restore 612, 618
         }
