@@ -16,6 +16,11 @@ namespace E_Ecommerce_Backend.Models
         public int CategoryLevel { get; set; }
         [Required]
         public int ParentId { get; set; }
+        [ForeignKey("ParentId")]
+        public virtual ICollection<Category>? Parent { get; set; }
+        public int ProductId { get; set; }
+        [ForeignKey("ProductId")]
+
 
     }
 }

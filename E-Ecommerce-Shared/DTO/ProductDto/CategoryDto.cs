@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Ecommerce_Shared.DTO.ProductDto
+namespace E_Ecommerce_Shared.DTO.CategoryDto
 {
     public class CategoryDto
     {
@@ -14,5 +14,6 @@ namespace E_Ecommerce_Shared.DTO.ProductDto
         public string? CategoryDescription { get; set; }
         public int CategoryLevel { get; set; }
         public int ParentId { get; set; }
+        public  CategoryDto? Parent { get; set; }
     }
 }

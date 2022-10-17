@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.CategoryService;
+using E_Ecommerce_Shared.DTO.ProductDto;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -26,10 +27,19 @@ namespace E_Ecommerce_Backend.Controllers
 
         // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult> GetCategories()
         {
-            var categories = await _categoryService.GetCategories();
-            return categories;
+            try
+            {
+                var categories = await _categoryService.GetCategories();
+                return Ok(categories);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+       
+          
         }
 
         // GET: api/Category/5

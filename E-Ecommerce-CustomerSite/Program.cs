@@ -1,3 +1,4 @@
+using E_Ecommerce_CustomerSite.Services.CategoryService;
 using E_Ecommerce_CustomerSite.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +8,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient("", opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiUrl"] ?? "");
+
 });
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
