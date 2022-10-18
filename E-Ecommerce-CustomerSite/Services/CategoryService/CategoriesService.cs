@@ -12,7 +12,7 @@ namespace E_Ecommerce_CustomerSite.Services.CategoryService
 
         public async Task<List<CategoriesDto>> GetAllCategories()
         {
-            var categories = await httpClient.GetAsJsonAsync<List<CategoriesDto>>("Category");
+            var categories = await httpClient.GetAsJsonAsync<List<CategoriesDto>>("Categories");
             return categories?? new List<CategoriesDto>();
         }
     }
