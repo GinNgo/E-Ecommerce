@@ -8,7 +8,7 @@ namespace E_Ecommerce_Backend.Mappings
     {
        public AutoMapperConfiguration()
         {
-            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoriesDto>().ReverseMap();
         }
     }
 }

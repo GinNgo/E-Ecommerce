@@ -66,10 +66,7 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ParentCategoryId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Status")
@@ -83,6 +80,8 @@ namespace E_Ecommerce_Backend.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("CategoryId");
+
+                    b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Category");
                 });
@@ -160,6 +159,15 @@ namespace E_Ecommerce_Backend.Migrations
                         .HasForeignKey("ProductsProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Category", b =>
+                {
+                    b.HasOne("E_Ecommerce_Backend.Models.Category", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentCategoryId");
+
+                    b.Navigation("Parent");
                 });
 #pragma warning restore 612, 618
         }

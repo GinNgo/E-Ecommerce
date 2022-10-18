@@ -10,12 +10,12 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
         {
         }
 
-        public async Task<List<ProductDto>> GetAllProductsAsync()
+        public async Task<List<ProductsDto>> GetAllProductsAsync()
         {
             var response = await httpClient.GetAsync("api/product/GetAllProduct");
             var contents = await response.Content.ReadAsStringAsync();
-            var products = JsonConvert.DeserializeObject<List<ProductDto>>(contents);
-            return products ?? new List<ProductDto>();
+            var products = JsonConvert.DeserializeObject<List<ProductsDto>>(contents);
+            return products ?? new List<ProductsDto>();
         }
 
        

@@ -8,21 +8,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Ecommerce_Backend.Services.CategoryService
 {
-    public class CategoryService:ICategoryService
+    public class CategoriesService:ICategoriesService
     {
         private readonly EcommecreDbContext _context;
         private readonly IMapper _mapper;
 
-        public CategoryService(EcommecreDbContext ecommecreDbContext,IMapper mapper)
+        public CategoriesService(EcommecreDbContext ecommecreDbContext,IMapper mapper)
         {
             _context = ecommecreDbContext;
             _mapper = mapper;
         }
-        public async Task<List<CategoryDto>> GetCategories()
+        public async Task<List<CategoriesDto>> GetCategories()
         {
              var categories = await _context.Categories.ToListAsync();
             
-            return _mapper.Map<List<CategoryDto>>(categories);
+            return _mapper.Map<List<CategoriesDto>>(categories);
         }
     }
 }

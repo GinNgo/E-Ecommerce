@@ -18,8 +18,7 @@ namespace E_Ecommerce_Backend.Migrations
                     CategoryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryLevel = table.Column<int>(type: "int", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ParentId = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreateBy = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -30,6 +29,11 @@ namespace E_Ecommerce_Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.CategoryId);
+                    table.ForeignKey(
+                        name: "FK_Category_Category_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Category",
+                        principalColumn: "CategoryId");
                 });
 
             migrationBuilder.CreateTable(
@@ -62,30 +66,35 @@ namespace E_Ecommerce_Backend.Migrations
                 name: "CategoryProduct",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    CategoriesCategoryId = table.Column<int>(type: "int", nullable: false),
+                    ProductsProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryProduct", x => new { x.CategoryId, x.ProductId });
+                    table.PrimaryKey("PK_CategoryProduct", x => new { x.CategoriesCategoryId, x.ProductsProductId });
                     table.ForeignKey(
                         name: "FK_CategoryProduct_Category_CategoryId",
-                        column: x => x.CategoryId,
+                        column: x => x.CategoriesCategoryId,
                         principalTable: "Category",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CategoryProduct_Product_ProductId",
-                        column: x => x.ProductId,
+                        column: x => x.ProductsProductId,
                         principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryProduct_ProductId",
+                name: "IX_Category_ParentId",
+                table: "Category",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CategoryProduct_ProductsProductId",
                 table: "CategoryProduct",
-                column: "ProductId");
+                column: "ProductsProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

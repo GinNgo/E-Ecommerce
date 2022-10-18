@@ -9,17 +9,18 @@ using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Shared.DTO.ProductDto;
+using E_Ecommerce_Shared.DTO.CategoryDto;
 
 namespace E_Ecommerce_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly EcommecreDbContext _context;
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoriesService _categoryService;
 
-        public CategoryController(EcommecreDbContext context,ICategoryService categoryService)
+        public CategoriesController(EcommecreDbContext context, ICategoriesService categoryService)
         {
             _context = context;
             _categoryService = categoryService;
@@ -27,19 +28,22 @@ namespace E_Ecommerce_Backend.Controllers
 
         // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult> GetCategories()
+        public async Task<ActionResult<List<CategoriesDto>>> GetCategories()
         {
             try
             {
+
                 var categories = await _categoryService.GetCategories();
+
+
                 return Ok(categories);
             }
             catch
             {
                 return BadRequest();
             }
-       
-          
+
+
         }
 
         // GET: api/Category/5

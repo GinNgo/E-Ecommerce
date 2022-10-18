@@ -8,9 +8,9 @@ namespace E_Ecommerce_CustomerSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoriesService _categoryService;
 
-        public HomeController(ILogger<HomeController> logger, ICategoryService categoryService)
+        public HomeController(ILogger<HomeController> logger, ICategoriesService categoryService)
         {
             _logger = logger;
             _categoryService = categoryService;
@@ -33,7 +33,7 @@ namespace E_Ecommerce_CustomerSite.Controllers
         }
         public async Task<IActionResult> Category()
         {
-            var catList =await _categoryService.GetAllCategorirs();
+            var catList =await _categoryService.GetAllCategories();
             return View(catList);
         }
     }

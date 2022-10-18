@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_Backend.Services.CategoryService
 {
-    public interface ICategoryService
+    public interface ICategoriesService
     {
-        public Task<List<CategoryDto>> GetCategories();
+        public Task<List<CategoriesDto>> GetCategories();
     }
 }

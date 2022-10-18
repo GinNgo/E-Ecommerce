@@ -17,7 +17,7 @@ builder.Services.AddDbContext<EcommecreDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceDB"));
 });
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 

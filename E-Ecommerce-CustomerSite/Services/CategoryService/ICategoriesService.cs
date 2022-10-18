@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_CustomerSite.Services.CategoryService
 {
-    public interface ICategoryService
+    public interface ICategoriesService
     {
-        public Task<List<CategoryDto>> GetAllCategorirs();
+        public Task<List<CategoriesDto>> GetAllCategories();
     }
 }

@@ -7,18 +7,18 @@ namespace E_Ecommerce_Backend.Services.ProductService
 {
     public class ProductService : IProductService
     {
-        public async Task<List<ProductDto>> GetAllProductsAsync()
+        public async Task<List<ProductsDto>> GetAllProductsAsync()
         {
             // connect database
             // query products
-            var result = new List<ProductDto>()
+            var result =  new List<ProductsDto>()
             {
-                new ProductDto(){ Id = 1, Name = "Product 1", Quantity = 10 },
-                new ProductDto(){ Id = 2, Name = "Product 2", Quantity = 9 },
-                new ProductDto(){ Id = 3, Name = "Product 3", Quantity = 8 }
+                new ProductsDto(){ Id = 1, Name = "Product 1", Quantity = 10 },
+                new ProductsDto(){ Id = 2, Name = "Product 2", Quantity = 9 },
+                new ProductsDto(){ Id = 3, Name = "Product 3", Quantity = 8 }
             };
           
-            return result;
+            return  result;
         }
     }
 }
