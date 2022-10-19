@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.CategoryService;
-using E_Ecommerce_Shared.DTO.ProductDto;
-using E_Ecommerce_Shared.DTO.CategoryDto;
+using E_Ecommerce_Shared.DTO;
+
 
 namespace E_Ecommerce_Backend.Controllers
 {

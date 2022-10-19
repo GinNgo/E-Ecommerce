@@ -1,4 +1,4 @@
-﻿using E_Ecommerce_Shared.DTO.CategoryDto;
+﻿using E_Ecommerce_Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_CustomerSite.Services.CategoryService

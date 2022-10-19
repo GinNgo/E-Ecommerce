@@ -1,6 +1,6 @@
 ﻿using E_Ecommerce_CustomerSite.Service;
-using E_Ecommerce_Shared.DTO.CategoryDto;
 using E_Ecommerce_CustomerSite.Extensions;
+using E_Ecommerce_Shared.DTO;
 
 namespace E_Ecommerce_CustomerSite.Services.CategoryService
 {

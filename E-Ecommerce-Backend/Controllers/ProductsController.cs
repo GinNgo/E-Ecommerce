@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using E_Ecommerce_Backend.Data;
-using E_Ecommerce_Shared.DTO.ProductDto;
+using E_Ecommerce_Shared.DTO;
 
 namespace E_Ecommerce_Backend.Controllers
 {

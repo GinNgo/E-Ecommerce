@@ -1,5 +1,5 @@
 ﻿using E_Ecommerce_CustomerSite.Service;
-using E_Ecommerce_Shared.DTO.ProductDto;
+using E_Ecommerce_Shared.DTO;
 using Newtonsoft.Json;
 
 namespace E_Ecommerce_CustomerSite.Services.ProductService

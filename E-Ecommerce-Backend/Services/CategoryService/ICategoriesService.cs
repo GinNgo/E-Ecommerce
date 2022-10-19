@@ -1,6 +1,6 @@
-﻿using E_Ecommerce_Shared.DTO.CategoryDto;
-using E_Ecommerce_Backend.Models;
+﻿using E_Ecommerce_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using E_Ecommerce_Shared.DTO;
 
 namespace E_Ecommerce_Backend.Services.CategoryService
 {
