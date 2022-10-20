@@ -3,6 +3,7 @@ using E_Ecommerce_Backend.Service.ProductService;
 using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Backend.Services.ProductService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/Upload")),
+    RequestPath = new PathString("/wwwroot/Upload")
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

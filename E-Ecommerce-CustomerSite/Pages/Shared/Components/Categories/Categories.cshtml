@@ -1,48 +1,47 @@
-﻿@    using E_Ecommerce_Shared.DTO.CategoryDto
+﻿@using E_Ecommerce_Shared.DTO
 @model ICollection<CategoriesDto>
 
-<div class="categorycontent">
-    <ul>
-        <li *ngFor="let cat of categoryList">
-            <a [routerLink]="[
-          '/san-pham-nhom/' + ChangeProductName(cat.CatName) + '/' + cat.CatId
-        ]"
-               routerLinkActive="router-link-active"
-               (click)="onClick()">
-                {{ cat.CatName }}
-            </a>
-            <i class="fa fa-chevron-right float-right"></i>
-            <ul>
-                <li class="liheader">
-                    <a class="header text-uppercase"
-                       [routerLink]="[
-              '/san-pham-nhom/' +
-                ChangeProductName(cat.CatName) +
-                '/' +
-                cat.CatId
-            ]"
-                       (click)="onClick()">
-                        {{ cat.CatName }}
-                    </a>
-                </li>
-                <div class="content trai">
-                <li *ngFor="let catChild of cat.CategoryChild">
-                    <a [routerLink]="[
-                '/san-pham-nhom/' +
-                  ChangeProductName(catChild.CatName) +
-                  '/' +
-                  catChild.CatId
-              ]"
-                       (click)="onClick()">{{ catChild.CatName }}</a>
-                </li>
-</div>
-      </ul>
-    </li>
-<li>
-    <a [routerLink]="['/tat-ca-san-pham']"
-       routerLinkActive="router-link-active">
-        Xem tất cả sản phẩm
-    </a>
-</li>
-  </ul>
-</div>
+@{
+    @foreach (var cat in Model)
+    {
+    <tr>
+                <td>@cat.CategoryId</td>
+                <td>@cat.CategoryName</td>
+                <td>@cat.CategoryDescription</td>
+                <td>@cat.CategoryLevel</td>
+                <td>@cat.ParentId</td>
+    </tr>
+    }
+    <div class="category-size categorycontent">
+        <ul>
+            <li>
+                <a>
+                    {{ cat.CatName }}
+                </a>
+                <i class="fa fa-chevron-right float-right"></i>
+                <div class="categorycontent">
+                <ul>
+                    <li class="liheader">
+                        <a class="header text-uppercase">
+                            {{ cat.CatName }}
+                        </a>
+                        <i class="fa fa-chevron-right float-right"></i>
+                        <ul>
+                            <li class="">
+                                <a class="header text-uppercase">{{ catChild.CatName }}</a>
+                            </li>
+                        </ul>
+                    </li>
+              
+
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a>
+                    Xem tất cả sản phẩm
+                </a>
+            </li>
+        </ul>
+    </div>
+}
