@@ -1,214 +1,229 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
+
     h5 {
         font-size: 14px;
     }
+
     .header-p {
         font-size: 12px;
     }
+
     .right-top-header {
         margin-left: -50px;
         width: 924px;
     }
-   
+}
+
+@media(max-width:768px) {
+    .main-nav {
+        display: none;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-.flex-fix{
-    display:flex;
-    
+.flex-fix {
+    display: flex;
 }
+
 .circle-header {
-    text-align:center;
-    justify-items:center;
+    text-align: center;
+    justify-items: center;
     width: 50px;
     height: 50px
 }
+
 .img-header {
-   width:24px;height:24px;
+    width: 24px;
+    height: 24px;
 }
+
 .right-top-header {
     margin-left: -50px;
     width: 924px;
 }
+
 .title-header {
     width: max-content;
 }
 
 /* css category  */
-.category-size {
+.main-nav {
+    border: 1px solid #b4b2b2;
     position: relative;
-    width: 100%;
-    border: 1px solid #b4b2b2;
     box-sizing: border-box;
+    max-width: 250px;
+    min-width: 250px;
+    min-height: 589px;
     background: white;
     border: 1px solid #b4b2b2;
-    z-index: 10;
-    background: white;
-}
-.categorycontent {
-    
+    z-index: 100;
 }
 
-    .categorycontent ul {
+    .main-nav ul {
+        margin-bottom: 0;
         list-style: none;
         background: white;
         padding-left: 0px;
     }
 
-    .categorycontent > ul > li:hover {
-        background-color: #cf111a;
+    .main-nav > ul > li:hover {
+        background-color: #43c0e4;
         cursor: pointer;
     }
 
-        .categorycontent > ul > li:hover > a {
+        .main-nav > ul > li:hover > a {
+            margin-top: 1px;
             color: white;
         }
 
-    .categorycontent ul li:hover i.fa.fa-chevron-right {
-        color: white;
-    }
 
-    .categorycontent > ul > li {
+    .main-nav > ul > li {
         border-bottom: 1px solid #f8e1e1;
         height: 35px;
     }
 
-        .categorycontent > ul > li:last-child {
+        .main-nav > ul > li:last-child {
             border-bottom: none;
         }
 
-    .categorycontent ul li a {
+    .main-nav > ul li a {
+        margin-top: -20px;
         line-height: 35px;
         padding-left: 16px;
         font-weight: 400;
         font-size: 13px;
+        text-decoration: none;
+        color: black;
     }
 
-    .categorycontent ul li ul {
+    .main-nav > ul li ul {
         display: none;
-        height: 386px;
+        min-height: 589px;
         width: 300px;
         border: 1px solid #d1d1d1;
         position: absolute;
         z-index: 99;
+        margin-left: 100%;
         top: 0px;
         left: 0px;
         box-shadow: 0px 1px 3px #e7dddd;
         background-color: white;
     }
 
-        .categorycontent ul li ul:hover {
+        .main-nav > ul li ul:hover {
             cursor: auto;
         }
 
-    .categorycontent ul li a {
-        text-decoration: none;
-        color: black;
+    .main-nav > ul > li > a::after {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #c1c1c1 #c1c1c1 transparent transparent;
+        transform: rotate(45deg);
+        margin-left: auto;
+        margin-right: 10px;
+        box-sizing: border-box;
+        margin-top: -25px;
     }
 
-    .categorycontent ul li:hover ul {
+    .main-nav > ul > li:hover > ul {
+        margin-top: -1px;
         display: block;
     }
 
-ul i.fa.fa-chevron-right {
-    font-size: 10px;
-    color: #d1d1d1;
-    line-height: 35px;
-    padding-right: 20px;
-}
-/* het css category  */
-/* css category  */
-.categorycontent {
-   
+
+
+.main-nav {
+    width: 100%;
 }
 
-    .categorycontent ul {
-        list-style: none;
-        background: white;
-    }
-
-    .categorycontent > ul > li:hover {
-        background-color: #cf111a;
-        cursor: pointer;
-    }
-
-        .categorycontent > ul > li:hover > a {
-            color: white;
-        }
-
-    .categorycontent ul li:hover i.fa.fa-chevron-right {
-        color: white;
-    }
-
-    .categorycontent > ul > li {
-        border-bottom: 1px solid #f8e1e1;
-        height: 35px;
-    }
-
-        .categorycontent > ul > li:last-child {
-            border-bottom: none;
-        }
-
-    .categorycontent ul li a {
-        line-height: 35px;
-        padding-left: 16px;
-        font-weight: 400;
-        font-size: 13px;
-    }
-
-    .categorycontent ul li ul {
-        display: none;
-        height: 387px;
-        width: 300px;
-        border: 1px solid #d1d1d1;
-        position: absolute;
-        z-index: 99;
-        top: -1px;
-        margin-left: 100%;
-        box-shadow: 0px 1px 3px #e7dddd;
-        background-color: white;
-    }
-
-        .categorycontent ul li ul:hover {
-            cursor: auto;
-        }
-
-    .categorycontent ul li a {
-        text-decoration: none;
-        color: black;
-    }
-
-    .categorycontent ul li:hover ul {
-        display: block;
-    }
-
-ul i.fa.fa-chevron-right {
-    font-size: 10px;
-    color: #d1d1d1;
-    line-height: 35px;
-    padding-right: 20px;
-}
-/* het css category  */
-.categorycontent {
-    
-}
-
-    .categorycontent a {
+    .main-nav a {
         width: max-content;
     }
+
+.liheader:hover {
+    cursor: pointer;
+}
+
+.sub-nav > .liheader:hover > a, .sub-nav-2 > .liheader:hover > a {
+    color: #34b0dd;
+}
+
+    .sub-nav > .liheader:hover > a::after, .sub-nav-2 > .liheader:hover > a:after {
+        display: none;
+    }
+
+.sub-nav > .liheader:first-child:hover > a, .sub-nav-2 > .liheader:first-child:hover > a {
+    color: black;
+}
+
+ul .liheader ul {
+    display: none;
+}
+
+ul .liheader ul {
+    line-height: 35px;
+}
+
+.sub-nav > li:hover > ul {
+    margin-top: -1px;
+    display: block;
+}
+
+.sub-nav li {
+    height: 35px;
+}
+
+.sub-nav a::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c1c1c1 #c1c1c1 transparent transparent;
+    transform: rotate(45deg);
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: -25px;
+    box-sizing: border-box;
+}
+
+.sub-nav-2 a::after {
+    display: none;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    padding:0;
+    margin:0;
+    background-color: #4d4b4b94;
+    display: none;
+    z-index:99;
+}
+
+
+/* het css category  */
 

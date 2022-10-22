@@ -2,46 +2,59 @@
 @model ICollection<CategoriesDto>
 
 @{
-    @foreach (var cat in Model)
-    {
-    <tr>
-                <td>@cat.CategoryId</td>
-                <td>@cat.CategoryName</td>
-                <td>@cat.CategoryDescription</td>
-                <td>@cat.CategoryLevel</td>
-                <td>@cat.ParentId</td>
-    </tr>
-    }
-    <div class="category-size categorycontent">
+ 
+    <div class="main-nav mt-2">
+       
         <ul>
-            <li>
-                <a>
-                    {{ cat.CatName }}
-                </a>
-                <i class="fa fa-chevron-right float-right"></i>
-                <div class="categorycontent">
-                <ul>
-                    <li class="liheader">
-                        <a class="header text-uppercase">
-                            {{ cat.CatName }}
+            @if (@Model.Count > 0)
+            {
+                @foreach (var cat in Model)
+                {
+                    <li>
+                        <a asp-action="">
+                            @cat.CategoryName
                         </a>
-                        <i class="fa fa-chevron-right float-right"></i>
-                        <ul>
-                            <li class="">
-                                <a class="header text-uppercase">{{ catChild.CatName }}</a>
-                            </li>
-                        </ul>
-                    </li>
-              
+                        @if (@cat.Child?.Count > 0)
+                        {
+                            @foreach (var catChild in cat.Child)
+                            {
+                                <ul class="sub-nav">
+                                    <li class="liheader">
+                                        <a asp-action="">
+                                            @cat.CategoryName
 
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a>
-                    Xem tất cả sản phẩm
-                </a>
-            </li>
+                                        </a>
+                                    </li>
+                                    <li class="liheader">
+                                        <a asp-action="">
+                                            @catChild.CategoryName
+                                        </a>
+                                        @if (catChild.Child?.Count > 0)
+                                        {
+                                            @foreach (var catChild2 in catChild.Child)
+                                            {
+                                                <ul class="sub-nav-2">
+                                                    <li class="liheader">
+                                                        <a asp-action="">
+                                                            @catChild.CategoryName
+                                                        </a>
+                                                    </li>
+                                                    <li class="liheader">
+                                                        <a asp-action="">   @catChild2.CategoryName</a>
+                                                    </li>
+                                                </ul>
+                                            }
+                                        }
+                                    </li>
+
+                                </ul>
+                            }
+                        }
+                    </li>
+                }
+            }
+
         </ul>
     </div>
+
 }

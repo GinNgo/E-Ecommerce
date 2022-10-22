@@ -1,6 +1,6 @@
 ﻿using E_Ecommerce_Backend.Models;
 using Microsoft.EntityFrameworkCore;
-using E_Ecommerce_Shared.DTO;
+
 
 namespace E_Ecommerce_Backend.Data
 {
@@ -13,7 +13,9 @@ namespace E_Ecommerce_Backend.Data
         #region DbSet
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductsDto> ProductsDto { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Origin> Origins { get; set; }
         #endregion
     }
 }

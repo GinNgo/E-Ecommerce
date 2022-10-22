@@ -34,7 +34,45 @@ namespace E_Ecommerce_Backend.Migrations
 
                     b.HasIndex("ProductsProductId");
 
-                    b.ToTable("CategoryProduct");
+                    b.ToTable("CategoryProduct", (string)null);
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Brand", b =>
+                {
+                    b.Property<int>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"), 1L, 1);
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BrandId");
+
+                    b.ToTable("Brand", (string)null);
                 });
 
             modelBuilder.Entity("E_Ecommerce_Backend.Models.Category", b =>
@@ -66,7 +104,7 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ParentCategoryId")
+                    b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Status")
@@ -81,9 +119,99 @@ namespace E_Ecommerce_Backend.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("ParentCategoryId");
+                    b.ToTable("Category", (string)null);
+                });
 
-                    b.ToTable("Category");
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Image", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"), 1L, 1);
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Image", (string)null);
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Origin", b =>
+                {
+                    b.Property<int>("OriginId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OriginId"), 1L, 1);
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OriginName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("OriginId");
+
+                    b.ToTable("Origin", (string)null);
                 });
 
             modelBuilder.Entity("E_Ecommerce_Backend.Models.Product", b =>
@@ -93,6 +221,9 @@ namespace E_Ecommerce_Backend.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -110,12 +241,14 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Origin")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("OriginId")
+                        .HasColumnType("int");
 
                     b.Property<double?>("Price")
                         .HasColumnType("float");
@@ -143,7 +276,13 @@ namespace E_Ecommerce_Backend.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Product");
+                    b.HasIndex("BrandId")
+                        .IsUnique();
+
+                    b.HasIndex("OriginId")
+                        .IsUnique();
+
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("CategoryProduct", b =>
@@ -161,13 +300,47 @@ namespace E_Ecommerce_Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("E_Ecommerce_Backend.Models.Category", b =>
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Image", b =>
                 {
-                    b.HasOne("E_Ecommerce_Backend.Models.Category", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentCategoryId");
+                    b.HasOne("E_Ecommerce_Backend.Models.Product", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId");
 
-                    b.Navigation("Parent");
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Product", b =>
+                {
+                    b.HasOne("E_Ecommerce_Backend.Models.Brand", "Brand")
+                        .WithOne("Product")
+                        .HasForeignKey("E_Ecommerce_Backend.Models.Product", "BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("E_Ecommerce_Backend.Models.Origin", "Origin")
+                        .WithOne("Product")
+                        .HasForeignKey("E_Ecommerce_Backend.Models.Product", "OriginId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Origin");
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Brand", b =>
+                {
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Origin", b =>
+                {
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.Product", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

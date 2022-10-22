@@ -6,12 +6,18 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/font/fontawesome-free-6.2.0-web/css/all.css" />
+    <link rel="stylesheet" href="~/font/fontawesome-free-6.2.0-web/css/all.min.css" />
     <link rel="stylesheet" href="~/E_Ecommerce_CustomerSite.styles.css" asp-append-version="true" />
+    
 </head>
 <body>
+    
     <header>
         <div>@await Component.InvokeAsync("Header")</div>
     </header>
+    <div>
+        <div class="mask"></div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -19,12 +25,12 @@
     </div>
 
 
-    <footer class=" border-top footer text-muted position-absolute bottom-0  vw-100">
+    <footer class=" border-top footer text-muted position-absolute bottom-0  w-100">
         <div class="container ">
             &copy; 2022 - testRazor - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
