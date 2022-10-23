@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace E_Ecommerce_CustomerSite.Pages.Home
+namespace E_Ecommerce_CustomerSite.Pages
 {
-    public class IndexModel : PageModel
+    public class DetailModel : PageModel
     {
         public void OnGet()
         {

@@ -1,0 +1,7 @@
+﻿@page "{name?}"
+@model IndexModel
+@{
+    String name = this.Request.RouteValues["name"] as String;
+    ViewData["name"] = name;
+}
+<p>@ViewData["name"]</p>
