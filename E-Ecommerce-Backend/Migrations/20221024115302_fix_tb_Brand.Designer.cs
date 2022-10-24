@@ -4,6 +4,7 @@ using E_Ecommerce_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Ecommerce_Backend.Migrations
 {
     [DbContext(typeof(EcommecreDbContext))]
-    partial class EcommecreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221024115302_fix_tb_Brand")]
+    partial class fix_tb_Brand
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,9 +243,6 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -278,7 +277,8 @@ namespace E_Ecommerce_Backend.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("OriginId");
+                    b.HasIndex("OriginId")
+                        .IsUnique();
 
                     b.ToTable("Product");
                 });
@@ -337,8 +337,8 @@ namespace E_Ecommerce_Backend.Migrations
                         .IsRequired();
 
                     b.HasOne("E_Ecommerce_Backend.Models.Origin", "Origin")
-                        .WithMany("Product")
-                        .HasForeignKey("OriginId")
+                        .WithOne("Product")
+                        .HasForeignKey("E_Ecommerce_Backend.Models.Product", "OriginId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -31,12 +31,14 @@ namespace E_Ecommerce_Backend.Models
         [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
         public virtual ICollection<Category>? Categories { get; set; }
-        [ForeignKey("ImageId")]
-        public int ImageId { get; set; }
+
+        public string? ImageUrl { get; set; }
         public virtual ICollection<Image>? Images { get; set; }
         [ForeignKey("BrandId")]
         public int BrandId { get; set; }
         public Brand? Brand { get; set; }
+        
+        public virtual ICollection<Rating>? Rating { get; set; }
 
     }
 }

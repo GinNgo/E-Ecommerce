@@ -21,7 +21,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public async Task<List<CategoriesDto>> GetCategories()
         {
             var categories = await _context.Categories.ToListAsync();
-            var categoriesDto = _mapper.Map<List<CategoriesDto>>(categories);
+            var categoriesDto = _mapper.Map<List<Category>,List<CategoriesDto>>(categories);
             categoriesDto = SubCategories(categoriesDto);
             return categoriesDto;
         }

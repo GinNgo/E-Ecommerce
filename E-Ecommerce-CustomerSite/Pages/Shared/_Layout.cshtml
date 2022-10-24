@@ -8,34 +8,37 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/font/fontawesome-free-6.2.0-web/css/all.css" />
     <link rel="stylesheet" href="~/font/fontawesome-free-6.2.0-web/css/all.min.css" />
-
+<<<<<<< HEAD
+    <link rel="stylesheet" href="~/css/detail.css" asp-append-version="true" />
+=======
+    <link rel="stylesheet" href="~/E_Ecommerce_CustomerSite.styles.css" asp-append-version="true" />
+    
+>>>>>>> parent of b2762ae (view home)
 </head>
 <body>
-
-    @await Component.InvokeAsync("Header")
-
-    <div class="section">
+    
+    <header>
+        <div>@await Component.InvokeAsync("Header")</div>
+    </header>
+    <div>
         <div class="mask"></div>
-        <div class="container">
-            <main role="main" class="main pb-3">
-                @RenderBody()
-            </main>
-        </div>
-
-        @await Component.InvokeAsync("Footer")
-       
-     
-   
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+
+    <footer class=" border-top footer text-muted position-absolute bottom-0  w-100">
+        <div class="container ">
+            &copy; 2022 - testRazor - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/slick/slick.min.js" asp-append-version="true"></script>
-    <script src="~/slick/slick.js" asp-append-version="true"></script>
-    <link href="~/slick/slick-theme.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/slick/slick.css" rel="stylesheet" asp-append-version="true" />
-    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -36,13 +36,26 @@ jQuery(function () {
             }
         ]
     });
-    
-   
+
+<<<<<<< HEAD
+    if (window.outerWidth > 768) {
+        jQuery(".main-nav").css("display", "block");
+    }
+=======
+>>>>>>> parent of b2762ae (view home)
     //hieu ung header va nut backtotop
     jQuery("#backtotop").click(function () {
         jQuery("html, body").animate({ scrollTop: 0 }, 400);
     });
+<<<<<<< HEAD
     if (window.location.href != "https://localhost:7008/") {
+        jQuery(window).scroll(function () {
+            if (jQuery("body,html").scrollTop() > 650) {
+                jQuery(".navbar").addClass("fixed-top");
+            } else {
+                jQuery(".navbar").removeClass("fixed-top");
+            }
+        });
         jQuery(".main-nav").css("display", "none");
         jQuery("#categories").hover(function () {
             if (window.outerWidth > 768) {
@@ -54,18 +67,18 @@ jQuery(function () {
             , function () {
                 if (window.outerWidth > 768) {
                     jQuery(".main-nav").css("display", "none");
-                
+
                 }
             }
         );
     }
-    else { 
-    jQuery(window).scroll(function () {
-        if (jQuery("body,html").scrollTop() > 650  ) {
-            jQuery(".navbar").addClass("fixed-top");
-            jQuery(".main-nav").css("display", "none");
-            jQuery(".top-header").css("display", "none");
-            
+    else {
+        jQuery(window).scroll(function () {
+            if (jQuery("body,html").scrollTop() > 650) {
+                jQuery(".navbar").addClass("fixed-top");
+                jQuery(".main-nav").css("display", "none");
+                jQuery(".top-header").css("display", "none");
+
                 jQuery("#categories").hover(function () {
                     if (window.outerWidth > 768) {
                         jQuery(".main-nav").css("display", "block");
@@ -81,11 +94,11 @@ jQuery(function () {
                     }
                 );
 
-            
-         
-        }
-        else {
-           
+
+
+            }
+            else {
+
                 jQuery(".navbar").removeClass("fixed-top");
                 if (window.outerWidth > 768) {
                     jQuery(".main-nav").css("display", "block");
@@ -107,18 +120,28 @@ jQuery(function () {
                     }
 
                 );
-           
-        }
-    });
-        }
+
+            }
+        });
+    }
+=======
+
     jQuery(window).scroll(function () {
-        if (jQuery("body,html").scrollTop() > 500) {
-            jQuery(".nutcuonlen").css("opacity", "1");
-            jQuery(".nutcuonlen").css("visibility", "visible");
+        if (jQuery("body,html").scrollTop() > 150) {
+            jQuery(".navbar").addClass("fixed-top");
         }
         else {
-            jQuery(".nutcuonlen").css("opacity", "0");
-            jQuery(".nutcuonlen").css("visibility", "hidden");
+            jQuery(".navbar").removeClass("fixed-top");
+        }
+    });
+
+>>>>>>> parent of b2762ae (view home)
+    jQuery(window).scroll(function () {
+        if (jQuery("body,html").scrollTop() > 500) {
+            jQuery(".nutcuonlen").addClass("hienthi");
+        }
+        else {
+            jQuery(".nutcuonlen").removeClass("hienthi");
         }
     });
 
@@ -563,19 +586,20 @@ jQuery(function () {
     jQuery("#changepass").click(function (e) {
         jQuery('.thay-doi-mk').toggle(200);
     });
-   
+<<<<<<< HEAD
+
     
+=======
+   
+
+>>>>>>> parent of b2762ae (view home)
   
 });
-
-jQuery(document).ready(function () {
-    jQuery(".main-nav li").hover(function () {
-        jQuery(".mask").css("display", "block");
+$(document).ready(function () {
+    $("li").hover(function () {
+        $(".mask").css("display", "block");
     }, function () {
-        jQuery(".mask").css("display", "none");
+        $(".mask").css.css("display", "none");
     }
-    );
-   
-
-   
-}); 
+        );
+        });

@@ -4,6 +4,7 @@ using E_Ecommerce_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Ecommerce_Backend.Migrations
 {
     [DbContext(typeof(EcommecreDbContext))]
-    partial class EcommecreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221024102657_remove_RatingId_tb_Pro")]
+    partial class remove_RatingId_tb_Pro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,8 +243,8 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -276,9 +278,11 @@ namespace E_Ecommerce_Backend.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("BrandId")
+                        .IsUnique();
 
-                    b.HasIndex("OriginId");
+                    b.HasIndex("OriginId")
+                        .IsUnique();
 
                     b.ToTable("Product");
                 });
@@ -331,14 +335,14 @@ namespace E_Ecommerce_Backend.Migrations
             modelBuilder.Entity("E_Ecommerce_Backend.Models.Product", b =>
                 {
                     b.HasOne("E_Ecommerce_Backend.Models.Brand", "Brand")
-                        .WithMany("Product")
-                        .HasForeignKey("BrandId")
+                        .WithOne("Product")
+                        .HasForeignKey("E_Ecommerce_Backend.Models.Product", "BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("E_Ecommerce_Backend.Models.Origin", "Origin")
-                        .WithMany("Product")
-                        .HasForeignKey("OriginId")
+                        .WithOne("Product")
+                        .HasForeignKey("E_Ecommerce_Backend.Models.Product", "OriginId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

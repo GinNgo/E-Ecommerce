@@ -17,9 +17,13 @@ builder.Services.AddDbContext<EcommecreDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceDB"));
 });
+//interface
+
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddAutoMapper(typeof(Program));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

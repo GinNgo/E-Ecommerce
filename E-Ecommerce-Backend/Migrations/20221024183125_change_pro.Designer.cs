@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Ecommerce_Backend.Migrations
 {
     [DbContext(typeof(EcommecreDbContext))]
-    [Migration("20221024185555_remove_ImageId_tb_Pr")]
-    partial class remove_ImageId_tb_Pr
+    [Migration("20221024183125_change_pro")]
+    partial class change_pro
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -243,8 +243,8 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

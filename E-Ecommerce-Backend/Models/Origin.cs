@@ -12,6 +12,6 @@ namespace E_Ecommerce_Backend.Models
         [Required]
         [MaxLength(50)]
         public string? OriginName { get; set; }
-        public Product? Product { get; set; }
+        public virtual ICollection<Product>? Product { get; set; }
     }
 }

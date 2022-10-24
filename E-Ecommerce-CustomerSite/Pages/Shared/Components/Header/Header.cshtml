@@ -3,11 +3,10 @@
 *@
 @{
     <header>
-        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  box-shadow top-header">
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
             <div class="container float-start">
-                <div class=" ms-2 logo-main">
-                    <img src="https://localhost:44324/wwwroot/Upload/logo.png" class="dropdown-toggle " style="height:65px" asp-append-version="true">
-
+                <div class=" ms-2">
+                    <img src="https://localhost:44324/wwwroot/Upload/logo.png" style="height:65px" asp-append-version="true">
                 </div>
                 <div class="flex-fix col-9 ms-2">
                     <div class="flex-fix p-0">
@@ -15,7 +14,7 @@
                             <div class="border border-2 rounded-circle p-2 circle-header">
                                 <img src="https://localhost:44324/wwwroot/Upload/shopping.svg" class="img-header" asp-append-version="true">
                             </div>
-                            <div class="mt-2 me-2 ms-2 title-header ">
+                            <div class="mt-2 me-2 ms-2 title-header " >
                                 <h5 class="m-0 ">Mua hàng</h5>
                                 <p class="m-0 header-p lh-base">Cam kết chất lượng</p>
                             </div>
@@ -44,29 +43,34 @@
                     </div>              <div class="p-0">
                         <div class="  flex-fix">
                             <div class="border border-2 rounded-circle p-2 circle-header">
-                                <img src="https://localhost:44324/wwwroot/Upload/return.svg" class="img-header text-black" asp-append-version="true">
+                                <img src="https://localhost:44324/wwwroot/Upload/return.svg" class="img-header" asp-append-version="true">
                             </div>
                             <div class="mt-2 me-2 ms-2 title-header">
                                 <h5 class="m-0 ">Đổi trả hàng</h5>
                                 <p class="m-0 header-p lh-base">Trong Vòng 05 Ngày(*)</p>
                             </div>
                         </div>
+                    </div>              <div class=" p-0">
+                        <div class="  flex-fix">
+                            <div class="border border-2 rounded-circle p-2 circle-header">
+                                <img src="https://localhost:44324/wwwroot/Upload/opening.svg" class="img-header" asp-append-version="true">
+                            </div>
+                            <div class="mt-2 me-2 ms-2 title-header">
+                                <h5 class="m-0 ">Giờ mở cửa</h5>
+                                <p class="m-0 header-p lh-base">8:00 - 20:00</p>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
 
 
         </div>
-        <nav class="navbar navbar-expand-sm p-0 bg-info bottom-header">
+        <nav class="navbar navbar-expand-sm bg-info">
 
-            <div class="container h-100">
-                <div class="d-flex h-100" id="categories">
-                    <a class="home-link " asp-page="" title="Chiaki.vn" data-toggle="tooltip" data-placement="right"> <img width="20" height="20" src="https://localhost:44324/wwwroot/Upload/home-menu.svg" alt="Siêu thị trực tuyến Chiaki.vn"> </a>
-                    <div class="category-title col-ms-6 col-md-3 p-3  me-md-3  me-lg-0 dropdown-toggle fw-bolder text-white fs-5 ">
-                        Danh mục sản phẩm
-                    </div>
-                    @await Component.InvokeAsync("Categories")
+            <div class="container">
+                <div class="col-ms-6 col-md-3 p-3  me-md-3  me-lg-0 dropdown-toggle fw-bolder text-white fs-5">
+                    Danh mục sản phẩm
                 </div>
                 <div class="col-9 ms-md-5 ms-lg-0">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -76,36 +80,8 @@
                         </form>
                     </div>
                 </div>
-                @*<div class="navbar-nav mb-1 ml-auto">
-                    <ul class="dropdown">
-                        <li class="nav-item account" type="button" data-toggle="dropdown">
-                            <a href="#" class="btn btn-secondary rounded-circle">
-                                <i class="fa fa-user"></i>
-                            </a>
-                            <a class="nav-link text-dark text-uppercase" href="#" style="display:inline-block">
-                                Tài
-                                khoản
-                            </a>
-                        </li>
-                        <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item nutdangky text-center mb-2" href="#" data-toggle="modal" data-target="#formdangky">Đăng ký</a>
-                            <a class="dropdown-item nutdangnhap text-center" href="#" data-toggle="modal" data-target="#formdangnhap">Đăng nhập</a>
-                        </li>
-                    </ul>
-                    <div class="nav-item giohang">
-                        <a href="gio-hang.html" class="btn btn-secondary rounded-circle">
-                            <i class="fa fa-shopping-cart"></i>
-                            <div class="cart-amount">1</div>
-                        </a>
-                        <a class="nav-link text-dark giohang text-uppercase" href="gio-hang.html" style="display:inline-block">
-                            Giỏ
-                            Hàng
-                        </a>
-                    </div>
-                </div>*@
+
             </div>
-
         </nav>
-
     </header>
 }
