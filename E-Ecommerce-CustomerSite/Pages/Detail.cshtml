@@ -1,11 +1,10 @@
 ﻿@page "{name?}"
 @using E_Ecommerce_CustomerSite.Pages
-@model IndexModel
+@model DetailModel
 @{
-    String ApiUrl = "https://localhost:44324/wwwroot/Upload";
-    String name = this.Request.RouteValues["name"] as String;
-    ViewData["name"] = name;
+    string ApiUrl = "https://localhost:44324/wwwroot/Upload";
     ViewData["url"] = ApiUrl;
+  
 }
 <!-- breadcrumb  -->
     <section class="breadcrumbbar">
@@ -26,19 +25,21 @@
                     <!-- ảnh  -->
                     <div class="col-md-5 khoianh">
                         <div class="anhto mb-4">
-                            <a class="active" href="~/images/ma-bun-luu-manh-mt.jpg" data-fancybox="thumb-img">
-                                <img class="product-image" src="~/images/ma-bun-luu-manh-mt.jpg" alt="ma-bun-luu-manh-mt" style="width: 100%;">
+                        <a class="active" href="@ViewData["url"]/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
+                           <img class="product-image" src="@ViewData["url"]/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;"> 
                             </a>
-                    </div>
+                        <a href="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg" data-fancybox="thumb-img"></a>
+                        </div>
                         <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
-                            <img class="thumb-img thumb1 mr-3" src="~/images/ma-bun-luu-manh-mt.jpg" class="img-fluid" alt="ma-bun-luu-manh-mt">
+                        <img class="thumb-img thumb mr-3 img-fluid" src="@ViewData["url"]/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
+                            <img class="thumb-img thumb img-fluid" src="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg"alt="lap-ke-hoach-kinh-doanh-hieu-qua-ms">
                         </div>
                     </div>
                     <!-- thông tin sản phẩm: tên, giá bìa giá bán tiết kiệm, các khuyến mãi, nút chọn mua.... -->
                     <div class="col-md-7 khoithongtin">
                         <div class="row">
                             <div class="col-md-12 header">
-                                <h4 class="ten">Lập Kế Hoạch Kinh Doanh Hiệu Quả</h4>
+                                <h4 class="ten">@Model.Pro.ProductName</h4>
                                 <div class="rate">
                                     <i class="fa fa-star active"></i>
                                     <i class="fa fa-star active"></i>
@@ -50,10 +51,10 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="gia">
-                                    <div class="giabia">Giá bìa:<span class="giacu ml-2">139.000 ₫</span></div>
-                                    <div class="giaban">Giá bán tại DealBooks: <span
-                                            class="giamoi font-weight-bold">111.200 </span><span class="donvitien">₫</span></div>
-                                    <div class="tietkiem">Tiết kiệm: <b>27.800 ₫</b> <span class="sale">-20%</span>
+                                    <div class="giabia">Giá bìa:<span class="giacu ml-2">@String.Format("{0:0,0}",@Model.Pro.Price) ₫</span></div>
+                                    <div class="giaban">Giá bán tại DealBooks: <span class="giamoi font-weight-bold">@String.Format("{0:0,0}",@Model.Pro.PriceDiscount) </span><span class="donvitien">
+                                ₫</span></div>
+                                    <div class="tietkiem">Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> <span class="sale">-@Math.Abs((@Model.Pro.Price-@Model.Pro.PriceDiscount)/1000)%</span>
                                     </div>
                                 </div>
                                 <div class="uudai my-3">
@@ -107,10 +108,10 @@
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active text-uppercase" id="nav-gioithieu-tab"
-                                    data-toggle="tab" href="#nav-gioithieu" role="tab" aria-controls="nav-gioithieu"
+                               data-bs-toggle="tab" data-bs-target="#nav-gioithieu" role="tab" aria-controls="nav-gioithieu"
                                     aria-selected="true">Giới thiệu</a>
-                                <a class="nav-item nav-link text-uppercase" id="nav-danhgia-tab" data-toggle="tab"
-                                    href="#nav-danhgia" role="tab" aria-controls="nav-danhgia"
+                            <a class="nav-item nav-link text-uppercase" id="nav-danhgia-tab" data-bs-toggle="tab"
+                               data-bs-target="#nav-danhgia" role="tab" aria-controls="nav-danhgia"
                                     aria-selected="false">Đánh
                                     giá của độc giả</a>
                             </div>
@@ -119,70 +120,9 @@
                             <div class="tab-pane fade show active ml-3" id="nav-gioithieu" role="tabpanel"
                                 aria-labelledby="nav-gioithieu-tab">
                                 <h6 class="tieude font-weight-bold">Lập Kế Hoạch Kinh Doanh Hiệu Quả</h6>
-                                <p>
-                                    <span>Khi bắt đầu thành lập doanh nghiệp hay mở rộng quy mô hoạt động, lập ra một
-                                        bản kế hoạch kinh doanh là bước đi đầu tiên không thể thiếu. Bản kế hoạch kinh
-                                        doanh càng được chuẩn bị kỹ lưỡng và lôi cuốn bao nhiêu, cơ hội ghi điểm trước
-                                        các nhà đầu tư càng lớn bấy nhiêu. Phải chăng, thông qua bản kế hoạch kinh
-                                        doanh, bạn muốn người đọc:
-                                    </span>
-                                </p>
-                                <p>
-                                    <span>- Đầu tư vào một ý tưởng kinh doanh mới hay một doanh nghiệp đang hoạt
-                                        động?</span>
-                                </p>
-                                <p>
-                                    <span>- Mua lại doanh nghiệp của bạn?</span>
-                                </p>
-                                <p>
-                                    <span>- Tham gia liên doanh với bạn?</span>
-                                </p>
-                                <p>
-                                    <span>- Chấp nhận đề nghị của bạn để thực hiện hợp đồng?</span>
-                                </p>
-                                <p>
-                                    <span>- Cấp cho bạn một khoản hỗ trợ hoặc phê duyệt theo quy định?</span>
-                                </p>
-                                <p>
-                                    <span>- Thuyết phục hội đồng quản trị thay đổi phương hướng hoạt động doanh nghiệp
-                                        của bạn?</span>
-                                </p>
-                                <p>
-                                    <span>Cuốn sách “Lập kế hoạch kinh doanh hiệu quả” sẽ hướng dẫn bạn cách để tạo ra
-                                        bản kế hoạch kinh doanh thu hút mọi tổ chức tài chính, khiến họ phải đáp ứng
-                                        mong muốn của bạn và hỗ trợ bạn tới cùng trong công việc kinh doanh. Thông qua
-                                        cuốn sách, bạn sẽ biết cách:</span>
-                                </p>
-                                <p>
-                                    <span>Tạo ra bản kế hoạch kinh doanh hoàn chỉnh Xây dựng chiến lược hoạt động cho
-                                        doanh nghiệp.</span>
-                                </p>
-                                <p>
-                                    <span>Đưa ra dự báo kinh doanh sát với thực tế.</span>
-                                </p>
-                                <p>
-                                    <span>Nắm rõ các thông tin tài chính ảnh hưởng lớn tới doanh nghiệp.</span>
-                                </p>
-                                <p>
-                                    <span>Trong quá trình xây dựng kế hoạch, việc tham khảo ý kiến chuyên gia là điều
-                                        cần thiết nhưng bạn phải là người đóng góp chính và hiểu tường tận mỗi chi tiết
-                                        có trong đó. Hãy xem việc lập kế hoạch giống như việc truyền đạt câu chuyện của
-                                        mình nhằm thuyết phục người đọc đồng hành cùng bạn trên con đường chinh phục mục
-                                        tiêu kinh doanh.</span>
-                                </p>
-                                <p>
-                                    <span>Bạn chỉ có một cơ hội duy nhất để tạo ấn tượng đầu tiên tốt đẹp. Đừng để nó
-                                        vụt mất. Hãy trình bày một văn bản có tính thuyết phục cao, bố cục đẹp mắt,
-                                        không mắc lỗi chính tả, ngữ pháp, bao gồm các vấn đề trọng tâm và cuối cùng là
-                                        chứa các thông tin bổ trợ cần thiết.</span>
-                                </p>
-                                <p>
-                                    <span>Bằng kiến thức, kinh nghiệm của mình, Brian Finch - một chuyên gia trong lĩnh
-                                        vực tư vấn lập kế hoạch kinh doanh và quản lý tài chính - chắc chắn sẽ giúp bạn
-                                        xây dựng thành công kế hoạch kinh doanh của riêng mình.</span>
-                                </p>
+                              
                             </div>
-                            <div class="tab-pane fade" id="nav-danhgia" role="tabpanel" aria-labelledby="nav-danhgia-tab">
+                        <div class="tab-pane fade " id="nav-danhgia" role="tabpanel" aria-labelledby="nav-danhgia-tab">
                                 <div class="row">
                                     <div class="col-md-3 text-center">
                                         <p class="tieude">Đánh giá trung bình</p>
@@ -231,15 +171,15 @@
                                             <div class="btn vietdanhgia mt-3">Viết đánh giá của bạn</div>
                                         </div>
                                         <!-- nội dung của form đánh giá  -->
-                                        <div class="formdanhgia">
+                                        <form method="post" class="formdanhgia">
                                             <h6 class="tieude text-uppercase">GỬI ĐÁNH GIÁ CỦA BẠN</h6>
                                             <span class="danhgiacuaban">Đánh giá của bạn về sản phẩm này:</span>
                                             <div class="rating d-flex flex-row-reverse align-items-center justify-content-end">
-                                                <input type="radio" name="star" id="star1"><label for="star1"></label>
-                                                <input type="radio" name="star" id="star2"><label for="star2"></label>
-                                                <input type="radio" name="star" id="star3"><label for="star3"></label>
-                                                <input type="radio" name="star" id="star4"><label for="star4"></label>
-                                                <input type="radio" name="star" id="star5"><label for="star5"></label>
+                                                <input type="radio"  name="star" id="star1" value="1"><label for="star1"></label>
+                                                <input type="radio" name="star" id="star2" value="2"><label for="star2"></label>
+                                                <input type="radio" name="star" id="star3" value="3"><label for="star3"></label>
+                                                <input type="radio" name="star" id="star4" value="4"><label for="star4"></label>
+                                                <input type="radio" name="star" id="star5" value="5"><label for="star5"></label>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="txtFullname w-100" placeholder="Mời bạn nhập tên(Bắt buộc)">
@@ -250,8 +190,8 @@
                                             <div class="form-group">
                                                 <input type="text" class="txtComment w-100" placeholder="Đánh giá của bạn về sản phẩm này">
                                             </div>
-                                            <div class="btn nutguibl">Gửi bình luận</div>
-                                        </div>
+                                            <button class="btn nutguibl" type="submit">Gửi bình luận</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -15,5 +15,14 @@ namespace E_Ecommerce_CustomerSite.Extensions
 
             return results;
         }
+
+        public static async Task<T?> GetAsJsonOneProAsync<T>(this HttpClient httpClient, string url)
+        {
+            var response = await httpClient.GetAsync(url);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<T>(content);
+
+            return result;
+        }
     }
 }

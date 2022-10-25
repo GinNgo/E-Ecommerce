@@ -15,5 +15,6 @@ namespace E_Ecommerce_Shared.DTO
         public int CategoryLevel { get; set; }
         public int? ParentId { get; set; }
         public ICollection<CategoriesDto>? Child { get; set; }
+        
     }
 }

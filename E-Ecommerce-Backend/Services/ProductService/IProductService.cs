@@ -7,5 +7,6 @@ namespace E_Ecommerce_Backend.Service.ProductService
     public interface IProductService
     {
         public Task<List<ProductsDto>> GetAllProductsAsync();
+        public Task<ActionResult<ProductsDto>> GetProductAsync(int id);
     }
 }

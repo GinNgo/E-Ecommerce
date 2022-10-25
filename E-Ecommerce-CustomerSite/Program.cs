@@ -5,16 +5,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-<<<<<<< HEAD
+
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.Configure<RouteOptions>(options =>
 {
     options.LowercaseUrls = true;
     options.AppendTrailingSlash = true;
 });
-=======
-builder.Services.AddRazorPages();
->>>>>>> parent of b2762ae (view home)
+
+
 builder.Services.AddHttpClient("", opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["ApiUrl"] ?? "");

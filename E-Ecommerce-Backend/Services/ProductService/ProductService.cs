@@ -14,7 +14,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
         private readonly EcommecreDbContext _context;
         private readonly IMapper _mapper;
 
-        public ProductService(EcommecreDbContext context,IMapper mapper)
+        public ProductService(EcommecreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -22,8 +22,16 @@ namespace E_Ecommerce_Backend.Services.ProductService
         public async Task<List<ProductsDto>> GetAllProductsAsync()
         {
             var products = await _context.Products.Include(c => c.Brand).Include(c => c.Categories).Include(c => c.Origin).ToListAsync();
-            var productsDto = _mapper.Map<List<Product> ,List <ProductsDto>>(products);
+            var productsDto = _mapper.Map<List<Product>, List<ProductsDto>>(products);
             return productsDto ?? new List<ProductsDto>();
+        }
+
+        public async Task<ActionResult<ProductsDto>> GetProductAsync(int id)
+        {
+            ProductsDto productsDto = new ProductsDto();
+            var product = await _context.Products.Where(e => e.ProductId == id).FirstOrDefaultAsync();
+            productsDto = _mapper.Map<Product, ProductsDto>(product);
+            return productsDto;
         }
     }
 }

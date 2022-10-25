@@ -18,6 +18,14 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
             return products ?? new List<ProductsDto>();
         }
 
-       
+        public async Task<ProductsDto> GetProductsByIdAsync(int Id)
+        {
+            var product =await  httpClient.GetAsJsonOneProAsync<ProductsDto>("Products/"+ Id);
+
+            return product ?? new ProductsDto();
+        }
+
+      
+
     }
 }

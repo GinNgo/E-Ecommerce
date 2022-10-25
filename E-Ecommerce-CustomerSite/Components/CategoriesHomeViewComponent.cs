@@ -3,19 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_CustomerSite.Components
 {
-    public class CategoriesViewComponent : ViewComponent
+    public class CategoriesHomeViewComponent : ViewComponent
     {
         private readonly ICategoriesService _categoryService;
-        public CategoriesViewComponent(ICategoriesService categoryService)
+        public CategoriesHomeViewComponent(ICategoriesService categoryService)
         {
             _categoryService = categoryService;
         }
 
+      
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var categories =await _categoryService.GetAllCategories();
-            return View("Categories",categories);
+            var categories = await _categoryService.GetAllCategories();
+            return View("CategoriesHome", categories);
         }
-      
     }
 }

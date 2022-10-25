@@ -6,6 +6,7 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
     public interface IProductService
     {
         public Task<List<ProductsDto>> GetAllProductsAsync();
+        public Task<ProductsDto> GetProductsByIdAsync(int Id);
     }
 }
 
