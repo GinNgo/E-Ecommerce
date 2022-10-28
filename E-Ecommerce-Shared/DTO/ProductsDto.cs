@@ -22,7 +22,7 @@ namespace E_Ecommerce_Shared.DTO
 
         public string? ImageUrl { get; set; }
         public  List<CategoriesDto>? Categories { get; set; }
-    
+        public int CategoryId { get; set; }
         public string? BrandName { get; set; }
         public decimal Rating { get; set; }
 

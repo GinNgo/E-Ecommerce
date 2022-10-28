@@ -1,12 +1,12 @@
 using E_Ecommerce_Backend.Data;
-using E_Ecommerce_Backend.Service.ProductService;
+
 using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Backend.Services.ProductService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,6 +16,19 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EcommecreDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceDB"));
+});
+
+//add cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+                          policy =>
+                          {
+                              policy.WithOrigins("https://localhost:7008",
+                                                  "")
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                          });
 });
 //interface
 
@@ -38,7 +51,7 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = new PathString("/wwwroot/Upload")
 });
 app.UseHttpsRedirection();
-
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();

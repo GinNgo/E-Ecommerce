@@ -9,7 +9,7 @@ using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.ProductService;
 using E_Ecommerce_Shared.DTO;
-using E_Ecommerce_Backend.Service.ProductService;
+
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -57,7 +57,22 @@ namespace E_Ecommerce_Backend.Controllers
 
             return product;
         }
+        // GET: api/Products/5
+        [HttpGet("GetProductByCat")]
+        public async Task<List<ProductsDto>> GetProductProductByCat([FromQuery(Name ="id")]int id, [FromQuery(Name = "pageIndex")] int pageIndex, [FromQuery(Name = "pageSize")] int pageSize)
+        {
+            var products = await _productService.GetProductByCatIdAsync(id,pageIndex, pageSize);
 
+            return products;
+        }
+        // GET: api/Products/5
+        [HttpGet("GetTotalProByCat/{id}")]
+        public async Task<ActionResult<int>> GetTotalProByCat(int id)
+        {
+            var totalPro = await _productService.GetTotalProByCatAsync(id);
+
+            return totalPro;
+        }
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

@@ -1,0 +1,65 @@
+﻿
+
+input[type="checkbox"] + label {
+    display: block;
+    margin: 0.2em;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+    input[type="checkbox"] + label::before {
+        content: "\2714";
+        border: 0.1em solid rgb(140, 138, 138);
+        border-radius: 2px;
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        padding-left: 0.2em;
+        padding-bottom: 0.3em;
+        margin-right: 0.2em;
+        vertical-align: bottom;
+        color: transparent;
+    }
+
+    input[type="checkbox"]:checked + label:before {
+        background-color: mediumseagreen;
+        color: #fff;
+        border-color: mediumseagreen;
+        transition: 0.2s;
+    }
+
+    input[type="checkbox"] + label:hover::before {
+        border-color: #41a9ff;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"] + label:hover {
+        cursor: pointer;
+    }
+
+.content {
+    min-height: 100vh;
+}
+
+.nav-cat {
+    max-height: 150px;
+    overflow-y: scroll;
+    max-width: 210px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}

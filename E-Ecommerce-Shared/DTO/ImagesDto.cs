@@ -15,6 +15,6 @@ namespace E_Ecommerce_Shared.DTO
         public string? Title { get; set; }
         public int? DisplayOrder { get; set; }
        
-        public ProductsDto Product { get; set; }
+        public ProductsDto? Product { get; set; }
     }
 }

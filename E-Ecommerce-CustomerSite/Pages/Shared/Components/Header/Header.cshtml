@@ -4,7 +4,7 @@
 @{
     <header>
         <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  box-shadow top-header">
-            <div class="container float-start">
+            <div class="container-xl float-start">
                 <div class=" ms-2 logo-main">
                     <img src="https://localhost:44324/wwwroot/Upload/logo.png" class="dropdown-toggle " style="height:65px" asp-append-version="true">
 
@@ -60,7 +60,7 @@
         </div>
         <nav class="navbar navbar-expand-sm p-0  bottom-header" style="background-color:#43c0e4">
 
-            <div class="container h-100">
+            <div class="container-xl h-100">
                 <div class="d-flex h-100" id="categories">
                     <a class="home-link " asp-page="" title="Chiaki.vn" data-toggle="tooltip" data-placement="right"> <img width="20" height="20" src="https://localhost:44324/wwwroot/Upload/home-menu.svg" alt="Siêu thị trực tuyến Chiaki.vn"> </a>
                     <div class="category-title col-ms-6 col-md-3 p-3  me-md-3  me-lg-0 dropdown-toggle fw-bolder text-white fs-5 ">
@@ -69,8 +69,8 @@
                     @await Component.InvokeAsync("Categories")
                 </div>
                 <!-- form tìm kiếm  -->
-                <form class="form-inline ml-auto my-2 my-lg-0 mr-3">
-                    <div class="input-group" style="width: 520px;">
+                <form class="form-inline w-50">
+                    <div class="input-group w-75">
                         <input type="text" class="form-control" aria-label="Small"
                             placeholder="Nhập sách cần tìm kiếm...">
                         <div class="input-group-append">

@@ -7,5 +7,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
     public interface ICategoriesService
     {
         public Task<List<CategoriesDto>> GetCategories();
+        public Task<List<int>> GetCategoriesIdChild(int id);
+        public  Task<List<CategoriesDto>> GetBreadCrumb(int id);
     }
 }

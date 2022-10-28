@@ -21,7 +21,7 @@ jQuery(function () {
                 }
             },
             {
-                breakpoint: 800,
+                breakpoint: 1000,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1
@@ -39,40 +39,40 @@ jQuery(function () {
     jQuery("#backtotop").click(function () {
         jQuery("html, body").animate({ scrollTop: 0 }, 400);
     });
-  
+
     //hieu ung header va nut backtotop
 
-   
-        jQuery(window).scroll(function () {
-            if (jQuery("body,html").scrollTop() > 650) {
-                jQuery(".navbar").addClass("fixed-top");
-                jQuery(".main-nav").css("display", "none");
-                jQuery(".top-header").css("display", "none"); 
-                jQuery("#categories").hover(function () {
-               
-                        jQuery(" .main-nav").css("display", "block");
-           
+    jQuery("#categories").hover(function () {
 
-                }
-                    , function () {
-            
-                            jQuery(" .main-nav").css("display", "none");
-                   
-                    }
-                );
-            }
-            else {
-                
-                jQuery(".navbar").removeClass("fixed-top");
-                jQuery(".top-header").css("display", "flex");
-                jQuery("#categories").hover(function () {
-                    jQuery(" .main-nav").css("display", "none");
-                });
+        jQuery(" .main-nav").css("display", "block");
 
-            }
-        });
-    
-  
+
+    }
+        , function () {
+
+            jQuery(" .main-nav").css("display", "none");
+
+        }
+    );
+    jQuery(window).scroll(function () {
+        if (jQuery("body,html").scrollTop() > 650) {
+            jQuery(".navbar").addClass("fixed-top");
+            jQuery(".main-nav").css("display", "none");
+            jQuery(".top-header").css("display", "none");
+      
+        }
+        else {
+
+            jQuery(".navbar").removeClass("fixed-top");
+            jQuery(".top-header").css("display", "flex");
+            jQuery("#categories").hover(function () {
+                jQuery(" .main-nav").css("display", "none");
+            });
+
+        }
+    });
+
+
 
     jQuery(window).scroll(function () {
         if (jQuery("body,html").scrollTop() > 500) {

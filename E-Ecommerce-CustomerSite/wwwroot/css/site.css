@@ -20,378 +20,466 @@ html {
         width: 924px;
     }
 }
+.slick-dots{
+    display:none!important;
 
+}
 @media(max-width:768px) {
     .top-header{
         display: none !important;
     }
-    .main-nav, .main-nav-home {
-        display: none;
+    .main-nav , .main-nav-home {
+        display: none !important;
     }
     .banner-wrapper{
         margin-left:0px !important;
     }
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    
-}
-footer{
-    position:relative;
-    bottom:0;
-    width:100%
-}
-.main{
-    
-}
-.flex-fix {
-    display: flex;
-}
-
-.circle-header {
-    text-align: center;
-    justify-items: center;
-    width: 50px;
-    height: 50px
-}
-
-.img-header {
-    width: 24px;
-    height: 24px;
-}
-
-.right-top-header {
-    margin-left: -50px;
-    width: 924px;
-}
-
-.title-header {
-    width: max-content;
-}
-.bottom-header{
-    height:82px;
-}
-/* css cho navbar  */
-
-
-.navbar-nav li .nav-link {
-    font-size: 13px;
-    padding-top: 17px;
-    font-weight: 400;
+   
 }
 
 
-li.nav-item a {
-    transition: 0.2s;
-}
+    html {
+        position: relative;
+        min-height: 100%;
+    }
 
-li.nav-item:hover a {
-    color: #F5A623 !important;
-}
+    body {
+    }
 
-a.nav-link {
-    padding-top: 8px;
-}
+    footer {
+        position: relative;
+        bottom: 0;
+        width: 100%
+    }
 
-a.navbar-brand {
-    font-size: 34px;
-}
+    .main {
+    }
 
-li.nav-item.account {
-    margin-right: 0.5rem;
-}
+    .flex-fix {
+        display: flex;
+    }
 
-a.nav-link {
-    margin-left: -0.5rem;
-}
+    .circle-header {
+        text-align: center;
+        justify-items: center;
+        width: 50px;
+        height: 50px
+    }
 
-.navbar-expand-md .navbar-nav .nav-link.giohang {
-    padding-right: 0 !important;
-}
+    .img-header {
+        width: 24px;
+        height: 24px;
+    }
 
-i.fa.fa-shopping-cart {
-    margin-left: -1px;
-    margin-top: 5px;
-    display: inline-block;
-}
+    .right-top-header {
+        margin-left: -50px;
+        width: 924px;
+    }
 
-a.btn.btn-secondary.rounded-circle {
-    width: 42px;
-    height: 40px;
-    background-color: #dfdfdf;
-    border: #cacaca;
-}
+    .title-header {
+        width: max-content;
+    }
 
-.cart-amount {
-    height: 18px;
-    width: 18px;
-    border-radius: 50%;
-    background: #F5A623;
-    font-size: 12px;
-    position: relative;
-    left: 19px;
-    bottom: 32px;
-    transition: 0.2s;
-}
+    .bottom-header {
+        height: 82px;
+    }
+    /* css cho navbar  */
 
-.nav-item.giohang:hover .cart-amount {
-    background: #CF111A;
-    color: white;
-}
 
-.dropdown-menu {
-    padding: 11px;
-    width: 236px;
-}
+    .navbar-nav li .nav-link {
+        font-size: 13px;
+        padding-top: 17px;
+        font-weight: 400;
+    }
 
-a.dropdown-item {
-    background: #F5A623;
-    border-radius: 4px;
-    font-size: 14px;
-    color: white;
-    padding: 9px;
-}
 
-    a.dropdown-item:hover {
+    li.nav-item a {
+        transition: 0.2s;
+    }
+
+    li.nav-item:hover a {
+        color: #F5A623 !important;
+    }
+
+    a.nav-link {
+        padding-top: 8px;
+    }
+
+    a.navbar-brand {
+        font-size: 34px;
+    }
+
+    li.nav-item.account {
+        margin-right: 0.5rem;
+    }
+
+    a.nav-link {
+        margin-left: -0.5rem;
+    }
+
+    .navbar-expand-md .navbar-nav .nav-link.giohang {
+        padding-right: 0 !important;
+    }
+
+    i.fa.fa-shopping-cart {
+        margin-left: -1px;
+        margin-top: 5px;
+        display: inline-block;
+    }
+
+    a.btn.btn-secondary.rounded-circle {
+        width: 42px;
+        height: 40px;
+        background-color: #dfdfdf;
+        border: #cacaca;
+    }
+
+    .cart-amount {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
         background: #F5A623;
-        color: white;
-        box-shadow: 0px 2px 5px #F5A623;
+        font-size: 12px;
+        position: relative;
+        left: 19px;
+        bottom: 32px;
+        transition: 0.2s;
     }
 
-.navbar-nav .nav-item.active a {
-    color: #F5A623;
-}
-.navbar-nav{
-    align-items:center;
-    font-size:16px;
-}
-    .navbar-nav.dropdown {
-        margin-bottom:0!important;
+    .nav-item.giohang:hover .cart-amount {
+        background: #CF111A;
+        color: white;
     }
-    
-    .giohang{
-        font-size:13px;
+
+    .dropdown-menu {
+        padding: 11px;
+        width: 236px;
     }
+
+    a.dropdown-item {
+        background: #F5A623;
+        border-radius: 4px;
+        font-size: 14px;
+        color: white;
+        padding: 9px;
+    }
+
+        a.dropdown-item:hover {
+            background: #F5A623;
+            color: white;
+            box-shadow: 0px 2px 5px #F5A623;
+        }
+
+    .navbar-nav .nav-item.active a {
+        color: #F5A623;
+    }
+
+    .navbar-nav {
+        align-items: center;
+        font-size: 16px;
+    }
+
+        .navbar-nav.dropdown {
+            margin-bottom: 0 !important;
+        }
+
+    .giohang {
+        font-size: 13px;
+    }
+
         .giohang:hover {
             font-size: 13px;
             color: #F5A623;
         }
 
-.navbar.fixed-top {
-    box-shadow: 0px 5px 20px grey;
-}
-/* het css cho navbar  */
-/* css cho header formdangnhap dangky  */
-.modal-header {
-    padding-bottom: 0;
-    align-items: flex-start;
-}
-
-ul.tabs li.tab a {
-    font-size: 18px;
-    color: #646464;
-    transition: 0.2s;
-}
-
-ul.tabs li:hover a {
-    color: #F5A623;
-}
-
-ul.tabs li:hover {
-    cursor: pointer;
-}
-
-ul.tabs li hr {
-    position: relative;
-    width: 50%;
-    top: 0px;
-    left: 25%;
-    visibility: hidden;
-    border-top: 2px solid #F5A623;
-    transition: 0.2s;
-}
-
-ul.tabs li:hover hr {
-    visibility: visible;
-    border-top: 2px solid #F5A623;
-    width: 100%;
-    left: 0;
-}
-
-ul.tabs {
-    width: 100%;
-    height: 100%;
-}
-
-    ul.tabs li {
-        width: 40%;
-        height: 100%;
+    .navbar.fixed-top {
+        box-shadow: 0px 5px 20px grey;
+    }
+    /* het css cho navbar  */
+    /* css cho header formdangnhap dangky  */
+    .modal-header {
+        padding-bottom: 0;
+        align-items: flex-start;
     }
 
-        ul.tabs li.active a {
-            color: #F5A623;
-        }
-
-        ul.tabs li.active hr {
-            visibility: visible;
-            border-top: 2px solid #F5A623;
-            width: 100%;
-            left: 0;
-        }
-/* het css cho header form dangnhap dangky  */
-
-/* css cho formdangnhap dangky*/
-
-.close {
-    float: right;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .5;
-    border:0;
-    background:none;
-}
-.form-signin {
-    width: 100%;
-}
-
-    .form-signin .btn {
-        font-size: 80%;
-        letter-spacing: .1rem;
-        font-weight: bold;
-        padding: 1rem;
-        transition: all 0.2s;
+    ul.tabs li.tab a {
+        font-size: 18px;
+        color: #646464;
+        transition: 0.2s;
     }
 
-.form-label-group {
-    position: relative;
-    margin-bottom: 1rem;
-}
-
-.btn-google {
-    color: white;
-    background-color: #ea4335;
-}
-
-.btn-facebook {
-    color: white;
-    background-color: #3b5998;
-}
-
-.modal-body hr {
-    position: relative;
-    top: 1px;
-}
-
-.btn-signin:hover {
-    color: black !important;
-}
-
-
-#formdangky .form-signin p {
-    margin-bottom: 3px;
-    font-size: 13px;
-}
-
-#formdangky .form-signin a {
-    display: block;
-    font-size: 13px;
-}
-
-label.error {
-    display: inline-block;
-    color: red;
-    width: 300px;
-    margin-top: 5px;
-    margin-bottom: 0;
-    font-size: 13px;
-}
-
-/* het css cho form dang nhap dangky */
-
-/* css category  */
-
-.main-nav, .main-nav-home{
-    display: none;
-    margin-left: 30px;
-    border: 1px solid #b4b2b2;
-    margin-top: 0px;
-    position: absolute;
-    top: 100%;
-    box-sizing: border-box;
-    max-width: 220px;
-    min-width: 220px;
-    min-height: 575px;
-    background: white;
-    border: 1px solid #b4b2b2;
-    z-index: 100;
-}
-    .main-nav:hover, .main-nav-home:hover {
-        cursor: default;
-    }
-    .main-nav ul, .main-nav-home ul{
-        margin-bottom: 0;
-        list-style: none;
-        background: white;
-        padding-left: 0px;
+    ul.tabs li:hover a {
+        color: #F5A623;
     }
 
-    .main-nav > ul > li:hover, .main-nav-home >ul>li:hover{
-        background-color: #43c0e4;
+    ul.tabs li:hover {
         cursor: pointer;
     }
 
-        .main-nav > ul > li:hover > a, .main-nav-home>ul>li:hover>a {
-            margin-top: 1px;
-            color: white;
-        }
-
-
-    .main-nav > ul > li, .main-nav-home>ul>li {
-        border-bottom: 1px solid #f8e1e1;
-        height: 32px;
+    ul.tabs li hr {
+        position: relative;
+        width: 50%;
+        top: 0px;
+        left: 25%;
+        visibility: hidden;
+        border-top: 2px solid #F5A623;
+        transition: 0.2s;
     }
 
-        .main-nav > ul > li:last-child, .main-nav-home >ul>li:last-child{
-            border-bottom: none;
+    ul.tabs li:hover hr {
+        visibility: visible;
+        border-top: 2px solid #F5A623;
+        width: 100%;
+        left: 0;
+    }
+
+    ul.tabs {
+        width: 100%;
+        height: 100%;
+    }
+
+        ul.tabs li {
+            width: 40%;
+            height: 100%;
         }
 
-    .main-nav > ul li a, .main-nav-home >ul li a{
-        margin-top: -20px;
-        line-height: 32px;
-        padding-left: 16px;
-        font-weight: 400;
+            ul.tabs li.active a {
+                color: #F5A623;
+            }
+
+            ul.tabs li.active hr {
+                visibility: visible;
+                border-top: 2px solid #F5A623;
+                width: 100%;
+                left: 0;
+            }
+    /* het css cho header form dangnhap dangky  */
+
+    /* css cho formdangnhap dangky*/
+
+    .close {
+        float: right;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .5;
+        border: 0;
+        background: none;
+    }
+
+    .form-signin {
+        width: 100%;
+    }
+
+        .form-signin .btn {
+            font-size: 80%;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+    .form-label-group {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .btn-google {
+        color: white;
+        background-color: #ea4335;
+    }
+
+    .btn-facebook {
+        color: white;
+        background-color: #3b5998;
+    }
+
+    .modal-body hr {
+        position: relative;
+        top: 1px;
+    }
+
+    .btn-signin:hover {
+        color: black !important;
+    }
+
+
+    #formdangky .form-signin p {
+        margin-bottom: 3px;
         font-size: 13px;
-        text-decoration: none;
+    }
+
+    #formdangky .form-signin a {
+        display: block;
+        font-size: 13px;
+    }
+
+    label.error {
+        display: inline-block;
+        color: red;
+        width: 300px;
+        margin-top: 5px;
+        margin-bottom: 0;
+        font-size: 13px;
+    }
+
+    /* het css cho form dang nhap dangky */
+
+    /* css category  */
+
+    .main-nav, .main-nav-home {
+        display: none;
+        border: 1px solid #b4b2b2;
+        margin-top: 0px;
+        position: absolute;
+        top: 100%;
+        box-sizing: border-box;
+        max-width: 220px;
+        min-width: 220px;
+        min-height: 575px;
+        background: white;
+        border: 1px solid #b4b2b2;
+        z-index: 100;
+    }
+
+    .main-nav-home {
+        display: block;
+        position: relative;
+    }
+
+        .main-nav:hover, .main-nav-home:hover {
+            cursor: pointer;
+        }
+
+        .main-nav ul, .main-nav-home ul {
+            margin-bottom: 0;
+            list-style: none;
+            background: white;
+            padding-left: 0px;
+        }
+
+        .main-nav > ul > li:hover, .main-nav-home > ul > li:hover {
+            background-color: #43c0e4;
+            cursor: pointer;
+        }
+
+            .main-nav > ul > li:hover > a, .main-nav-home > ul > li:hover > a {
+                margin-top: 1px;
+                color: white;
+            }
+
+
+        .main-nav > ul > li, .main-nav-home > ul > li {
+            border-bottom: 1px solid #f8e1e1;
+            height: 32px;
+        }
+
+            .main-nav > ul > li:last-child, .main-nav-home > ul > li:last-child {
+                border-bottom: none;
+            }
+
+        .main-nav > ul li a, .main-nav-home > ul li a {
+            margin-top: -20px;
+            line-height: 32px;
+            padding-left: 16px;
+            font-weight: 400;
+            font-size: 13px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .main-nav > ul li ul, .main-nav-home > ul li ul {
+            display: none;
+            min-height: 568px;
+            width: 220px;
+            border: 1px solid #d1d1d1;
+            position: absolute;
+            z-index: 99;
+            margin-left: 100%;
+            top: 0px;
+            left: 0px;
+            box-shadow: 0px 1px 3px #e7dddd;
+            background-color: white;
+        }
+
+            .main-nav > ul li ul:hover, .main-nav-home > ul li ul:hover {
+                cursor: auto;
+            }
+
+        .main-nav > ul > li > a::after, .main-nav-home > ul > li > a::after {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #c1c1c1 #c1c1c1 transparent transparent;
+            transform: rotate(45deg);
+            margin-left: auto;
+            margin-right: 10px;
+            box-sizing: border-box;
+            margin-top: -22px;
+        }
+
+        .main-nav > ul > li:hover > ul, .main-nav-home > ul > li:hover > ul {
+            margin-top: -1px;
+            display: block;
+        }
+
+
+
+    .main-nav, .main-nav-home {
+        width: 100%;
+    }
+
+        .main-nav a, .main-nav-home a {
+            width: max-content;
+        }
+
+    .main-nav-home {
+        display: block;
+    }
+
+    .liheader {
+        border-bottom: 1px solid #f8e1e1;
+    }
+
+        .liheader:hover {
+            cursor: pointer;
+        }
+
+    .sub-nav > .liheader:hover > a, .sub-nav-2 > .liheader:hover > a {
+        color: #34b0dd;
+    }
+
+        .sub-nav > .liheader:hover > a::after, .sub-nav-2 > .liheader:hover > a:after {
+            display: none;
+        }
+
+    .sub-nav > .liheader:first-child:hover > a, .sub-nav-2 > .liheader:first-child:hover > a {
         color: black;
     }
 
-    .main-nav > ul li ul, .main-nav-home >ul li ul{
+    ul .liheader ul {
         display: none;
-        min-height: 568px;
-        width: 220px;
-        border: 1px solid #d1d1d1;
-        position: absolute;
-        z-index: 99;
-        margin-left: 100%;
-        top: 0px;
-        left: 0px;
-        box-shadow: 0px 1px 3px #e7dddd;
-        background-color: white;
     }
 
-        .main-nav > ul li ul:hover, .main-nav-home >ul li ul:hover{
-            cursor: auto;
-        }
+    ul .liheader ul {
+        line-height: 32px;
+    }
 
-    .main-nav > ul > li > a::after, .main-nav-home >ul>li>a::after{
+    .sub-nav > li:hover > ul {
+        margin-top: -1px;
+        display: block;
+    }
+
+    .sub-nav li {
+        height: 32px;
+    }
+
+    .sub-nav a::after {
         content: "";
         display: block;
         width: 8px;
@@ -402,714 +490,666 @@ label.error {
         transform: rotate(45deg);
         margin-left: auto;
         margin-right: 10px;
+        margin-top: -25px;
         box-sizing: border-box;
-        margin-top: -22px;
     }
 
-    .main-nav > ul > li:hover > ul, .main-nav-home >ul>li:hover>ul{
-        margin-top: -1px;
-        display: block;
-    }
-
-
-
-    .main-nav, .main-nav-home {
-        width: 100%;
-    }
-
-        .main-nav a, .main-nav-home a{
-            width: max-content;
-        }
-        .main-nav-home{
-            display:block;
-            position:unset;
-        }
-        .liheader {
-            border-bottom: 1px solid #f8e1e1;
-        }
-.liheader:hover {
-    cursor: pointer;
-
-}
-
-.sub-nav > .liheader:hover > a, .sub-nav-2 > .liheader:hover > a {
-    color: #34b0dd;
-}
-
-    .sub-nav > .liheader:hover > a::after, .sub-nav-2 > .liheader:hover > a:after {
+    .sub-nav-2 a::after {
         display: none;
     }
 
-.sub-nav > .liheader:first-child:hover > a, .sub-nav-2 > .liheader:first-child:hover > a {
-    color: black;
-}
+    .section {
+        position: relative;
+    }
 
-ul .liheader ul {
-    display: none;
-}
+    .mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: #4d4b4b94;
+        display: none;
+        z-index: 99;
+    }
 
-ul .liheader ul {
-    line-height: 32px;
-}
+    .category-title {
+        line-height: 46px;
+    }
 
-.sub-nav > li:hover > ul {
-    margin-top: -1px;
-    display: block;
-}
-
-.sub-nav li {
-    height: 32px;
-}
-
-.sub-nav a::after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #c1c1c1 #c1c1c1 transparent transparent;
-    transform: rotate(45deg);
-    margin-left: auto;
-    margin-right: 10px;
-    margin-top: -25px;
-    box-sizing: border-box;
-}
-
-.sub-nav-2 a::after {
-    display: none;
-}
-.section{
-    position:relative;
-}
-.mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  
-    background-color: #4d4b4b94;
-    display: none;
-    z-index: 99;
-}
-.category-title {
-line-height:46px;
-}
-.category-home{
-    
-    width:220px;
-}
+    .category-home {
+        width: 220px;
+    }
 
     /* het css category  */
     /*banner*/
     .banner-wrapper {
     }
-.small-banner-wrapper {
-    width: calc(100% -);
-    padding-left: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: column;
-}
-.small-banner-item {
-    height: calc(50% - 5px);
-    width: 100%;
-    height: 220px;
-    background-color: #fafafa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-    .small-banner-item img {
+
+    .small-banner-wrapper {
         width: calc(100% -);
-        height: 100%;
+        padding-left: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
     }
+
+    .small-banner-item {
+        height: calc(50% - 5px);
+        width: 100%;
+        height: 220px;
+        background-color: #fafafa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .small-banner-item img {
+            width: calc(100% -);
+            height: 100%;
+        }
+
     .swiper-container {
-    width: 700px;
+        width: 700px;
+        z-index: 1;
+        margin: 0;
+        overflow: hidden;
+    }
 
-    z-index: 1;
-    margin: 0;
-    overflow: hidden;
-}
-.carousel-inner .carousel-item img{
-    height:448px;
-}
-.bottom-banner .bottom-banner-item img {
-    width: 100%;
-}
+    .carousel-inner .carousel-item img {
+        height: 448px;
+    }
 
-
-/*end banner*/
-.nutcuonlen {
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.nutcuonlen .hienthi {
-    visibility: visible;
-    opacity: 1;
-}
-.home-link {
-    line-height: 72px;
-}
-/* css cho _1khoi */
-
-._1khoi h1.header {
-    font-size: 20px;
-}
-
-._1khoi h2.header {
-    font-size: 20px;
-}
-
-/* css cho nut xem tat ca  */
-a.btn.btn-warning.btn-sm.text-white {
-    height: 25px;
-    width: 77px;
-    background: #F5A623;
-    font-size: 11px;
-}
-/* het css cho nut xem tat ca  */
+    .bottom-banner .bottom-banner-item img {
+        width: 100%;
+    }
 
 
-img.card-img-top.anh {
-    position: relative;
-    top: 15px;
-    transition: 0.3s;
-}
+    /*end banner*/
+    .nutcuonlen {
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s;
+    }
 
-ul span.text-muted {
-    font-size: 11px;
-    padding-top: 6px;
-    padding-left: 12px;
-    color: #919191 !important;
-}
+        .nutcuonlen .hienthi {
+            visibility: visible;
+            opacity: 1;
+        }
 
-i.fa.fa-star {
-    font-size: 10px;
-    color: #bebebe;
-}
+    .home-link {
+        line-height: 72px;
+    }
+    /* css cho _1khoi */
 
-li.active .fa-star {
-    color: #F5A623;
-}
+    ._1khoi h1.header {
+        font-size: 20px;
+    }
 
-.sale {
-    background: #F5A623;
-    border-radius: 6px;
-    font-size: 11px;
-    color: white;
-    padding: 1px 4px;
-    position: absolute;
-    right: 0;
-    top: 2px;
-}
+    ._1khoi h2.header {
+        font-size: 20px;
+    }
 
-.giacu.text-muted {
-    font-size: 13px;
-    color: #919191 !important;
-}
+    /* css cho nut xem tat ca  */
+    a.btn.btn-warning.btn-sm.text-white {
+        height: 25px;
+        width: 77px;
+        background: #F5A623;
+        font-size: 11px;
+    }
+    /* het css cho nut xem tat ca  */
 
-.giamoi {
-    color: red;
-    font-size: 14px;
-    font-weight: 500;
-    padding-right: 10px;
-}
 
-.gia.d-flex {
-    position: relative;
-}
+    img.card-img-top.anh {
+        position: relative;
+        top: 15px;
+        transition: 0.3s;
+    }
 
-small.tacgia.text-muted {
-    font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    transition: 0.3s;
-    padding: 3px 0px;
-}
+    ul span.text-muted {
+        font-size: 11px;
+        padding-top: 6px;
+        padding-left: 12px;
+        color: #919191 !important;
+    }
 
-h3.card-title.ten {
-    font-weight: 400;
-    margin-bottom: 4px;
-    font-size: 15px;
-    height: 35px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    transition: 0.3s;
-}
+    i.fa.fa-star {
+        font-size: 10px;
+        color: #bebebe;
+    }
 
-.card-body.noidungsp {
-    padding: 10px 10px 0px 10px;
-}
-
-.card {
-    border-radius: 0;
-}
-
-    .card:hover .ten {
+    li.active .fa-star {
         color: #F5A623;
     }
 
-/* het css cho _1khoi  */
-
-/* css cho margin slick */
-.card {
-    margin: 0 10px;
-}
-
-.khoisanpham {
-    margin: 0 -10px;
-}
-.card {
-    width: 199px;
-    margin: 0 !important;
-}
-
-.slick-next {
-  
-}
-
-.slick-slide {
-    width: 240px !important;
-}
-
-.card:hover .anh {
-    top: 5px;
-}
-
-.slick-prev {
-    
-}
-
-/* css cho 1 khoi san pham - slick */
-/* CSS CHO PHAN CONTENT O GIUA O NGAY DAY ................................ */
-
-
-
-/* css cho dichvu  */
-.dichvu p.detail {
-    font-size: 12px;
-    margin-bottom: 1px;
-    width: 198px;
-}
-
-.dichvu {
-    padding: 24px 0px 24px;
-}
-
-    .dichvu h6.tieude {
-        font-size: 14px;
-        margin-bottom: 3px;
-    }
-
-    .dichvu .noidung {
-        width: 180px;
-    }
-
-    .dichvu img {
-        width: 57px;
-        height: 57px;
-        margin-right: 10px;
-    }
-/* het css cho dichvu  */
-
-/* css cho footer  */
-.ptthanhtoan {
-    width: 200px;
-}
-
-footer .row a {
-    text-decoration: none;
-    display: block;
-    color: black;
-    transition: 0.3s;
-    padding-bottom: 5px;
-    font-size: 14px;
-}
-
-    footer .row a:hover {
-        color: #F5A623;
-    }
-
-footer .header {
-    font-size: 14px;
-    margin-bottom: 13px;
-}
-/* het css cho footer  */
-
-
-/* css cho breadcrumb  */
-.breadcrumbbar {
-    line-height: 40px;
-}
-
-.breadcrumb {
-    height: 40px;
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-    content: ">";
-}
-
-.breadcrumb-item a {
-    font-size: 12px;
-    color: #666666;
-    text-decoration: none;
-    transition: 0.2s;
-    line-height: 40px;
-}
-
-    .breadcrumb-item a:hover {
-        color: #F5A623;
-    }
-
-.breadcrumb-item.active a {
-    color: #F5A623;
-}
-/* het css cho breadcrumb  */
-
-
-/* css cho product-page  */
-.product-detail .product-img {
-    transition: 0.2s;
-}
-
-.product-detail .thumb-img {
-    height: 100%;
-    width: 74px;
-    border: 1px solid #F2F2F2;
-}
-
-.product-detail .list-anhchitiet {
-    height: 76px;
-}
-
-.product-detail .thumb-img:hover {
-    cursor: pointer;
-}
-
-.product-detail .thumb-img.vienvang {
-    border: 1px solid #F5A623;
-}
-/* het css cho product-page  */
-/* css cho khoi thong tin cua  product-page*/
-.khoithongtin .header hr {
-    margin-top: 10px;
-}
-
-.khoithongtin .rate {
-    color: #D9D9D5;
-    font-size: 14px;
-}
-
-    .khoithongtin .rate .active {
-        color: #F5A623;
-    }
-
-.khoithongtin .uudai .header {
-    margin-top: 5px;
-    padding: 10px 0px 2px 16px;
-    font-size: 13px;
-}
-
-.khoithongtin .header h4 {
-    font-weight: 400;
-    font-size: 22px;
-    margin-bottom: 5px;
-}
-
-.khoithongtin .gia {
-    position:relative;
-    font-size: 13px;
-}
-
-.khoithongtin .input-number .btn-spin {
-    background: white;
-    border: 1px solid #ebebeb;
-}
-
-    .khoithongtin .input-number .btn-spin:hover {
-        cursor: pointer;
-        color: #2196F3;
-    }
-
-.khoithongtin .input-number .soluongsp {
-    width: 38px;
-    border: 1px solid #ebebeb;
-}
-
-
-.khoithongtin .soluong label {
-    width: 101px;
-    font-size: 14px;
-    margin-top: 9px;
-}
-
-.thongtinsach a.tacgia {
-    color: #F5A623;
-    text-decoration: none;
-}
-
-.thongtinsach ul li {
-    margin-bottom: 5px;
-}
-
-.khoithongtin .thongtinsach ul {
-    list-style: none;
-    margin-bottom: 0px;
-}
-
-.khoithongtin .thongtinsach {
-    border: 1px solid #E5E5E5;
-    border-radius: 5px;
-    padding: 13px;
-    font-size: 13px;
-}
-
-.khoithongtin .uudai ul {
-    list-style: none;
-}
-
-    .khoithongtin .uudai ul li::before {
-        content: "\2022";
-        color: #F5A623;
-        font-weight: bold;
-        display: inline-block;
-        width: 1em;
-        margin-left: -1em;
-        font-size: 15px;
-    }
-
-.khoithongtin .uudai li a {
-    color: gray;
-}
-
-.khoithongtin .uudai li {
-    margin-left: 33px;
-    margin-bottom: 5px;
-}
-
-.khoithongtin .uudai {
-    background: #FEF6E9;
-    border: 1px solid #F5A623;
-    border-radius: 5px;
-    font-size: 13px;
-}
-
-.khoithongtin .giaban {
-    margin-top: 7px;
-}
-
-    .khoithongtin .giaban .giamoi {
-        color: red;
-        font-size: 26px;
-        position: absolute;
-        top: 12px;
-        left: 149px;
-    }
-
-    /* don vi tien  */
-    .khoithongtin .giaban .donvitien {
-        color: red;
-        font-size: 26px;
-        position: absolute;
-        top: 12px;
-        left: 250px;
-        font-weight: bold;
-    }
-
-.khoithongtin .giabia .giacu {
-    text-decoration: line-through;
-    color: #b8b8b8;
-}
-
-.khoithongtin .tietkiem {
-    margin-top: 7px;
-}
-
-    .khoithongtin .tietkiem .sale {
+    .sale {
         background: #F5A623;
         border-radius: 6px;
         font-size: 11px;
         color: white;
         padding: 1px 4px;
         position: absolute;
-        font-weight: bold;
-        left: 140px;
-        width:max-content;
+        right: 0;
+        top: 2px;
     }
 
-.khoithongtin small.share {
-    font-size: 15px;
-}
-
-.khoithongtin .huongdanmuahang {
-    color: #F7A623;
-    font-size: 13px;
-    margin: 10px 0px;
-    display: block;
-}
-
-.khoithongtin .nutmua {
-    background: linear-gradient(#f5a623,#fd8205);
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-    .khoithongtin .nutmua:hover {
-        box-shadow: 0px 11px 20px -10px #fd8205;
-    }
-/*het css cho khoi thong tin cua product-page*/
-
-/* .product-description  */
-.formdanhgia .nutguibl {
-    border: 1px solid #F7A623;
-    color: #F7A623;
-    width: 60%;
-    font-weight: 500;
-}
-
-    .formdanhgia .nutguibl:hover {
-        background: #F7A623;
-        color: white;
+    .giacu.text-muted {
+        font-size: 13px;
+        text-decoration: line-through;
+        color: #919191 !important;
     }
 
-.formdanhgia .form-group input {
-    padding: 6px 15px;
-    font-size: 14px;
-    border: 1px solid #d7d2d2;
-}
-
-.formdanhgia .danhgiacuaban {
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: block;
-}
-
-.formdanhgia .tieude {
-    font-size: 17px !important;
-}
-
-.btn.vietdanhgia {
-    border: 1px solid #F7A623;
-    color: #F7A623;
-    padding: 7px 20px;
-}
-
-    .btn.vietdanhgia:hover {
-        color: white;
-        background: #F7A623;
+    .giamoi {
+        color: red;
+        font-size: 14px;
+        font-weight: 500;
+        padding-right: 10px;
     }
 
-.tiledanhgia .motthanh {
-    margin-bottom: 8px;
-}
-
-#nav-danhgia .tiledanhgia {
-    margin-top: 53px;
-}
-
-.motthanh i.fa.fa-star {
-    margin-left: 6px;
-    color: #a5a5a5;
-}
-
-.progress {
-    width: 80%;
-    height: 10px;
-}
-
-#nav-danhgia p.sonhanxet {
-    font-size: 13px;
-}
-
-#nav-danhgia .sao i.fa.fa-star {
-    color: #d1cccc;
-}
-
-#nav-danhgia .diem {
-    font-size: 45px;
-    color: red;
-    font-weight: bold;
-}
-
-.product-description #nav-danhgia p.tieude {
-    margin: 20px 0px 0px 0px;
-}
-
-.product-description h6.tieude {
-    margin-top: 22px;
-    font-size: 18px;
-}
-.product-description .nav-tabs:hover{
-    cursor:pointer;
-}
-.product-description .nav-tabs a {
-    color: gray;
-    margin-right: 7px;
-    border-radius: 0;
-    font-size: 14px;
-}
-
-.product-description .nav-tabs .nav-item.active {
-    color: black;
-    border-top: 4px solid #F5A623;
-}
-
-.product-description {
-    margin-left: 9px;
-}
-
-.formdanhgia .rating input {
-    display: none;
-}
-
-.formdanhgia .rating label {
-    display: block;
-    cursor: pointer;
-    width: 15px;
-}
-
-    .formdanhgia .rating label::before {
-        content: '\f005';
-        font-family: 'Font Awesome\ 5 Free';
-        font-weight: 900;
+    .gia.d-flex {
         position: relative;
-        display: block;
-        font-size: 15px;
-        color: rgb(187, 186, 186);
     }
 
-    .formdanhgia .rating label::after {
-        content: '\f005';
-        font-family: 'Font Awesome\ 5 Free';
-        font-weight: 900;
-        position: absolute;
-        display: block;
+    small.tacgia.text-muted {
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        transition: 0.3s;
+        padding: 3px 0px;
+    }
+
+    h3.card-title.ten {
+        font-weight: 400;
+        margin-bottom: 4px;
         font-size: 15px;
-        color: #F7A623;
-        margin-top:-22px;
-        opacity: 0;
+        height: 35px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        transition: 0.3s;
+    }
+
+    .card-body.noidungsp {
+        padding: 10px 10px 0px 10px;
+    }
+
+    .card {
+        border-radius: 0;
+    }
+
+        .card:hover .ten {
+            color: #F5A623;
+        }
+
+    /* het css cho _1khoi  */
+
+    /* css cho margin slick */
+    .card {
+        margin: 0 10px;
+    }
+
+    .khoisanpham {
+        margin: 0 -10px;
+    }
+
+    .card {
+        width: 199px;
+        margin: 0 !important;
+    }
+
+    .slick-next {
+    }
+
+    .slick-slide {
+        width: 240px !important;
+    }
+
+    .card:hover .anh {
+        top: 5px;
+    }
+
+    .slick-prev {
+    }
+
+    /* css cho 1 khoi san pham - slick */
+    /* CSS CHO PHAN CONTENT O GIUA O NGAY DAY ................................ */
+
+
+
+    /* css cho dichvu  */
+    .dichvu p.detail {
+        font-size: 12px;
+        margin-bottom: 1px;
+        width: 198px;
+    }
+
+    .dichvu {
+        padding: 24px 0px 24px;
+    }
+
+        .dichvu h6.tieude {
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .dichvu .noidung {
+            width: 180px;
+        }
+
+        .dichvu img {
+            width: 57px;
+            height: 57px;
+            margin-right: 10px;
+        }
+    /* het css cho dichvu  */
+
+    /* css cho footer  */
+    .ptthanhtoan {
+        width: 200px;
+    }
+
+    footer .row a {
+        text-decoration: none;
+        display: block;
+        color: black;
+        transition: 0.3s;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
+
+        footer .row a:hover {
+            color: #F5A623;
+        }
+
+    footer .header {
+        font-size: 14px;
+        margin-bottom: 13px;
+    }
+    /* het css cho footer  */
+
+
+    /* css cho breadcrumb  */
+    .breadcrumbbar {
+        line-height: 40px;
+    }
+
+    .breadcrumb {
+        height: 40px;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+    }
+
+    .breadcrumb-item a {
+        font-size: 12px;
+        color: #666666;
+        text-decoration: none;
+        transition: 0.2s;
+        line-height: 40px;
+    }
+
+        .breadcrumb-item a:hover {
+            color: #F5A623;
+        }
+
+    .breadcrumb-item.active a {
+        color: #F5A623;
+    }
+    /* het css cho breadcrumb  */
+
+
+    /* css cho product-page  */
+    .product-detail .product-img {
         transition: 0.2s;
     }
 
-    .formdanhgia .rating label:hover::after,
-    .formdanhgia .rating label:hover ~ label::after,
-    .formdanhgia .rating input:checked ~ label::after {
-        opacity: 1;
+    .product-detail .thumb-img {
+        height: 100%;
+        width: 74px;
+        border: 1px solid #F2F2F2;
     }
-/* het css cho .product-description  */
 
+    .product-detail .list-anhchitiet {
+        height: 76px;
+    }
+
+    .product-detail .thumb-img:hover {
+        cursor: pointer;
+    }
+
+    .product-detail .thumb-img.vienvang {
+        border: 1px solid #F5A623;
+    }
+    /* het css cho product-page  */
+    /* css cho khoi thong tin cua  product-page*/
+    .khoithongtin .header hr {
+        margin-top: 10px;
+    }
+
+    .khoithongtin .rate {
+        color: #D9D9D5;
+        font-size: 14px;
+    }
+
+        .khoithongtin .rate .active {
+            color: #F5A623;
+        }
+
+    .khoithongtin .uudai .header {
+        margin-top: 5px;
+        padding: 10px 0px 2px 16px;
+        font-size: 13px;
+    }
+
+    .khoithongtin .header h4 {
+        font-weight: 400;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .khoithongtin .gia {
+        position: relative;
+        font-size: 13px;
+    }
+
+    .khoithongtin .input-number .btn-spin {
+        background: white;
+        border: 1px solid #ebebeb;
+    }
+
+        .khoithongtin .input-number .btn-spin:hover {
+            cursor: pointer;
+            color: #2196F3;
+        }
+
+    .khoithongtin .input-number .soluongsp {
+        width: 38px;
+        border: 1px solid #ebebeb;
+    }
+
+
+    .khoithongtin .soluong label {
+        width: 101px;
+        font-size: 14px;
+        margin-top: 9px;
+    }
+
+    .thongtinsach a.tacgia {
+        color: #F5A623;
+        text-decoration: none;
+    }
+
+    .thongtinsach ul li {
+        margin-bottom: 5px;
+    }
+
+    .khoithongtin .thongtinsach ul {
+        list-style: none;
+        margin-bottom: 0px;
+    }
+
+    .khoithongtin .thongtinsach {
+        border: 1px solid #E5E5E5;
+        border-radius: 5px;
+        padding: 13px;
+        font-size: 13px;
+    }
+
+    .khoithongtin .uudai ul {
+        list-style: none;
+    }
+
+        .khoithongtin .uudai ul li::before {
+            content: "\2022";
+            color: #F5A623;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            font-size: 15px;
+        }
+
+    .khoithongtin .uudai li a {
+        color: gray;
+    }
+
+    .khoithongtin .uudai li {
+        margin-left: 33px;
+        margin-bottom: 5px;
+    }
+
+    .khoithongtin .uudai {
+        background: #FEF6E9;
+        border: 1px solid #F5A623;
+        border-radius: 5px;
+        font-size: 13px;
+    }
+
+    .khoithongtin .giaban {
+        margin-top: 7px;
+    }
+
+        .khoithongtin .giaban .giamoi {
+            color: red;
+            font-size: 26px;
+            position: absolute;
+            top: 12px;
+            left: 149px;
+        }
+
+        /* don vi tien  */
+        .khoithongtin .giaban .donvitien {
+            color: red;
+            font-size: 26px;
+            position: absolute;
+            top: 12px;
+            left: 250px;
+            font-weight: bold;
+        }
+
+    .khoithongtin .giabia .giacu {
+        text-decoration: line-through;
+        color: #b8b8b8;
+    }
+
+    .khoithongtin .tietkiem {
+        margin-top: 7px;
+    }
+
+        .khoithongtin .tietkiem .sale {
+            background: #F5A623;
+            border-radius: 6px;
+            font-size: 11px;
+            color: white;
+            padding: 1px 4px;
+            position: absolute;
+            font-weight: bold;
+            left: 140px;
+            width: max-content;
+        }
+
+    .khoithongtin small.share {
+        font-size: 15px;
+    }
+
+    .khoithongtin .huongdanmuahang {
+        color: #F7A623;
+        font-size: 13px;
+        margin: 10px 0px;
+        display: block;
+    }
+
+    .khoithongtin .nutmua {
+        background: linear-gradient(#f5a623,#fd8205);
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+        .khoithongtin .nutmua:hover {
+            box-shadow: 0px 11px 20px -10px #fd8205;
+        }
+    /*het css cho khoi thong tin cua product-page*/
+
+    /* .product-description  */
+    .formdanhgia .nutguibl {
+        border: 1px solid #F7A623;
+        color: #F7A623;
+        width: 60%;
+        font-weight: 500;
+    }
+
+        .formdanhgia .nutguibl:hover {
+            background: #F7A623;
+            color: white;
+        }
+
+    .formdanhgia .form-group input {
+        padding: 6px 15px;
+        font-size: 14px;
+        border: 1px solid #d7d2d2;
+    }
+
+    .formdanhgia .danhgiacuaban {
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .formdanhgia .tieude {
+        font-size: 17px !important;
+    }
+
+    .btn.vietdanhgia {
+        border: 1px solid #F7A623;
+        color: #F7A623;
+        padding: 7px 20px;
+    }
+
+        .btn.vietdanhgia:hover {
+            color: white;
+            background: #F7A623;
+        }
+
+    .tiledanhgia .motthanh {
+        margin-bottom: 8px;
+    }
+
+    #nav-danhgia .tiledanhgia {
+        margin-top: 53px;
+    }
+
+    .motthanh i.fa.fa-star {
+        margin-left: 6px;
+        color: #a5a5a5;
+    }
+
+    .progress {
+        width: 80%;
+        height: 10px;
+    }
+
+    #nav-danhgia p.sonhanxet {
+        font-size: 13px;
+    }
+
+    #nav-danhgia .sao i.fa.fa-star {
+        color: #d1cccc;
+    }
+
+    #nav-danhgia .diem {
+        font-size: 45px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .product-description #nav-danhgia p.tieude {
+        margin: 20px 0px 0px 0px;
+    }
+
+    .product-description h6.tieude {
+        margin-top: 22px;
+        font-size: 18px;
+    }
+
+    .product-description .nav-tabs:hover {
+        cursor: pointer;
+    }
+
+    .product-description .nav-tabs a {
+        color: gray;
+        margin-right: 7px;
+        border-radius: 0;
+        font-size: 14px;
+    }
+
+    .product-description .nav-tabs .nav-item.active {
+        color: black;
+        border-top: 4px solid #F5A623;
+    }
+
+    .product-description {
+        margin-left: 9px;
+    }
+
+    .formdanhgia .rating input {
+        display: none;
+    }
+
+    .formdanhgia .rating label {
+        display: block;
+        cursor: pointer;
+        width: 15px;
+    }
+
+        .formdanhgia .rating label::before {
+            content: '\f005';
+            font-family: 'Font Awesome\ 5 Free';
+            font-weight: 900;
+            position: relative;
+            display: block;
+            font-size: 15px;
+            color: rgb(187, 186, 186);
+        }
+
+        .formdanhgia .rating label::after {
+            content: '\f005';
+            font-family: 'Font Awesome\ 5 Free';
+            font-weight: 900;
+            position: absolute;
+            display: block;
+            font-size: 15px;
+            color: #F7A623;
+            margin-top: -22px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        .formdanhgia .rating label:hover::after,
+        .formdanhgia .rating label:hover ~ label::after,
+        .formdanhgia .rating input:checked ~ label::after {
+            opacity: 1;
+        }
+    /* het css cho .product-description  */
+
+    .header-khoi-sp {
+        position: absolute;
+        right: 0;
+    }
+.paination .dropdown {
+    display: none;
+  
+}
+.dropdown-menu ,.dropdown {
+    width: 70px !important;
+    min-width:max-content;
+}

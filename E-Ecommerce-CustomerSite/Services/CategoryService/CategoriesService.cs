@@ -15,5 +15,11 @@ namespace E_Ecommerce_CustomerSite.Services.CategoryService
             var categories = await httpClient.GetAsJsonAsync<List<CategoriesDto>>("Categories");
             return categories?? new List<CategoriesDto>();
         }
+
+        public async Task<List<CategoriesDto>> GetBreadbrum(int id)
+        {
+            var categories = await httpClient.GetAsJsonAsync<List<CategoriesDto>>("Categories/GetBreadBrum/"+id);
+            return categories ?? new List<CategoriesDto>();
+        }
     }
 }

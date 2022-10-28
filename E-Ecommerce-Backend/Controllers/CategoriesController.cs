@@ -60,6 +60,32 @@ namespace E_Ecommerce_Backend.Controllers
             return category;
         }
 
+        [HttpGet("GetBreadBrum/{id}")]
+        public async Task<ActionResult<List<CategoriesDto>>> GetBreadBrum(int id)
+        {
+            var ListBreadBrum = await _categoryService.GetBreadCrumb(id);
+
+            if (ListBreadBrum == null)
+            {
+                return NotFound();
+            }
+
+            return ListBreadBrum;
+        }
+
+
+        [HttpGet("ChildId/{id}")]
+        public async Task<ActionResult<List<int>>> GetChildCatId(int id)
+        {
+            var categoriesId = await _categoryService.GetCategoriesIdChild(id);
+
+            if (categoriesId == null)
+            {
+                return NotFound();
+            }
+
+            return categoriesId;
+        }
         // PUT: api/Category/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

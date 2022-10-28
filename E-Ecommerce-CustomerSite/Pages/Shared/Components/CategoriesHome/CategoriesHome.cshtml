@@ -10,7 +10,7 @@
                 @foreach (var cat in Model)
                 {
                     <li>
-                        <a asp-action="">
+                        <a asp-page="Category" asp-route-id="@cat.CategoryId" class=" w-100">
                             @cat.CategoryName
                         </a>
                         @if (cat.Child?.Count > 0)
@@ -18,7 +18,7 @@
 
                             <ul class="sub-nav">
                                 <li class="liheader">
-                                    <a asp-action="" class="fw-bold">
+                                    <a asp-page="Category" asp-route-id="@cat.CategoryId" class="fw-bold w-100">
                                         @cat.CategoryName
 
                                     </a>
@@ -26,22 +26,22 @@
                                 @foreach (var catChild in cat.Child)
                                 {
                                     <li class="liheader">
-                                        <a asp-action="">
+                                        <a asp-page="Category" asp-route-id="@catChild.CategoryId" class=" w-100">
                                             @catChild.CategoryName
                                         </a>
                                         @if (catChild.Child?.Count > 0)
                                         {
 
                                             <ul class="sub-nav-2">
-                                                <li class="liheader">
-                                                    <a asp-action="" class="fw-bold">
+                                                <li  class="liheader">
+                                                    <a asp-page="Category" asp-route-id="@catChild.CategoryId"  class="fw-bold w-100">
                                                         @catChild.CategoryName
                                                     </a>
                                                 </li>
                                                 @foreach (var catChild2 in catChild.Child)
                                                 {
                                                     <li class="liheader">
-                                                        <a asp-action="">   @catChild2.CategoryName</a>
+                                                        <a asp-page="Category" asp-route-id="@catChild2.CategoryId" class=" w-100">   @catChild2.CategoryName</a>
                                                     </li>
                                                 }
                                             </ul>

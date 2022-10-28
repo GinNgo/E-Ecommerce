@@ -15,6 +15,7 @@ namespace E_Ecommerce_CustomerSite.Extensions
 
             return results;
         }
+     
 
         public static async Task<T?> GetAsJsonOneProAsync<T>(this HttpClient httpClient, string url)
         {
@@ -24,5 +25,7 @@ namespace E_Ecommerce_CustomerSite.Extensions
 
             return result;
         }
+
+
     }
 }

@@ -1,11 +1,14 @@
 ﻿@page
 @using E_Ecommerce_CustomerSite.Pages
 @using System.Text.RegularExpressions
+@using E_Ecommerce_Shared.DTO
 @model IndexModel
 @{
     ViewData["Title"] = "Chiki.vn";
     String ApiUrl = "https://localhost:44324/wwwroot/Upload";
     ViewData["url"] = ApiUrl;
+    var ListPro = ViewData["ListPro"] as List<ProductsDto>;
+  
 }
 @functions {
      public string AliasImage(string UrlImage)
@@ -42,7 +45,7 @@
    
         <div class="d-flex w-100">
       
-            <div class="swiper-container w-100">
+            <div class="swiper-container-xl w-100">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -90,27 +93,27 @@
 </div>
 <!-- khoi sach moi  -->
 <section class="_1khoi sachmoi bg-white">
-    <div class="container ">
+    <div class="container-xl ">
         <div class="noidung ps-4 pe-4" style=" width: 100%;">
-            <div class=" container">
+            <div class=" container-xl">
                 <!--header-->
                 <div class="col-12 d-flex justify-content-between align-items-center pb-2 bg-transparent pt-4">
                     <h1 class="header text-uppercase" style="font-weight: 400;">SÁCH MỚI TUYỂN CHỌN</h1>
                     <a asp-controller="/home" asp-action="privacy" class="btn btn-warning btn-sm text-white">Xem tất cả</a>
                 </div>
             </div>
-            <div class="khoisanpham container  align-items-center m-auto p-auto" style="padding-bottom: 2rem;">
+            <div class="khoisanpham container-xl  align-items-center m-auto p-auto" style="padding-bottom: 2rem;">
                 <!-- 1 san pham -->
                 @for (var i = 0; i < 5; i++)
                 {
                     <div class="card ">
-                        <a asp-page="Detail" asp-route-id="@Model.ListPro.FirstOrDefault().ProductId" class="motsanpham"
+                        <a asp-page="Detail" asp-route-id="@ListPro.FirstOrDefault().ProductId" class="motsanpham"
                        style="text-decoration: none; color: black;" data-toggle="tooltip" data-placement="bottom"
-                       title=@AliasName(@Model.ListPro.FirstOrDefault().ProductName)>
-                            <img class="card-img-top anh" src="@ViewData["url"]/@Model.ListPro.FirstOrDefault()?.ImageUrl"
-                             alt=@AliasImage(@Model.ListPro.FirstOrDefault().ImageUrl.ToString())>
+                       title=@AliasName(@ListPro.FirstOrDefault().ProductName)>
+                            <img class="card-img-top anh" src="@ViewData["url"]/@ListPro.FirstOrDefault()?.ImageUrl"
+                             alt=@AliasImage(@ListPro.FirstOrDefault().ImageUrl.ToString())>
                             <div class="card-body noidungsp mt-3">
-                                <h3 class="card-title ten">@Model.ListPro.FirstOrDefault()?.ProductName</h3>
+                                <h3 class="card-title ten">@ListPro.FirstOrDefault()?.ProductName</h3>
 
                                 <div class="gia d-flex align-items-baseline">
                                     <div class="giamoi">111.200 ₫</div>
@@ -137,22 +140,22 @@
 
 </section>
 <section class="_1khoi sachmoi bg-white">
-    <div class="container ">
+    <div class="     ">
         <div class="noidung ps-4 pe-4" style=" width: 100%;">
-            <div class=" container">
+            <div class=" container-xl">
                 <!--header-->
                 <div class="col-12 d-flex justify-content-between align-items-center pb-2 bg-transparent pt-4">
                     <h1 class="header text-uppercase" style="font-weight: 400;">SÁCH MỚI TUYỂN CHỌN</h1>
                     <a asp-page="/home" class="btn btn-warning btn-sm text-white">Xem tất cả</a>
                 </div>
             </div>
-            <div class="container ps-3 pe-2 row d-flex align-items-center m-auto p-auto" style="padding-bottom: 2rem;">
+            <div class="container-xl ps-3 pe-2 row d-flex align-items-center m-auto p-auto" style="padding-bottom: 2rem;">
                 <!-- 1 san pham -->
                 <div class="card ">
                     <a asp-page="Lap-trinh-ke-hoach-kinh-doanh-hieu-qua.html" class="motsanpham"
                        style="text-decoration: none; color: black;" data-toggle="tooltip" data-placement="bottom"
                        title="Lập Kế Hoạch Kinh Doanh Hiệu Quả">
-                        <img class="card-img-top anh" src="images/lap-ke-hoach-kinh-doanh-hieu-qua.jpg"
+                        <img class="card-img-top anh" src="~/images/lap-ke-hoach-kinh-doanh-hieu-qua.jpg"
                              alt="lap-ke-hoach-kinh-doanh-hieu-qua">
                         <div class="card-body noidungsp mt-3">
                             <h3 class="card-title ten">Lập Kế Hoạch Kinh Doanh Hiệu Quả</h3>

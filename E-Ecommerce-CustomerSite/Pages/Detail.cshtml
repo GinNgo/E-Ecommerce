@@ -1,37 +1,43 @@
-﻿@page "{name?}"
+﻿@page "{id}"
 @using E_Ecommerce_CustomerSite.Pages
+@using E_Ecommerce_Shared.DTO
 @model DetailModel
 @{
     string ApiUrl = "https://localhost:44324/wwwroot/Upload";
-    ViewData["url"] = ApiUrl;
-  
+    var breadBrum = ViewData["BreadBrum"] as List<CategoriesDto>;
 }
+
 <!-- breadcrumb  -->
     <section class="breadcrumbbar">
-        <div class="container">
+        <div class="container-xl">
             <ol class="breadcrumb mb-0 p-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#">Sách kinh tế</a></li>
-                <li class="breadcrumb-item active"><a href="#">Sách kỹ năng làm việc</a></li>
+                 <li class="breadcrumb-item"><a asp-page="Index">Trang chủ</a></li>
+                @foreach (var item in breadBrum)
+                {
+                    <li class="breadcrumb-item"><a asp-page="Category" asp-route-id="@item.CategoryId">@item.CategoryName</a></li>
+                }
+               
+                
+                <li class="breadcrumb-item active"><a asp-page="Detail" asp-route-id="@Model.Pro.ProductId">@Model.Pro.ProductName</a></li>
             </ol>
         </div>
     </section>
     <!-- nội dung của trang  -->
     <section class="product-page mb-4">
-        <div class="container">
+        <div class="container-xl">
             <!-- chi tiết 1 sản phẩm -->
             <div class="product-detail bg-white p-4">
                 <div class="row">
                     <!-- ảnh  -->
                     <div class="col-md-5 khoianh">
                         <div class="anhto mb-4">
-                        <a class="active" href="@ViewData["url"]/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
-                           <img class="product-image" src="@ViewData["url"]/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;"> 
+                        <a class="active" href="@ApiUrl/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
+                           <img class="product-image" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;"> 
                             </a>
                         <a href="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg" data-fancybox="thumb-img"></a>
                         </div>
                         <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
-                        <img class="thumb-img thumb mr-3 img-fluid" src="@ViewData["url"]/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
+                        <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
                             <img class="thumb-img thumb img-fluid" src="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg"alt="lap-ke-hoach-kinh-doanh-hieu-qua-ms">
                         </div>
                     </div>
@@ -54,7 +60,8 @@
                                     <div class="giabia">Giá bìa:<span class="giacu ml-2">@String.Format("{0:0,0}",@Model.Pro.Price) ₫</span></div>
                                     <div class="giaban">Giá bán tại DealBooks: <span class="giamoi font-weight-bold">@String.Format("{0:0,0}",@Model.Pro.PriceDiscount) </span><span class="donvitien">
                                 ₫</span></div>
-                                    <div class="tietkiem">Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> <span class="sale">-@Math.Abs((@Model.Pro.Price-@Model.Pro.PriceDiscount)/1000)%</span>
+                                <div class="tietkiem">
+                                    Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> <span class="sale">-@String.Format("{0:0,0}",@Math.Abs((@Model.Pro.Price - @Model.Pro.PriceDiscount)*100/@Model.Pro.Price))%</span>
                                     </div>
                                 </div>
                                 <div class="uudai my-3">
@@ -205,7 +212,7 @@
 
     <!-- khối sản phẩm tương tự -->
     <section class="_1khoi sachmoi">
-        <div class="container">
+        <div class="container-xl">
             <div class="noidung bg-white" style=" width: 100%;">
                 <div class="row">
                     <!--header-->
@@ -430,7 +437,7 @@
 
     <!-- khối sách bạn đã xem  -->
     <section class="_1khoi combohot mt-4">
-        <div class="container">
+        <div class="container-xl">
             <div class="noidung bg-white" style=" width: 100%;">
                 <div class="row">
                     <!--header-->
