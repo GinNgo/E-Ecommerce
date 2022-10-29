@@ -16,7 +16,11 @@ namespace E_Ecommerce_Shared.DTO
             TotaPage = (int)Math.Ceiling(count / (double)pageSize);
             AddRange(items);
         }
-
-
     }
+    public class Paging { 
+        public int PageIndex { get; set; } = 1;
+        public int PageSize { get; set; }
+        public int Sort { get; set; }
+    }
+
 }

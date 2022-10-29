@@ -5,8 +5,32 @@
 @{
     string ApiUrl = "https://localhost:44324/wwwroot/Upload";
     var breadBrum = ViewData["BreadBrum"] as List<CategoriesDto>;
-}
 
+
+   
+}
+@functions{
+    public static string RemoveUnicode(string text)
+    {
+
+        string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ", "đ", "é", "è", "ẻ", "ẽ", "ẹ", "ê", "ế", "ề", "ể", "ễ", "ệ", "í", "ì", "ỉ", "ĩ", "ị", "ó", "ò", "ỏ", "õ", "ọ", "ô", "ố", "ồ", "ổ", "ỗ", "ộ", "ơ", "ớ", "ờ", "ở", "ỡ", "ợ", "ú", "ù", "ủ", "ũ", "ụ", "ư", "ứ", "ừ", "ử", "ữ", "ự", "ý", "ỳ", "ỷ", "ỹ", "ỵ", };
+
+        string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "d", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "i", "i", "i", "i", "i", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "y", "y", "y", "y", "y", };
+
+        for (int i = 0; i < arr1.Length; i++)
+
+        {
+
+            text = text.Replace(arr1[i], arr2[i]);
+
+            text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+
+        }
+
+        return text;
+
+    }
+}
 <!-- breadcrumb  -->
     <section class="breadcrumbbar">
         <div class="container-xl">
@@ -14,7 +38,7 @@
                  <li class="breadcrumb-item"><a asp-page="Index">Trang chủ</a></li>
                 @foreach (var item in breadBrum)
                 {
-                    <li class="breadcrumb-item"><a asp-page="Category" asp-route-id="@item.CategoryId">@item.CategoryName</a></li>
+                    <li class="breadcrumb-item"><a asp-page="Category"  asp-route-id="@item.CategoryId">@item.CategoryName</a></li>
                 }
                
                 
@@ -34,7 +58,7 @@
                         <a class="active" href="@ApiUrl/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
                            <img class="product-image" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;"> 
                             </a>
-                        <a href="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg" data-fancybox="thumb-img"></a>
+                       
                         </div>
                         <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
                         <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
@@ -57,14 +81,14 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="gia">
-                                    <div class="giabia">Giá bìa:<span class="giacu ml-2">@String.Format("{0:0,0}",@Model.Pro.Price) ₫</span></div>
-                                    <div class="giaban">Giá bán tại DealBooks: <span class="giamoi font-weight-bold">@String.Format("{0:0,0}",@Model.Pro.PriceDiscount) </span><span class="donvitien">
+                                    <div class="giabia">Giá:<span class="giacu ml-2">@String.Format("{0:0,0}",@Model.Pro.Price) ₫</span></div>
+                                    <div class="giaban">Giá khuyến mãi: <span class="giamoi font-weight-bold">@String.Format("{0:0,0}",@Model.Pro.PriceDiscount) </span><span class="donvitien">
                                 ₫</span></div>
                                 <div class="tietkiem">
                                     Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> <span class="sale">-@String.Format("{0:0,0}",@Math.Abs((@Model.Pro.Price - @Model.Pro.PriceDiscount)*100/@Model.Pro.Price))%</span>
                                     </div>
                                 </div>
-                                <div class="uudai my-3">
+                             @*   <div class="uudai my-3">
                                     <h6 class="header font-weight-bold">Khuyến mãi & Ưu đãi tại DealBook:</h6>
                                     <ul>
                                         <li><b>Miễn phí giao hàng </b>cho đơn hàng từ 150.000đ ở TP.HCM và 300.000đ ở
@@ -73,10 +97,10 @@
                                         <li>Tặng Bookmark cho mỗi đơn hàng</li>
                                         <li>Bao sách miễn phí (theo yêu cầu)</li>
                                     </ul>
-                                </div>
-                                <div class="soluong d-flex">
+                                </div>*@
+                                <div class="soluong d-flex ">
                                     <label class="font-weight-bold">Số lượng: </label>
-                                    <div class="input-number input-group mb-3">
+                                    <div class="input-number input-group mb-3 w-100 mt-2">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text btn-spin btn-dec">-</span>
                                         </div>
@@ -87,8 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="nutmua btn w-100 text-uppercase">Chọn mua</div>
-                                <a class="huongdanmuahang text-decoration-none" href="#">(Vui lòng xem hướng dẫn mua
-                                    hàng)</a>
+                           
                                 <small class="share">Share: </small>
                                 <div class="fb-like" data-href="https://www.facebook.com/DealBook-110745443947730/"
                                     data-width="300px" data-layout="button" data-action="like" data-size="small"
@@ -97,14 +120,8 @@
                             <div class="col-md-5">
                                 <div class="thongtinsach">
                                     <ul>
-                                        <li>Tác giả: <a href="#" class="tacgia">Brian Finch</a></li>
-                                        <li>Ngày xuất bản: <b>04-2020</b></li>
-                                        <li>Kích thước: <b>20.5 x 13.5 cm</b></li>
-                                        <li>Dịch giả: Skye Phan;</li>
-                                        <li>Nhà xuất bản: Nhà Xuất Bản Thanh Niên</li>
-                                        <li>Hình thức bìa: <b>Bìa mềm</b></li>
-                                        <li>Số trang: <b>336</b></li>
-                                        <li>Cân nặng: <b>0</b></li>
+                                    <li>Xuất xứ: <a class="tacgia">@Model.Pro.OriginName</a></li>
+                                        <li>Thương hiệu: @Model.Pro.BrandName</li>
                                     </ul>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 jQuery(function () {
-    jQuery('.khoisanpham').slick({
+    jQuery(".khoisanpham").slick({
         dots: false,
         infinite: false,
         speed: 300,
@@ -105,47 +105,47 @@ jQuery(function () {
 
     // form dangnhap dangky 
     jQuery(".tab-dangky").click(function (e) {
-        jQuery('#formdangnhap').removeClass("fade");
-        jQuery('#formdangky').removeClass("fade");
-        jQuery('#formdangnhap').modal("hide");
-        jQuery('#formdangky').modal("show");
+        jQuery("#formdangnhap").removeClass("fade");
+        jQuery("#formdangky").removeClass("fade");
+        jQuery("#formdangnhap").modal("hide");
+        jQuery("#formdangky").modal("show");
     });
     jQuery(".tab-dangnhap").click(function (e) {
-        jQuery('#formdangnhap').removeClass("fade");
-        jQuery('#formdangky').removeClass("fade");
-        jQuery('#formdangky').modal("hide");
-        jQuery('#formdangnhap').modal("show");
+        jQuery("#formdangnhap").removeClass("fade");
+        jQuery("#formdangky").removeClass("fade");
+        jQuery("#formdangky").modal("hide");
+        jQuery("#formdangnhap").modal("show");
     });
     jQuery(".close").click(function (e) {
-        jQuery('.modal').addClass("fade");
+        jQuery(".modal").addClass("fade");
         jQuery("ul.tabs .tab-dangnhap").removeClass("active");
         jQuery("ul.tabs .tab-dangky").removeClass("active");
     });
 
     // thumb-img
-    jQuery(".thumb-img.thumb1").addClass('vienvang');
-    jQuery('.thumb-img').click(function (e) {
-        jQuery('.product-image').attr('src', this.src);
+    jQuery(".thumb-img.thumb1").addClass("vienvang");
+    jQuery(".thumb-img").click(function (e) {
+        jQuery(".product-image").attr("src", this.src);
     });
 
-    jQuery('.thumb-img').click(function (e) {
-        jQuery('.thumb-img:not(:hover)').removeClass('vienvang');
-        jQuery(this).addClass('vienvang');
+    jQuery(".thumb-img").click(function (e) {
+        jQuery(".thumb-img:not(:hover)").removeClass("vienvang");
+        jQuery(this).addClass("vienvang");
     });
 
     //btn-spin
     jQuery(".btn-inc").click(function (e) {
         var strval = jQuery(this).parent().prev().val();
         var val = parseInt(strval) + 1;
-        jQuery(this).parent().prev().attr('value', val);
+        jQuery(this).parent().prev().attr("value", val);
     });
     jQuery(".btn-dec").click(function (e) {
         var strval = jQuery(this).parent().next().val();
         var val = parseInt(strval) - 1;
         if (val < 1) {
-            jQuery(this).parent().next().attr('value', 1);
+            jQuery(this).parent().next().attr("value", 1);
         } else {
-            jQuery(this).parent().next().attr('value', val);
+            jQuery(this).parent().next().attr("value", val);
         }
     });
 
@@ -159,30 +159,30 @@ jQuery(function () {
 
 
     //rotate chevron
-    jQuery('#step1contentid').on('show.bs.collapse', function () {
+    jQuery("#step1contentid").on("show.bs.collapse", function () {
         jQuery(this).prev().addClass("active");
     })
-    jQuery('#step1contentid').on('hide.bs.collapse', function () {
+    jQuery("#step1contentid").on("hide.bs.collapse", function () {
         jQuery(this).prev().removeClass("active");
     })
-    jQuery('#step2contentid').on('show.bs.collapse', function () {
+    jQuery("#step2contentid").on("show.bs.collapse", function () {
         jQuery(this).prev().addClass("active");
     })
-    jQuery('#step2contentid').on('hide.bs.collapse', function () {
+    jQuery("#step2contentid").on("hide.bs.collapse", function () {
         jQuery(this).prev().removeClass("active");
     })
-    jQuery('#step3contentid').on('show.bs.collapse', function () {
+    jQuery("#step3contentid").on("show.bs.collapse", function () {
         jQuery(this).prev().addClass("active");
     })
-    jQuery('#step3contentid').on('hide.bs.collapse', function () {
+    jQuery("#step3contentid").on("hide.bs.collapse", function () {
         jQuery(this).prev().removeClass("active");
     })
 
     // nut btn-shopping-without-signup
-    jQuery("#step1contentid").collapse('show');
+    jQuery("#step1contentid").collapse("show");
     jQuery(".btn-shopping-without-signup").click(function (e) {
-        jQuery("#step1contentid").collapse('hide');
-        jQuery("#step2contentid").collapse('show');
+        jQuery("#step1contentid").collapse("hide");
+        jQuery("#step2contentid").collapse("show");
     });
 
     // validate
@@ -218,13 +218,13 @@ jQuery(function () {
                 minlength: "Số máy quý khách vừa nhập là số không có thực"
             },
             password: {
-                required: 'Vui lòng nhập mật khẩu',
-                minlength: 'Vui lòng nhập ít nhất 6 kí tự'
+                required: "Vui lòng nhập mật khẩu",
+                minlength: "Vui lòng nhập ít nhất 6 kí tự"
             },
             confirm_password: {
-                required: 'Vui lòng nhập lại mật khẩu',
-                minlength: 'Vui lòng nhập ít nhất 6 kí tự',
-                equalTo: 'Mật khẩu không trùng'
+                required: "Vui lòng nhập lại mật khẩu",
+                minlength: "Vui lòng nhập ít nhất 6 kí tự",
+                equalTo: "Mật khẩu không trùng"
             },
             email: {
                 required: "Vui lòng nhập email",
@@ -247,8 +247,8 @@ jQuery(function () {
         },
         messages: {
             password: {
-                required: 'Vui lòng nhập mật khẩu',
-                minlength: 'Vui lòng nhập ít nhất 6 kí tự'
+                required: "Vui lòng nhập mật khẩu",
+                minlength: "Vui lòng nhập ít nhất 6 kí tự"
             },
             email: {
                 required: "Vui lòng nhập email",
@@ -290,13 +290,13 @@ jQuery(function () {
                 minlength: "Số máy quý khách vừa nhập là số không có thực"
             },
             password: {
-                required: 'Vui lòng nhập mật khẩu',
-                minlength: 'Vui lòng nhập ít nhất 6 kí tự'
+                required: "Vui lòng nhập mật khẩu",
+                minlength: "Vui lòng nhập ít nhất 6 kí tự"
             },
             confirm_password: {
-                required: 'Vui lòng nhập lại mật khẩu',
-                minlength: 'Vui lòng nhập ít nhất 6 kí tự',
-                equalTo: 'Mật khẩu không trùng'
+                required: "Vui lòng nhập lại mật khẩu",
+                minlength: "Vui lòng nhập ít nhất 6 kí tự",
+                equalTo: "Mật khẩu không trùng"
             },
             email: {
                 required: "Vui lòng nhập email",
@@ -319,8 +319,8 @@ jQuery(function () {
         },
         messages: {
             password: {
-                required: 'Vui lòng nhập mật khẩu',
-                minlength: 'Vui lòng nhập ít nhất 6 kí tự'
+                required: "Vui lòng nhập mật khẩu",
+                minlength: "Vui lòng nhập ít nhất 6 kí tự"
             },
             email: {
                 required: "Vui lòng nhập email",
@@ -330,48 +330,85 @@ jQuery(function () {
         }
     });
 
-    // add to cart 
+   
+
+ 
+
+    jQuery(".items .row").isotope({
+        itemSelector: ".item",
+    })
+
+    jQuery(".tag a").click(function (e) {
+        var tacgia = jQuery(this).data("tacgia");
+
+        if (tacgia == "all") {
+            jQuery(".items .row").isotope({ filter: "*" })
+        } else {
+            jQuery(".items .row").isotope({ filter: tacgia });
+        }
+        return false;
+    });
+
+    jQuery(".thay-doi-mk").hide();
+    jQuery("#changepass").click(function (e) {
+        jQuery(".thay-doi-mk").toggle(200);
+    });
+
+
+
+});
+
+jQuery(document).ready(function () {
+    jQuery(".main-nav li").hover(function () {
+        jQuery(".mask").css("display", "block");
+    }, function () {
+        jQuery(".mask").css("display", "none");
+    }
+    );
+    // add to cart
+   //#region
     let product =
     {
-        name: jQuery('.khoithongtin .ten').text(),
-        tag: jQuery('.product-image').attr("alt"),
-        price: parseFloat(jQuery('.gia span.giamoi').text()),
-        old_price: parseFloat(jQuery('.gia span.giacu').text()),
+        name: jQuery(".khoithongtin .ten").text(),
+        tag: jQuery(".product-image").attr("src"),
+        price: parseFloat(jQuery(".gia span.giamoi").text()),
+        old_price: parseFloat(jQuery(".gia span.giacu").text()),
         inCart: 0
     }
 
-    let carts = document.querySelector('.nutmua');
+    let carts = document.querySelector(".nutmua");
     if (carts) {
-        carts.addEventListener('click', () => {
+
+        carts.addEventListener("click", () => {
             cartNumbers(product);
             totalCost(product);
         })
     }
 
     function onLoadCartNumbers() {
-        let productNumbers = localStorage.getItem('cartNumbers');
+        let productNumbers = localStorage.getItem("cartNumbers");
         if (productNumbers) {
-            document.querySelector('.giohang .cart-amount').textContent = productNumbers;
+            document.querySelector(".giohang .cart-amount").textContent = productNumbers;
         }
     }
 
     function cartNumbers(product) {
 
-        let productNumbers = localStorage.getItem('cartNumbers');
+        let productNumbers = localStorage.getItem("cartNumbers");
         productNumbers = parseInt(productNumbers);
 
         if (productNumbers) {
-            localStorage.setItem('cartNumbers', productNumbers + parseInt(jQuery(".soluongsp").val()));
-            document.querySelector('.giohang .cart-amount').textContent = productNumbers + parseInt(jQuery(".soluongsp").val());
+            localStorage.setItem("cartNumbers", productNumbers + parseInt(jQuery(".soluongsp").val()));
+            document.querySelector(".giohang .cart-amount").textContent = productNumbers + parseInt(jQuery(".soluongsp").val());
         } else {
-            localStorage.setItem('cartNumbers', parseInt(jQuery(".soluongsp").val()));
-            document.querySelector('.giohang .cart-amount').textContent = parseInt(jQuery(".soluongsp").val());
+            localStorage.setItem("cartNumbers", parseInt(jQuery(".soluongsp").val()));
+            document.querySelector(".giohang .cart-amount").textContent = parseInt(jQuery(".soluongsp").val());
         }
         setItem(product);
     }
 
     function setItem(product) {
-        let cartItems = localStorage.getItem('productsInCart');
+        let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
 
         if (cartItems != null) {
@@ -389,58 +426,60 @@ jQuery(function () {
             }
         }
 
-        localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
     }
 
     function totalCost(product) {
-        let cartCost = localStorage.getItem('totalCost');
+        let cartCost = localStorage.getItem("totalCost");
 
         if (cartCost != null) {
             cartCost = parseFloat(cartCost);
-            localStorage.setItem('totalCost', cartCost + parseInt(jQuery(".soluongsp").val()) * product.price);
+            localStorage.setItem("totalCost", cartCost + parseInt(jQuery(".soluongsp").val()) * product.price);
         } else {
-            localStorage.setItem('totalCost', parseInt(jQuery(".soluongsp").val()) * product.price);
+            localStorage.setItem("totalCost", parseInt(jQuery(".soluongsp").val()) * product.price);
         }
     }
+    //#endregion
 
+    //#region
     function displayCart() {
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
         let cartContent = document.querySelector(".cart-content");
-        let cartCost = localStorage.getItem('totalCost');
-        let productNumbers = localStorage.getItem('cartNumbers');
+        let cartCost = localStorage.getItem("totalCost");
+        let productNumbers = localStorage.getItem("cartNumbers");
 
         if (cartItems == null) {
             jQuery(".cart-empty").removeClass("d-none");
-            jQuery('.cart').addClass('d-none');
-            jQuery('.cart-steps').addClass('d-none');
+            jQuery(".cart").addClass("d-none");
+            jQuery(".cart-steps").addClass("d-none");
         }
         if (cartItems && cartContent) {
             jQuery(".cart-empty").addClass("d-none");
-            jQuery('.cart').removeClass('d-none');
-            jQuery('.cart-steps').removeClass('d-none');
+            jQuery(".cart").removeClass("d-none");
+            jQuery(".cart-steps").removeClass("d-none");
 
-            cartContent.innerHTML = '';
+            cartContent.innerHTML = "";
 
             cartContent.innerHTML += `
-            <h6 class="header-gio-hang">GIỎ HÀNG CỦA BẠN <span>(jQuery{productNumbers} sản phẩm)</span></h6>
+            <h6 class="header-gio-hang">GIỎ HÀNG CỦA BẠN <span>(${productNumbers} sản phẩm)</span></h6>
             <div class="cart-list-items">
             `
             Object.values(cartItems).map(item => {
                 cartContent.innerHTML += `
                     <div class="cart-item d-flex">
                         <a href="product-item.html" class="img">
-                            <img src="images/jQuery{item.tag}.jpg" class="img-fluid" alt="jQuery{item.tag}">
+                            <img src="${item.tag}" class="img-fluid" alt="${item.tag}">
                         </a>
                         <div class="item-caption d-flex w-100">
                             <div class="item-info ml-3">
-                                <a href="product-item.html" class="ten">jQuery{item.name}</a>
+                                <a href="product-item.html" class="ten">${item.name}</a>
                                 <div class="soluong d-flex">
                                     <div class="input-number input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text btn-spin btn-dec">-</span>
                                         </div>
-                                        <input type="text" value="jQuery{item.inCart}" class="soluongsp  text-center">
+                                        <input type="text" value="${item.inCart}" class="soluongsp  text-center">
                                         <div class="input-group-append">
                                             <span class="input-group-text btn-spin btn-inc">+</span>
                                         </div>
@@ -448,8 +487,8 @@ jQuery(function () {
                                 </div>
                             </div>
                             <div class="item-price ml-auto d-flex flex-column align-items-end">
-                                <div class="giamoi">jQuery{parseFloat(item.price).toFixed(3)} ₫</div>
-                                <div class="giacu">jQuery{parseFloat(item.old_price).toFixed(3)} ₫</div>
+                                <div class="giamoi">${parseFloat(item.price).toFixed(3)} ₫</div>
+                                <div class="giacu">${parseFloat(item.old_price).toFixed(3)} ₫</div>
                                 <span class="remove mt-auto"><i class="far fa-trash-alt"></i></span>
                             </div>
                         </div>
@@ -469,7 +508,7 @@ jQuery(function () {
                     <div class="tonggiatien">
                         <div class="group d-flex justify-content-between">
                             <p class="label">Tạm tính:</p>
-                            <p class="tamtinh">jQuery{parseFloat(cartCost).toFixed(3)} ₫</p>
+                            <p class="tamtinh">${parseFloat(cartCost).toFixed(3)} ₫</p>
                         </div>
                         <div class="group d-flex justify-content-between">
                             <p class="label">Giảm giá:</p>
@@ -485,7 +524,7 @@ jQuery(function () {
                         </div>
                         <div class="group d-flex justify-content-between align-items-center">
                             <strong class="text-uppercase">Tổng cộng:</strong>
-                            <p class="tongcong">jQuery{parseFloat(cartCost).toFixed(3)} ₫</p>
+                            <p class="tongcong">${parseFloat(cartCost).toFixed(3)} ₫</p>
                         </div>
                         <small class="note d-flex justify-content-end text-muted">
                             (Giá đã bao gồm VAT)
@@ -506,36 +545,5 @@ jQuery(function () {
 
     onLoadCartNumbers();
     displayCart()
-
-    jQuery('.items .row').isotope({
-        itemSelector: '.item',
-    })
-
-    jQuery('.tag a').click(function (e) {
-        var tacgia = jQuery(this).data('tacgia');
-
-        if (tacgia == 'all') {
-            jQuery('.items .row').isotope({ filter: '*' })
-        } else {
-            jQuery('.items .row').isotope({ filter: tacgia });
-        }
-        return false;
-    });
-
-    jQuery('.thay-doi-mk').hide();
-    jQuery("#changepass").click(function (e) {
-        jQuery('.thay-doi-mk').toggle(200);
-    });
-
-
-
-});
-
-jQuery(document).ready(function () {
-    jQuery(".main-nav li").hover(function () {
-        jQuery(".mask").css("display", "block");
-    }, function () {
-        jQuery(".mask").css("display", "none");
-    }
-    );
+    //#endregion
 }); 
