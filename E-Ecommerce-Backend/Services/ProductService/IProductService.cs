@@ -7,7 +7,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
     {
         public Task<List<ProductsDto>> GetAllProductsAsync();
         public Task<ActionResult<ProductsDto>> GetProductAsync(int id);
-        public Task<List<ProductsDto>> GetProductByCatIdAsync( int id,int pageIndex,int pageSize);
-        public  Task<int> GetTotalProByCatAsync(int id);
+        public Task<ProductPagingDto> GetProductByCatIdAsync( int id,int pageIndex,int pageSize);
+     
     }
 }

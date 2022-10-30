@@ -15,7 +15,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
         private readonly EcommecreDbContext _context;
         private readonly IMapper _mapper;
         private readonly ICategoriesService _categoriesService;
-        private readonly int PAGE_LIMIT =10;
+
         public ProductService(EcommecreDbContext context, IMapper mapper, ICategoriesService categoriesService)
         {
             _context = context;
@@ -39,17 +39,19 @@ namespace E_Ecommerce_Backend.Services.ProductService
             }
             return productsDto;
         }
-        public async Task<List<ProductsDto>> GetProductByCatIdAsync( int id, int pageIndex,int pageSize)
+        public async Task<ProductPagingDto> GetProductByCatIdAsync( int id, int pageIndex,int pageSize)
         {
-           
-            List<ProductsDto> productsDto = new List<ProductsDto>();
+
+            ProductPagingDto ProductPagingDto = new ProductPagingDto();
 
             List<int> ListId = await _categoriesService.GetCategoriesIdChild(id);
-            if (ListId.Count() > 1)
+            ProductPagingDto.totalCount = await GetTotalProByCatAsync(ListId);
+
+            if (ListId.Count > 1)
             {
              foreach(var i in ListId)
                 {
-                    if ( productsDto.Count() == 10)
+                    if (ProductPagingDto.products.Count == 10)
                     {
                         break;
                     }
@@ -58,7 +60,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                      .Include(c => c.Categories)
                      .Include(c => c.Origin)
                      .Where(e => e.CategoryId == i)
-                     .Skip((pageSize - productsDto.Count()) * (pageIndex - 1) )
+                     .Skip((pageSize - ProductPagingDto.products.Count) * (pageIndex - 1) )
                      .Take(pageSize)
                      .AsQueryable();
                      
@@ -68,7 +70,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                         var result = _mapper.Map<List<Product>, List<ProductsDto>>(Listproducts);
                         result.ForEach(pro =>
                         {
-                            productsDto.Add(pro);
+                            ProductPagingDto.products.Add(pro);
                         });
                     }
                 };
@@ -84,18 +86,18 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     .ToListAsync();
                 if (products != null)
                 {
-                    productsDto = _mapper.Map<List<Product>, List<ProductsDto>>(products);
+                    ProductPagingDto.products = _mapper.Map<List<Product>, List<ProductsDto>>(products);
                 }
             }
 
-            return productsDto;
+            return ProductPagingDto;
         }
 
-        public async Task<int>GetTotalProByCatAsync(int id)
+        public async Task<int>GetTotalProByCatAsync(List<int> ListId)
         {
             int total = 0;
-            List<int> ListId = await _categoriesService.GetCategoriesIdChild(id);
-            if (ListId.Count() > 1)
+      
+            if (ListId.Count > 1)
             {
                 ListId.ForEach(e =>
                 {
@@ -106,7 +108,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             }
             else
             {
-                var numberPro = await _context.Products.Where(i => i.CategoryId == id).CountAsync();
+                var numberPro = await _context.Products.Where(i => i.CategoryId == ListId.First()).CountAsync();
                 total += numberPro;
             }
             return total;

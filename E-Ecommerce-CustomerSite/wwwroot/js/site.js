@@ -21,7 +21,7 @@ jQuery(function () {
                 }
             },
             {
-                breakpoint: 1000,
+                breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1
@@ -59,7 +59,7 @@ jQuery(function () {
             jQuery(".navbar").addClass("fixed-top");
             jQuery(".main-nav").css("display", "none");
             jQuery(".top-header").css("display", "none");
-      
+
         }
         else {
 
@@ -186,157 +186,155 @@ jQuery(function () {
     });
 
     // validate
-    jQuery("#form-signup").validate({
-        rules: {
-            name: {
-                required: true,
-            },
-            phone: {
-                required: true,
-                minlength: 8
-            },
-            password: {
-                required: true,
-                minlength: 6
-            },
-            confirm_password: {
-                required: true,
-                minlength: 6,
-                equalTo: "#inputPassword"
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        },
-        messages: {
-            name: {
-                required: "Vui lòng nhập họ và tên",
-            },
-            phone: {
-                required: "Vui lòng nhập số điện thoại",
-                minlength: "Số máy quý khách vừa nhập là số không có thực"
-            },
-            password: {
-                required: "Vui lòng nhập mật khẩu",
-                minlength: "Vui lòng nhập ít nhất 6 kí tự"
-            },
-            confirm_password: {
-                required: "Vui lòng nhập lại mật khẩu",
-                minlength: "Vui lòng nhập ít nhất 6 kí tự",
-                equalTo: "Mật khẩu không trùng"
-            },
-            email: {
-                required: "Vui lòng nhập email",
-                minlength: "Email không hợp lệ",
-                email: "Vui lòng nhập email",
-            }
-        }
-    });
+    //jQuery("#form-signup").validate({
+    //    rules: {
+    //        name: {
+    //            required: true,
+    //        },
+    //        phone: {
+    //            required: true,
+    //            minlength: 8
+    //        },
+    //        password: {
+    //            required: true,
+    //            minlength: 6
+    //        },
+    //        confirm_password: {
+    //            required: true,
+    //            minlength: 6,
+    //            equalTo: "#inputPassword"
+    //        },
+    //        email: {
+    //            required: true,
+    //            email: true
+    //        }
+    //    },
+    //    messages: {
+    //        name: {
+    //            required: "Vui lòng nhập họ và tên",
+    //        },
+    //        phone: {
+    //            required: "Vui lòng nhập số điện thoại",
+    //            minlength: "Số máy quý khách vừa nhập là số không có thực"
+    //        },
+    //        password: {
+    //            required: "Vui lòng nhập mật khẩu",
+    //            minlength: "Vui lòng nhập ít nhất 6 kí tự"
+    //        },
+    //        confirm_password: {
+    //            required: "Vui lòng nhập lại mật khẩu",
+    //            minlength: "Vui lòng nhập ít nhất 6 kí tự",
+    //            equalTo: "Mật khẩu không trùng"
+    //        },
+    //        email: {
+    //            required: "Vui lòng nhập email",
+    //            minlength: "Email không hợp lệ",
+    //            email: "Vui lòng nhập email",
+    //        }
+    //    }
+    //});
 
-    jQuery("#form-signin").validate({
-        rules: {
-            password: {
-                required: true,
-                minlength: 6
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        },
-        messages: {
-            password: {
-                required: "Vui lòng nhập mật khẩu",
-                minlength: "Vui lòng nhập ít nhất 6 kí tự"
-            },
-            email: {
-                required: "Vui lòng nhập email",
-                minlength: "Email không hợp lệ",
-                email: "Vui lòng nhập email",
-            }
-        }
-    });
+    //jQuery("#form-signin").validate({
+    //    rules: {
+    //        password: {
+    //            required: true,
+    //            minlength: 6
+    //        },
+    //        email: {
+    //            required: true,
+    //            email: true
+    //        }
+    //    },
+    //    messages: {
+    //        password: {
+    //            required: "Vui lòng nhập mật khẩu",
+    //            minlength: "Vui lòng nhập ít nhất 6 kí tự"
+    //        },
+    //        email: {
+    //            required: "Vui lòng nhập email",
+    //            minlength: "Email không hợp lệ",
+    //            email: "Vui lòng nhập email",
+    //        }
+    //    }
+    //});
 
-    jQuery("#form-signup-cart").validate({
-        rules: {
-            name: {
-                required: true,
-            },
-            phone: {
-                required: true,
-                minlength: 8
-            },
-            password: {
-                required: true,
-                minlength: 6
-            },
-            confirm_password: {
-                required: true,
-                minlength: 6,
-                equalTo: "#inputPassword"
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        },
-        messages: {
-            name: {
-                required: "Vui lòng nhập họ và tên",
-            },
-            phone: {
-                required: "Vui lòng nhập số điện thoại",
-                minlength: "Số máy quý khách vừa nhập là số không có thực"
-            },
-            password: {
-                required: "Vui lòng nhập mật khẩu",
-                minlength: "Vui lòng nhập ít nhất 6 kí tự"
-            },
-            confirm_password: {
-                required: "Vui lòng nhập lại mật khẩu",
-                minlength: "Vui lòng nhập ít nhất 6 kí tự",
-                equalTo: "Mật khẩu không trùng"
-            },
-            email: {
-                required: "Vui lòng nhập email",
-                minlength: "Email không hợp lệ",
-                email: "Vui lòng nhập email",
-            }
-        }
-    });
+    //jQuery("#form-signup-cart").validate({
+    //    rules: {
+    //        name: {
+    //            required: true,
+    //        },
+    //        phone: {
+    //            required: true,
+    //            minlength: 8
+    //        },
+    //        password: {
+    //            required: true,
+    //            minlength: 6
+    //        },
+    //        confirm_password: {
+    //            required: true,
+    //            minlength: 6,
+    //            equalTo: "#inputPassword"
+    //        },
+    //        email: {
+    //            required: true,
+    //            email: true
+    //        }
+    //    },
+    //    messages: {
+    //        name: {
+    //            required: "Vui lòng nhập họ và tên",
+    //        },
+    //        phone: {
+    //            required: "Vui lòng nhập số điện thoại",
+    //            minlength: "Số máy quý khách vừa nhập là số không có thực"
+    //        },
+    //        password: {
+    //            required: "Vui lòng nhập mật khẩu",
+    //            minlength: "Vui lòng nhập ít nhất 6 kí tự"
+    //        },
+    //        confirm_password: {
+    //            required: "Vui lòng nhập lại mật khẩu",
+    //            minlength: "Vui lòng nhập ít nhất 6 kí tự",
+    //            equalTo: "Mật khẩu không trùng"
+    //        },
+    //        email: {
+    //            required: "Vui lòng nhập email",
+    //            minlength: "Email không hợp lệ",
+    //            email: "Vui lòng nhập email",
+    //        }
+    //    }
+    //});
 
-    jQuery("#form-signin-cart").validate({
-        rules: {
-            password: {
-                required: true,
-                minlength: 6
-            },
-            email: {
-                required: true,
-                email: true
-            }
-        },
-        messages: {
-            password: {
-                required: "Vui lòng nhập mật khẩu",
-                minlength: "Vui lòng nhập ít nhất 6 kí tự"
-            },
-            email: {
-                required: "Vui lòng nhập email",
-                minlength: "Email không hợp lệ",
-                email: "Vui lòng nhập email",
-            }
-        }
-    });
+    //jQuery("#form-signin-cart").validate({
+    //    rules: {
+    //        password: {
+    //            required: true,
+    //            minlength: 6
+    //        },
+    //        email: {
+    //            required: true,
+    //            email: true
+    //        }
+    //    },
+    //    messages: {
+    //        password: {
+    //            required: "Vui lòng nhập mật khẩu",
+    //            minlength: "Vui lòng nhập ít nhất 6 kí tự"
+    //        },
+    //        email: {
+    //            required: "Vui lòng nhập email",
+    //            minlength: "Email không hợp lệ",
+    //            email: "Vui lòng nhập email",
+    //        }
+    //    }
+    //});
 
-   
 
- 
 
-    jQuery(".items .row").isotope({
-        itemSelector: ".item",
-    })
+
+
+
 
     jQuery(".tag a").click(function (e) {
         var tacgia = jQuery(this).data("tacgia");
@@ -366,9 +364,10 @@ jQuery(document).ready(function () {
     }
     );
     // add to cart
-   //#region
+    //#region add to cart
     let product =
     {
+        id: jQuery(".nutmua").attr("id"),
         name: jQuery(".khoithongtin .ten").text(),
         tag: jQuery(".product-image").attr("src"),
         price: parseFloat(jQuery(".gia span.giamoi").text()),
@@ -380,6 +379,7 @@ jQuery(document).ready(function () {
     if (carts) {
 
         carts.addEventListener("click", () => {
+
             cartNumbers(product);
             totalCost(product);
         })
@@ -410,19 +410,18 @@ jQuery(document).ready(function () {
     function setItem(product) {
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
-
         if (cartItems != null) {
-            if (cartItems[product.tag] == undefined) {
+            if (cartItems[product.id] == undefined) {
                 cartItems = {
                     ...cartItems,
-                    [product.tag]: product
+                    [product.id]: product
                 }
             }
-            cartItems[product.tag].inCart += parseInt(jQuery(".soluongsp").val());
+            cartItems[product.id].inCart += parseInt(jQuery(".soluongsp").val());
         } else {
             product.inCart = parseInt(jQuery(".soluongsp").val());
             cartItems = {
-                [product.tag]: product
+                [product.id]: product
             }
         }
 
@@ -441,35 +440,41 @@ jQuery(document).ready(function () {
     }
     //#endregion
 
-    //#region
+    //#region displaycart 
     function displayCart() {
-        let cartItems = localStorage.getItem("productsInCart");
-        cartItems = JSON.parse(cartItems);
+
         let cartContent = document.querySelector(".cart-content");
         let cartCost = localStorage.getItem("totalCost");
         let productNumbers = localStorage.getItem("cartNumbers");
 
-        if (cartItems == null) {
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+        console.log(cartItems.length)
+        if (cartItems == null || cartItems.length==0) {
+
             jQuery(".cart-empty").removeClass("d-none");
             jQuery(".cart").addClass("d-none");
             jQuery(".cart-steps").addClass("d-none");
         }
-        if (cartItems && cartContent) {
+
+        if (cartItems && cartContent && cartItems.length !== 0) {
+      
             jQuery(".cart-empty").addClass("d-none");
             jQuery(".cart").removeClass("d-none");
             jQuery(".cart-steps").removeClass("d-none");
 
             cartContent.innerHTML = "";
-
+            let i = 0;
             cartContent.innerHTML += `
             <h6 class="header-gio-hang">GIỎ HÀNG CỦA BẠN <span>(${productNumbers} sản phẩm)</span></h6>
             <div class="cart-list-items">
             `
             Object.values(cartItems).map(item => {
+
                 cartContent.innerHTML += `
-                    <div class="cart-item d-flex">
+                    <div class="cart-item d-flex" >
                         <a href="product-item.html" class="img">
-                            <img src="${item.tag}" class="img-fluid" alt="${item.tag}">
+                            <img src="${item.tag}" class="img-fluid img-pro" alt="${item.tag}">
                         </a>
                         <div class="item-caption d-flex w-100">
                             <div class="item-info ml-3">
@@ -477,24 +482,24 @@ jQuery(document).ready(function () {
                                 <div class="soluong d-flex">
                                     <div class="input-number input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text btn-spin btn-dec">-</span>
+                                            <span class="input-group-text btn-spin btn-dec-cart "id=${item.id}>-</span>
                                         </div>
-                                        <input type="text" value="${item.inCart}" class="soluongsp  text-center">
+                                        <input type="text" value="${item.inCart}"   class="soluongsp  text-center">
                                         <div class="input-group-append">
-                                            <span class="input-group-text btn-spin btn-inc">+</span>
-                                        </div>
-                                    </div>
+                                            <span class="input-group-text btn-spin btn-inc-cart" id=${item.id}  >+</span>
+                                        </div>    </div>
                                 </div>
                             </div>
                             <div class="item-price ml-auto d-flex flex-column align-items-end">
                                 <div class="giamoi">${parseFloat(item.price).toFixed(3)} ₫</div>
                                 <div class="giacu">${parseFloat(item.old_price).toFixed(3)} ₫</div>
-                                <span class="remove mt-auto"><i class="far fa-trash-alt"></i></span>
+                                <span class="remove mt-auto" id=${item.id}><i class="far fa-trash-alt"></i></span>
                             </div>
                         </div>
                     </div>
                     <hr>
                 `
+                i++;
             })
 
             cartContent.innerHTML += `
@@ -534,6 +539,7 @@ jQuery(document).ready(function () {
             </div>
             `
 
+
         }
     }
 
@@ -546,4 +552,123 @@ jQuery(document).ready(function () {
     onLoadCartNumbers();
     displayCart()
     //#endregion
+    //#region btn-spin-cart
+    jQuery(".btn-inc-cart").click(function (e) {
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+        let product = Object.values(cartItems).filter(cart => {
+            if (cart.id === this.id) {
+                return cart;
+            }
+
+        });
+        var strval = jQuery(this).parent().prev().val();
+        var val = parseInt(strval) + 1;
+        jQuery(this).parent().prev().attr("value", val);
+        cartNumbersInc(...product);
+        totalCostInc(...product);
+    });
+
+    //Inc 
+    function cartNumbersInc(product) {
+        let productNumbers = localStorage.getItem("cartNumbers");
+        productNumbers = parseInt(productNumbers);
+        localStorage.setItem("cartNumbers", productNumbers + 1);
+        document.querySelector(".giohang .cart-amount").textContent = productNumbers + 1;
+        setItemInc(product);
+    }
+    function setItemInc(product) {
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+        cartItems[product.id].inCart += 1;
+        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+    }
+
+    function totalCostInc(product) {
+        let cartCost = localStorage.getItem("totalCost");
+        cartCost = parseFloat(cartCost) + product.price;
+        var cost = document.querySelector(".tongcong");
+        cost.innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
+        localStorage.setItem("totalCost", cartCost);
+    }
+    //#endregion
+    //#region btn-decs-cart
+    jQuery(".btn-dec-cart").click(function (e) {
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+        let product = Object.values(cartItems).filter(cart => {
+            if (cart.id === this.id) {
+                return cart;
+            }
+        });
+        console.log(...product)
+        var strval = jQuery(this).parent().next().val();
+        var val = parseInt(strval) - 1;
+        if (val < 1) {
+            jQuery(this).parent().next().attr("value", 1);
+            val = 1
+        } else {
+            jQuery(this).parent().next().attr("value", val);
+        }
+        cartNumbersDesc(...product, val);
+        totalCostDesc(...product, strval);
+    });
+    //Desc 
+    function cartNumbersDesc(product, val) {
+        let productNumbers = localStorage.getItem("cartNumbers");
+        productNumbers = parseInt(productNumbers);
+        if (val > 1) {
+            localStorage.setItem("cartNumbers", productNumbers - 1);
+            document.querySelector(".giohang .cart-amount").textContent = productNumbers - 1;
+        }
+
+
+        setItemDesc(product, val);
+    }
+    function setItemDesc(product, val) {
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+        cartItems[product.id].inCart = val;
+        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+    }
+
+    function totalCostDesc(product, strval) {
+
+        if (strval > 1) {
+            let cartCost = localStorage.getItem("totalCost");
+            cartCost = parseFloat(cartCost) - product.price;
+            var cost = document.querySelector(".tongcong");
+            cost.innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
+            localStorage.setItem("totalCost", cartCost);
+        }
+
+    }
+
+    //#endregion
+    //remove item
+    jQuery(".remove").click(function (e) {
+
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+
+        cartItems = Object.values(cartItems).filter(e => {
+            if (e.id == this.id) {
+                let productNumbers = localStorage.getItem("cartNumbers");
+                let cartCost = localStorage.getItem("totalCost");
+                cartCost = cartCost - e.inCart * e.price;
+                productNumbers = productNumbers - e.inCart;
+                document.querySelector(".giohang .cart-amount").textContent = productNumbers;
+                localStorage.setItem("totalCost", cartCost);
+                localStorage.setItem("cartNumbers", productNumbers);
+            }
+
+            return e.id != this.id;
+        });
+        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+      
+        location.reload()
+
+
+    });
+
 }); 

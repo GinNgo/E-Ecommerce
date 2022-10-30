@@ -1,7 +1,7 @@
 ﻿using E_Ecommerce_CustomerSite.Services.CategoryService;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_Ecommerce_CustomerSite.Components
+namespace E_Ecommerce_CustomerSite.Pages.Shared.Components.Categories
 {
     public class CategoriesViewComponent : ViewComponent
     {
@@ -13,9 +13,9 @@ namespace E_Ecommerce_CustomerSite.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var categories =await _categoryService.GetAllCategories();
-            return View("Categories",categories);
+            var categories = await _categoryService.GetAllCategories();
+            return View(categories);
         }
-      
+
     }
 }

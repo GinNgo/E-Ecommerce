@@ -108,7 +108,7 @@
                 {
                     <div class="card ">
                         <a asp-page="Detail" asp-route-id="@ListPro.FirstOrDefault().ProductId" class="motsanpham"
-                       style="text-decoration: none; color: black;" data-toggle="tooltip" data-placement="bottom"
+                       style="text-decoration: none; color: black;" data-bs-toogle="tooltip" data-placement="bottom"
                        title=@AliasName(@ListPro.FirstOrDefault().ProductName)>
                             <img class="card-img-top anh" src="@ViewData["url"]/@ListPro.FirstOrDefault()?.ImageUrl"
                              alt=@AliasImage(@ListPro.FirstOrDefault().ImageUrl.ToString())>

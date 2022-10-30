@@ -5,7 +5,7 @@
 @{
     string ApiUrl = "https://localhost:44324/wwwroot/Upload";
     var breadBrum = ViewData["BreadBrum"] as List<CategoriesDto>;
-
+    var width = 100;
 
    
 }
@@ -58,7 +58,7 @@
                         <a class="active" href="@ApiUrl/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
                            <img class="product-image" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;"> 
                             </a>
-                       
+         
                         </div>
                         <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
                         <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
@@ -70,12 +70,25 @@
                         <div class="row">
                             <div class="col-md-12 header">
                                 <h4 class="ten">@Model.Pro.ProductName</h4>
+                                <div class="rating-container">
                                 <div class="rate">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star "></i>
+                                    <ul class="d-flex" style="list-style: none; ">
+                                        <li ><i class="fa fa-star"></i></li>
+                                        <li ><i class="fa fa-star"></i></li>
+                                        <li ><i class="fa fa-star"></i></li>
+                                        <li ><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="rate " style="width:@width%">
+                                    <ul class="d-flex" style="list-style: none; ">
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
                                 </div>
                                 <hr>
                             </div>
@@ -110,7 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="nutmua btn w-100 text-uppercase">Chọn mua</div>
+                                <div class="nutmua btn w-100 text-uppercase" id="@Model.Pro.ProductId">Chọn mua</div>
                            
                                 <small class="share">Share: </small>
                                 <div class="fb-like" data-href="https://www.facebook.com/DealBook-110745443947730/"

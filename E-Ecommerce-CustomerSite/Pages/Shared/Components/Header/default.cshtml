@@ -5,7 +5,7 @@
     <header>
         <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  box-shadow top-header">
             <div class="container-xl float-start">
-                <a class=" ms-2 logo-main" asp-page="/">
+                <a class=" ms-2 logo-main" asp-page="Index">
                     <img src="https://localhost:44324/wwwroot/Upload/logo.png"  class="dropdown-toggle " style="height:65px" asp-append-version="true">
 
                 </a>
@@ -69,12 +69,13 @@
                     @await Component.InvokeAsync("Categories")
                 </div>
                 <!-- form tìm kiếm  -->
-                <form class="form-inline w-50">
+                <form asp-page="Search" class="form-inline w-50" method="get">
                     <div class="input-group w-75">
-                        <input type="text" class="form-control" aria-label="Small"
-                            placeholder="Nhập sách cần tìm kiếm...">
+
+                        <input name="q" type="text" class="form-control"
+                           placeholder="Nhập sách cần tìm kiếm...">
                         <div class="input-group-append">
-                            <button type="button" class="btn" style="background-color: #34b0dd; color: white;">
+                            <button asp-page="Search" type="submit" class="btn" style="background-color: #34b0dd; color: white;">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -98,11 +99,11 @@
                         </li>
                     </ul>
                     <div class="nav-item giohang account">
-                        <a href="gio-hang.html" class="btn btn-secondary rounded-circle">
+                        <a  class="btn btn-secondary rounded-circle" asp-page="shoppingcart">
                             <i class="fa fa-shopping-cart"></i>
                             <div class="cart-amount">0</div>
                         </a>
-                        <a class="nav-link text-dark giohang text-uppercase" href="gio-hang.html" style="display:inline-block">
+                        <a asp-page="shoppingcart" class="nav-link text-dark giohang text-uppercase"  style="display:inline-block">
                             Giỏ
                             Hàng
                         </a>
