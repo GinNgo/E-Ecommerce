@@ -357,12 +357,18 @@ jQuery(function () {
 });
 
 jQuery(document).ready(function () {
+    
     jQuery(".main-nav li").hover(function () {
         jQuery(".mask").css("display", "block");
     }, function () {
         jQuery(".mask").css("display", "none");
-    }
-    );
+    });
+    jQuery(".main-nav-home li").hover(function () {
+        jQuery(".mask").css("display", "block");
+    }, function () {
+        jQuery(".mask").css("display", "none");
+    });
+
     // add to cart
     //#region add to cart
     let product =
@@ -449,7 +455,7 @@ jQuery(document).ready(function () {
 
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
-        console.log(cartItems.length)
+
         if (cartItems == null || cartItems.length==0) {
 
             jQuery(".cart-empty").removeClass("d-none");
@@ -473,7 +479,7 @@ jQuery(document).ready(function () {
 
                 cartContent.innerHTML += `
                     <div class="cart-item d-flex" >
-                        <a href="product-item.html" class="img">
+                        <a href="/Detail/${item.id}" class="img">
                             <img src="${item.tag}" class="img-fluid img-pro" alt="${item.tag}">
                         </a>
                         <div class="item-caption d-flex w-100">
@@ -554,6 +560,7 @@ jQuery(document).ready(function () {
     //#endregion
     //#region btn-spin-cart
     jQuery(".btn-inc-cart").click(function (e) {
+        console.log(this.id)
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
         let product = Object.values(cartItems).filter(cart => {
@@ -587,8 +594,8 @@ jQuery(document).ready(function () {
     function totalCostInc(product) {
         let cartCost = localStorage.getItem("totalCost");
         cartCost = parseFloat(cartCost) + product.price;
-        var cost = document.querySelector(".tongcong");
-        cost.innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
+        document.querySelector(".tongcong").innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
+        document.querySelector(".tamtinh").innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
         localStorage.setItem("totalCost", cartCost);
     }
     //#endregion
@@ -597,11 +604,10 @@ jQuery(document).ready(function () {
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
         let product = Object.values(cartItems).filter(cart => {
-            if (cart.id === this.id) {
+            if (cart.id == this.id) {
                 return cart;
             }
         });
-        console.log(...product)
         var strval = jQuery(this).parent().next().val();
         var val = parseInt(strval) - 1;
         if (val < 1) {
@@ -610,20 +616,19 @@ jQuery(document).ready(function () {
         } else {
             jQuery(this).parent().next().attr("value", val);
         }
-        cartNumbersDesc(...product, val);
+        cartNumbersDesc(...product, strval);
         totalCostDesc(...product, strval);
     });
     //Desc 
-    function cartNumbersDesc(product, val) {
+    function cartNumbersDesc(product, strval) {
+        console.log(strval)
         let productNumbers = localStorage.getItem("cartNumbers");
         productNumbers = parseInt(productNumbers);
-        if (val > 1) {
+        if (strval > 1) {
             localStorage.setItem("cartNumbers", productNumbers - 1);
             document.querySelector(".giohang .cart-amount").textContent = productNumbers - 1;
         }
-
-
-        setItemDesc(product, val);
+        setItemDesc(product, strval);
     }
     function setItemDesc(product, val) {
         let cartItems = localStorage.getItem("productsInCart");
@@ -636,9 +641,9 @@ jQuery(document).ready(function () {
 
         if (strval > 1) {
             let cartCost = localStorage.getItem("totalCost");
-            cartCost = parseFloat(cartCost) - product.price;
-            var cost = document.querySelector(".tongcong");
-            cost.innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
+            cartCost = parseFloat(cartCost) - product.price; 
+            document.querySelector(".tongcong").innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
+            document.querySelector(".tamtinh").innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
             localStorage.setItem("totalCost", cartCost);
         }
 
@@ -671,4 +676,7 @@ jQuery(document).ready(function () {
 
     });
 
+    //jQuery(document).ready(function () {
+    //    jQuery(".description").html("Hello <b>world!</b>");
+    //});
 }); 

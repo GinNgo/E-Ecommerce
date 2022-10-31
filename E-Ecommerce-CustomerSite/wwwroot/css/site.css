@@ -101,9 +101,9 @@ html {
         transition: 0.2s;
     }
 
-    li.nav-item:hover a {
-        color: #F5A623 !important;
-    }
+li.nav-item:hover a, nav-item:hover a {
+    color: #F5A623 !important;
+}
 
     a.nav-link {
         padding-top: 8px;
@@ -153,12 +153,15 @@ html {
     .nav-item.giohang:hover .cart-amount {
         background: #CF111A;
         color: white;
-    }
 
-    .dropdown-menu {
-        padding: 11px;
-        width: 236px;
     }
+.giohang:hover a{
+    color: #F5A623 !important;
+}
+.dropdown-menu {
+    padding: 11px;
+    width: 236px;
+}
 
     a.dropdown-item {
         background: #F5A623;

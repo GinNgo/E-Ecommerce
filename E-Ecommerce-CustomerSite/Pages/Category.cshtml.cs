@@ -13,19 +13,26 @@ namespace E_Ecommerce_CustomerSite.Pages
     {
         private readonly IProductService _productService;
         private readonly ICategoriesService _categoriesService;
-        public ProductViewModel ProductViewModel { get; set; }
+        public ProductViewModel productViewModel =new ProductViewModel();
+        PagingRequestDto pagingRequestDto;
         public CategoryModel(IProductService productService, ICategoriesService categoriesService)
         {
             _productService = productService;
             _categoriesService = categoriesService; 
         }
-        public async Task<IActionResult> OnGet(int id,int p=1,int s = ConfigurationConstants.LIMIT)
+        public async Task<IActionResult> OnGet(int id,int p = 1,int s = ConfigurationConstants.LIMIT)
         {
-           var ProductPaging= await _productService.GetProductsByCatIdAsync(id, p, s);
-            ProductViewModel.pageIndex =p;
-            ProductViewModel.pageSize =s;
-            ProductViewModel.productsDtos = ProductPaging.products;
-            ProductViewModel.totalCount = ProductPaging.totalCount;
+            pagingRequestDto = new PagingRequestDto()
+            {
+                id=id,
+                pageIndex=p,
+                pageSize=s,
+            };
+            var ProductPaging = await _productService.GetProductsByCatIdAsync(pagingRequestDto);
+            productViewModel.pageIndex = p;
+            productViewModel.pageSize = s;
+            productViewModel.productsDtos = ProductPaging.products;
+            productViewModel.totalCount = ProductPaging.totalCount;
             ViewData["BreadBrum"] = await _categoriesService.GetBreadbrum(id);
             return Page();
         }

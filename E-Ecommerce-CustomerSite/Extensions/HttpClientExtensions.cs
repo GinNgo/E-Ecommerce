@@ -1,6 +1,7 @@
 ﻿using E_Ecommerce_Shared.DTO;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace E_Ecommerce_CustomerSite.Extensions
 {
@@ -15,16 +16,17 @@ namespace E_Ecommerce_CustomerSite.Extensions
 
             return results;
         }
-     
 
-        public static async Task<T?> GetAsJsonOneProAsync<T>(this HttpClient httpClient, string url)
+        public static async Task<T?> PostAsJsonAsync<Param,T>(this HttpClient httpClient, string url, Param param)
         {
-            var response = await httpClient.GetAsync(url);
+            var objParam = JsonConvert.SerializeObject(param);
+            var response = await httpClient.PostAsync(url, new StringContent(objParam, Encoding.UTF8, "application/json"));
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(content);
 
             return result;
         }
+      
 
 
     }

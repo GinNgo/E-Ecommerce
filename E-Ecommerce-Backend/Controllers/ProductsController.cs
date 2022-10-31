@@ -58,16 +58,32 @@ namespace E_Ecommerce_Backend.Controllers
             return product;
         }
         // GET: api/Products/5
-        [HttpGet("GetProductByCat")]
-        public async Task<ProductPagingDto> GetProductProductByCat([FromQuery(Name ="id")]int id, [FromQuery(Name = "pageIndex")] int pageIndex, [FromQuery(Name = "pageSize")] int pageSize)
+        [HttpPost("GetProductByCat")]
+        public async Task<ProductPagingDto> GetProductProductByCat([FromBody] PagingRequestDto pagingRequestDto)
         {
-            var products = await _productService.GetProductByCatIdAsync(id,pageIndex, pageSize);
+            var products = await _productService.GetProductByCatIdAsync(pagingRequestDto);
 
             return products;
         }
-       
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        [HttpPost("GetProductProductBySearch")]
+        public async Task<ProductPagingDto> GetProductProductBySearchAsync([FromBody] PagingRequestDto pagingRequestDto)
+        {
+           
+            var products = await _productService.GetProductProductBySearchAsync(pagingRequestDto);
+
+            return products;
+        }
+
+        [HttpPost("PostProductRating")]
+        public async Task<List<RatingDto>> PostProductRating([FromBody] RatingDto ratingDto)
+        {
+
+            var ratings = await _productService.PostProductRatingAsync(ratingDto);
+
+            return ratings;
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {

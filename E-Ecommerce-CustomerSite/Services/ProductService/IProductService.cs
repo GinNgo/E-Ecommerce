@@ -7,9 +7,9 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
     {
         public Task<List<ProductsDto>> GetAllProductsAsync();
         public Task<ProductsDto> GetProductsByIdAsync(int id);
-        public Task<ProductPagingDto> GetProductsByCatIdAsync(int id, int pageIndex, int pageSize);
-        public Task<ProductPagingDto> GetProductsBySearchAsync(string query, int pageIndex, int pageSize);
- 
+        public Task<ProductPagingDto> GetProductsByCatIdAsync(PagingRequestDto pagingRequestDto);
+        public Task<ProductPagingDto> GetProductsBySearchAsync(PagingRequestDto pagingRequestDto);
+        public Task<ProductsDto> PostProductsRatingAsync(RatingDto ratingDto);
     }
 }
 

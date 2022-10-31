@@ -10,24 +10,38 @@ namespace E_Ecommerce_CustomerSite.Pages
     {
         private readonly IProductService _productService;
         private readonly ICategoriesService _categoriesService;
-        public ProductsDto? Pro { get; set; }
+        public ProductsDto? Pro = new ProductsDto();
         public DetailModel(IProductService productService, ICategoriesService categoriesService)
         {
             _productService = productService;
             _categoriesService = categoriesService;
         }
-
-        public void OnPost()
+        public List<CategoriesDto>? categoriesDtos = new List<CategoriesDto>();
+        public async Task<IActionResult> OnPostRating(int Id)
         {
-            var emailAddress = Request.Form["star"];
-            Console.WriteLine("emailAddress");
+            int score = int.Parse(Request.Form["star"]);
+            var name = Request.Form["name"];
+            var email = Request.Form["email"];
+            var comment = Request.Form["comment"];
+            RatingDto ratingDto = new RatingDto()
+            {
+                Score = score,
+                Name = name,
+                Email = email,
+                Comment = comment
+            };
+           
+            Pro = await _productService.GetProductsByIdAsync(Id);
+
+            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.CategoryId);
+            return Page();
         }
         public async Task<IActionResult> OnGet(int Id)
         {
-           Pro = new ProductsDto();
-           Pro = await _productService.GetProductsByIdAsync(Id);
-            
-            ViewData["BreadBrum"] = await _categoriesService.GetBreadbrum(Pro.CategoryId);
+
+            Pro = await _productService.GetProductsByIdAsync(Id);
+
+            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.CategoryId);
             return Page();
         }
 

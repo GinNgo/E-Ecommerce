@@ -23,22 +23,22 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
             return products ?? new List<ProductsDto>();
         }
 
-        public async Task<ProductPagingDto> GetProductsBySearchAsync(string query, int pageIndex, int pageSize)
+        public async Task<ProductPagingDto> GetProductsBySearchAsync(PagingRequestDto pagingRequestDto)
         {
 
 
-            var products = await httpClient.GetAsJsonAsync<ProductPagingDto>($"Products/GetProductBySearch/?q={query}&pageIndex={pageIndex}&pageSize={pageSize}");
+            var products = await httpClient.PostAsJsonAsync<PagingRequestDto, ProductPagingDto>($"Products/GetProductProductBySearch/", pagingRequestDto);
 
 
             return products ?? new ProductPagingDto();
 
 
         }
-        public async Task<ProductPagingDto> GetProductsByCatIdAsync(int id, int pageIndex, int pageSize)
+        public async Task<ProductPagingDto> GetProductsByCatIdAsync(PagingRequestDto pagingRequestDto)
         {
 
 
-            var products = await httpClient.GetAsJsonAsync<ProductPagingDto>($"Products/GetProductByCat/?id={id}&pageIndex={pageIndex}&pageSize={pageSize}");
+            var products = await httpClient.PostAsJsonAsync<PagingRequestDto, ProductPagingDto>("Products/GetProductByCat/", pagingRequestDto);
 
 
             return products ?? new ProductPagingDto();
@@ -48,11 +48,17 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
 
         public async Task<ProductsDto> GetProductsByIdAsync(int id)
         {
-            var product = await httpClient.GetAsJsonOneProAsync<ProductsDto>("Products/" + id);
+            var product = await httpClient.GetAsJsonAsync<ProductsDto>("Products/" + id);
 
             return product ?? new ProductsDto();
         }
 
-       
+        public async Task<ProductsDto> PostProductsRatingAsync(RatingDto ratingDto)
+        {
+            var product = await httpClient.PostAsJsonAsync<RatingDto, ProductsDto>("Products/PostRating/", ratingDto);
+
+
+            return product ?? new ProductsDto();
+        }
     }
 }
