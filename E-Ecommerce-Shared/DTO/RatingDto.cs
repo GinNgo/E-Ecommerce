@@ -18,6 +18,6 @@ namespace E_Ecommerce_Shared.DTO
 
             public int ProductId { get; set; }
             public DateTime CreateDate { get; set; }
-    }
+        }
 
 }

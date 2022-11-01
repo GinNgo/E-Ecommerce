@@ -1,4 +1,5 @@
 ﻿@page
+@using E_Ecommerce_CustomerSite.Models
 @using E_Ecommerce_CustomerSite.Pages
 @using System.Text.RegularExpressions
 @using E_Ecommerce_Shared.DTO
@@ -108,8 +109,8 @@
                         <a asp-page="Detail" asp-route-id="@product!.ProductId" class="motsanpham"
                        style="text-decoration: none; color: black;" data-bs-toogle="tooltip" data-placement="bottom"
                        title=@AliasName(@product.ProductName!)>
-                            <img class="card-img-top anh" src="@ViewData["url"]/@product?.ImageUrl"
-                             alt=@AliasImage(@product!.ImageUrl!.ToString())>
+                            <img class="card-img-top anh" src="@ViewData["url"]/@product?.ImageUrl" height="238px"
+                             alt="@AliasImage(@product!.ImageUrl!.ToString())">
                             <div class="card-body noidungsp mt-3">
                                 <h3 class="card-title ten">@product?.ProductName</h3>
 
@@ -118,16 +119,7 @@
                                     <div class="giacu text-muted">139.000 ₫</div>
                                     <div class="sale">-20%</div>
                                 </div>
-                                <div class="danhgia">
-                                    <ul class="d-flex" style="list-style: none;">
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><span class="text-muted">0 nhận xét</span></li>
-                                    </ul>
-                                </div>
+                                @await Component.InvokeAsync("RatingCart",product)
                             </div>
                         </a>
                     </div>
@@ -165,16 +157,7 @@
                                     <div class="giacu text-muted">@String.Format("{0:0,0}",@Math.Abs(@product.Price)) ₫</div>
                                     <div class="sale">-@String.Format("{0:0,0}",@Math.Abs((@product.Price - @product.PriceDiscount)*100/@product.Price))%</div>
                             </div>
-                            <div class="danhgia">
-                                <ul class="d-flex" style="list-style: none;">
-                                    <li class="active"><i class="fa fa-star"></i></li>
-                                    <li class="active"><i class="fa fa-star"></i></li>
-                                    <li class="active"><i class="fa fa-star"></i></li>
-                                    <li class="active"><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><span class="text-muted">0 nhận xét</span></li>
-                                </ul>
-                            </div>
+                                @await Component.InvokeAsync("RatingCart",product)
                         </div>
                     </a>
                 </div>

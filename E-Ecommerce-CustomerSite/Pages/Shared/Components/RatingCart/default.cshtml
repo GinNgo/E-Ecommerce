@@ -1,0 +1,38 @@
+﻿@using E_Ecommerce_Shared.DTO
+@{
+    int totalScore = 0;
+    int count = Model.Rating?.Count;
+    @foreach (var item in Model.Rating)
+    {
+        totalScore += item.Score;
+    }
+
+    float witdh = 0;
+    if (count == 0) { }
+    else { witdh = totalScore * 100 / (float)(count * 5); }
+}
+<div class="danhgia">
+    <div class="d-flex p-0" style=" height:26px">
+        <ul class="d-flex position-absolute" style="list-style: none;">
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+
+            <li><span class="text-muted">@count nhận xét</span></li>
+        </ul>
+        <div class=" position-absolute">
+            <ul class="d-flex"
+                style="list-style: none;white-space:nowrap;overflow:hidden;width:@String.Format("{0:#,##0}",witdh)%">
+                <li class="active"><i class="fa fa-star"></i></li>
+                <li class="active"><i class="fa fa-star"></i></li>
+                <li class="active"><i class="fa fa-star"></i></li>
+                <li class="active"><i class="fa fa-star"></i></li>
+                <li class="active"><i class="fa fa-star"></i></li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>

@@ -61,17 +61,12 @@ namespace E_Ecommerce_CustomerSite.Pages
                 ScoreRating.one = 0;
                 ScoreRating.one = 0;
             }
-            if (ScoreRating.countTotal == 1 && ScoreRating.total == 0)
-            {
-                ViewData["countTotal"] = 0;
-            }
-            else
-            {
-                ViewData["countTotal"] = ScoreRating.countTotal;
-            }
-            
+     
             categoriesDtos = await _categoriesService.GetBreadbrum(Pro.CategoryId);
-           
+            if (Pro != null)
+            {
+                return  Redirect("/Detail/" + Pro.ProductId);
+            }
             return Page();
         }
         public async Task<IActionResult> OnGet(int Id)
@@ -104,6 +99,8 @@ namespace E_Ecommerce_CustomerSite.Pages
                 ScoreRating.one = 0;
                 ScoreRating.one = 0;
             }
+         
+            
            
             categoriesDtos = await _categoriesService.GetBreadbrum(Pro.CategoryId);
             return Page();

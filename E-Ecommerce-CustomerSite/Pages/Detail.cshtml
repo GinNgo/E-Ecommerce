@@ -6,9 +6,9 @@
 @{
     string ApiUrl = "https://localhost:44324/wwwroot/Upload";
 
-    var width = 100;
+   
 
-
+    float agvRating = @Model.ScoreRating.total * 5 / (float)(@Model.ScoreRating.countTotal * 5);
 }
 
 <!-- breadcrumb  -->
@@ -48,26 +48,27 @@
                     <div class="row">
                         <div class="col-md-12 header">
                             <h4 class="ten">@Model.Pro.ProductName</h4>
-                            <div class="rating-container">
-                                <div class="rate">
-                                    <ul class="d-flex" style="list-style: none; ">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
-                                </div>
-                                <div class="rate ">
-                                    <ul class="d-flex" style="list-style: none; width:@width%;overflow:hidden">
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
+                              <div class="rating-container ">
+                                        <div class="rate">
+                                            <ul class="d-flex" style="list-style: none; ">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="rate ">
+                                            <ul class="d-flex" style="list-style: none; width: @String.Format("{0:#,##0}",agvRating*100/(float)5)%; overflow:hidden">
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                             <hr>
                         </div>
                         <div class="col-md-7">
@@ -79,7 +80,8 @@
                                     </span>
                                 </div>
                                 <div class="tietkiem">
-                                    Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> <span class="sale">-@String.Format("{0:0,0}",@Math.Abs((@Model.Pro.Price - @Model.Pro.PriceDiscount)*100/@Model.Pro.Price))%</span>
+                                    Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> 
+                                    <span class="sale">-@String.Format("{0:0,0}",@Math.Abs((@Model.Pro.Price - @Model.Pro.PriceDiscount)*100/@Model.Pro.Price))%</span>
                                 </div>
                             </div>
                             @*   <div class="uudai my-3">
@@ -132,7 +134,7 @@
                                data-bs-target="#nav-danhgia" role="tab" aria-controls="nav-danhgia"
                                aria-selected="false">
                                 Đánh
-                                giá của độc giả
+                                giá sản phẩm
                             </a>
                         </div>
                     </nav>
@@ -154,15 +156,42 @@
                             <div class="row">
                                 <div class="col-md-3 text-center">
                                     <p class="tieude">Đánh giá trung bình</p>
-                                    <div class="diem"> @String.Format(" {0:#,##0.0}", Model.ScoreRating.total*5 /(float) (Model.ScoreRating.countTotal*5))/5</div>
-                                    <div class="sao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+
+                                    @if (Model.ScoreRating.total == 0)
+                                    {   
+                                        <div class="diem">   
+                                        @Model.ScoreRating.total/5
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="diem">
+                                            @String.Format(" {0:#,##0.0}", agvRating)/5
+                                        </div>
+                                    }
+                                    
+                                    <div class="rating-container-comment " style="margin-left:30% ">
+                                        <div class="rate">
+                                            <ul class="d-flex" style="list-style: none; ">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="rate ">
+                                            <ul class="d-flex" style="list-style: none; width: @String.Format("{0:#,##0}",agvRating*100/(float)5)%; overflow:hidden">
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <p class="sonhanxet text-muted">(@ViewData["countTotal"] nhận xét)</p>
+                                    <p class="sonhanxet mt-4 text-muted">(@Model.Pro.Rating!.Count() nhận xét)</p>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="tiledanhgia text-center">
@@ -173,47 +202,23 @@
                                         </div>
                                         <div class="motthanh d-flex align-items-center">
                                             4 <i class="fa fa-star"></i>
-                                            <div class="progress mx-2">
-                                                <div class="progress-bar" role="progressbar"
-                                                     style="width: 
-                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.four * 100 /(float) @Model.ScoreRating.countTotal)%"
-                                                     aria-valuenow="
-                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.four * 100 /(float) @Model.ScoreRating.countTotal)"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>          @String.Format(" {0:#,##0}", @Model.ScoreRating.four * 100 /(float) @Model.ScoreRating.countTotal)%
+                                            @await Component.InvokeAsync("Progress",
+                                            new ScoreProgressViewModel(){countTotal = @Model.ScoreRating.countTotal,score=@Model.ScoreRating.four})
                                         </div>
                                         <div class="motthanh d-flex align-items-center">
                                             3 <i class="fa fa-star"></i>
-                                            <div class="progress mx-2">
-                                                <div class="progress-bar" role="progressbar"
-                                                     style="width: 
-                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.three * 100 /(float) @Model.ScoreRating.countTotal)%"
-                                                     aria-valuenow="
-                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.three * 100 /(float) @Model.ScoreRating.countTotal)"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>  @String.Format(" {0:#,##0}", @Model.ScoreRating.three * 100 /(float) @Model.ScoreRating.countTotal)%
+                                            @await Component.InvokeAsync("Progress",
+                                            new ScoreProgressViewModel(){countTotal = @Model.ScoreRating.countTotal,score=@Model.ScoreRating.three})
                                         </div>
                                         <div class="motthanh d-flex align-items-center">
                                             2 <i class="fa fa-star"></i>
-                                            <div class="progress mx-2">
-                                                <div class="progress-bar" role="progressbar"
-                                                     style="width: 
-                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.two * 100 / (float)Model.ScoreRating.countTotal)%"
-                                                     aria-valuenow="
-                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.two * 100 /(float) Model.ScoreRating.countTotal)"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>  @String.Format(" {0:#,##0}", @Model.ScoreRating.two * 100 /(float) @Model.ScoreRating.countTotal)%
+                                            @await Component.InvokeAsync("Progress",
+                                            new ScoreProgressViewModel(){countTotal = @Model.ScoreRating.countTotal,score=@Model.ScoreRating.two})
                                         </div>
                                         <div class="motthanh d-flex align-items-center">
                                             1 <i class="fa fa-star"></i>
-                                            <div class="progress mx-2">
-                                                <div class="progress-bar" role="progressbar"
-                                                     style="width: 
-                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.one * 100 /(float) Model.ScoreRating.countTotal)%"
-                                                     aria-valuenow="
-                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.one * 100 /(float) Model.ScoreRating.countTotal)"
-                                                     aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>  @String.Format(" {0:#,##0}", @Model.ScoreRating.one * 100 /(float) @Model.ScoreRating.countTotal)%
+                                            @await Component.InvokeAsync("Progress",
+                                            new ScoreProgressViewModel(){countTotal = @Model.ScoreRating.countTotal,score=@Model.ScoreRating.one})
                                         </div>
                                         <div class="btn vietdanhgia mt-3">Viết đánh giá của bạn</div>
                                     </div>
@@ -244,7 +249,7 @@
                                 </div>
                                 <div class="container">
                                     <div class="be-comment-block">
-                                        <h1 class="comments-title">Comments (@Model.ScoreRating.countTotal)</h1>
+                                        <h1 class="comments-title">Comments (@Model.Pro.Rating!.Count())</h1>
                                         @foreach (var comment in Model.Pro.Rating!)
                                         {
                                             <div class="be-comment">

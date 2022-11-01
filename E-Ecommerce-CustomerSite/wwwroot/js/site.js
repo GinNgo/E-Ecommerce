@@ -116,11 +116,7 @@ jQuery(function () {
         jQuery("#formdangky").modal("hide");
         jQuery("#formdangnhap").modal("show");
     });
-    jQuery(".close").click(function (e) {
-        jQuery(".modal").addClass("fade");
-        jQuery("ul.tabs .tab-dangnhap").removeClass("active");
-        jQuery("ul.tabs .tab-dangky").removeClass("active");
-    });
+   
 
     // thumb-img
     jQuery(".thumb-img.thumb1").addClass("vienvang");
@@ -560,7 +556,7 @@ jQuery(document).ready(function () {
     //#endregion
     //#region btn-spin-cart
     jQuery(".btn-inc-cart").click(function (e) {
-        console.log(this.id)
+  
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
         let product = Object.values(cartItems).filter(cart => {
@@ -569,6 +565,7 @@ jQuery(document).ready(function () {
             }
 
         });
+
         var strval = jQuery(this).parent().prev().val();
         var val = parseInt(strval) + 1;
         jQuery(this).parent().prev().attr("value", val);
@@ -585,6 +582,7 @@ jQuery(document).ready(function () {
         setItemInc(product);
     }
     function setItemInc(product) {
+
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
         cartItems[product.id].inCart += 1;
@@ -597,6 +595,7 @@ jQuery(document).ready(function () {
         document.querySelector(".tongcong").innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
         document.querySelector(".tamtinh").innerHTML = `${parseFloat(cartCost).toFixed(3)}₫`
         localStorage.setItem("totalCost", cartCost);
+      
     }
     //#endregion
     //#region btn-decs-cart
@@ -633,7 +632,7 @@ jQuery(document).ready(function () {
     function setItemDesc(product, val) {
         let cartItems = localStorage.getItem("productsInCart");
         cartItems = JSON.parse(cartItems);
-        cartItems[product.id].inCart = val;
+        cartItems[product.id].inCart = val-1;
         localStorage.setItem("productsInCart", JSON.stringify(cartItems));
     }
 
@@ -679,4 +678,10 @@ jQuery(document).ready(function () {
     //jQuery(document).ready(function () {
     //    jQuery(".description").html("Hello <b>world!</b>");
     //});
+
+    jQuery(".close").click(function (e) {
+        jQuery(".modal").addClass("fade");
+        jQuery("ul.tabs .tab-dangnhap").removeClass("active");
+        jQuery("ul.tabs .tab-dangky").removeClass("active");
+    });
 }); 
