@@ -27,14 +27,25 @@ namespace E_Ecommerce_Backend.Services.ProductService
         public async Task<ProductPagingDto> GetAllProductsPaingAsync(PagingRequestDto pagingRequestDto)
         {
              ProductPagingDto productPagingDto = new ProductPagingDto();
+            List<Product> Listproducts = new List<Product>(); 
             productPagingDto.totalCount = await _context.Products.CountAsync();
-            var products = await _context.Products.Include(c => c.Brand)
-                .Include(c => c.Categories)
-                .Include(c => c.Origin)
-                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1))
-                 .Take(pagingRequestDto.pageSize)
-.ToListAsync();
-            var productsDto = _mapper.Map<List<Product>, List<ProductsDto>>(products);
+            var products = _context.Products
+                .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1))
+                .Take(pagingRequestDto.pageSize)
+               
+             .Include(c => c.Rating)
+            .AsQueryable();
+            if (pagingRequestDto.sort == 1)
+            {
+                Listproducts =  await  products.OrderByDescending(i => i.ProductId).ToListAsync();
+            
+            }
+            else
+            {
+                Listproducts = await products.OrderBy(i => i.ProductId).ToListAsync();
+                
+            }
+            var productsDto = _mapper.Map<List<Product>, List<ProductsDto>>(Listproducts);
             productPagingDto.products = productsDto;
             return productPagingDto ?? new ProductPagingDto();
         }
@@ -42,9 +53,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
         public async Task<List<ProductsDto>> GetAllProductsAsync()
         {
             var products = await _context.Products
-                .Include(c => c.Brand)
-                .Include(c => c.Categories)
-                .Include(c => c.Origin)
+                .Include(c => c.Rating) 
                 .ToListAsync();
             var productsDto = _mapper.Map<List<Product>, List<ProductsDto>>(products);
             return productsDto ?? new List<ProductsDto>();
@@ -54,10 +63,10 @@ namespace E_Ecommerce_Backend.Services.ProductService
         {
             ProductsDto productsDto = new ProductsDto();
             var product = await _context.Products
+                .Where(e => e.ProductId == id)
                 .Include(c => c.Brand)
                 .Include(c => c.Categories)
-                .Include(c => c.Origin)
-                .Where(e => e.ProductId == id).FirstOrDefaultAsync();
+                .Include(c => c.Origin).Include(c => c.Rating!.OrderByDescending(r=>r.RatingId)).FirstOrDefaultAsync();
             if (product != null)
             {
                 productsDto = _mapper.Map<Product, ProductsDto>(product);
@@ -81,12 +90,12 @@ namespace E_Ecommerce_Backend.Services.ProductService
                         break;
                     }
                     var products = _context.Products
-                     .Include(c => c.Brand)
-                     .Include(c => c.Categories)
-                     .Include(c => c.Origin)
+            
                      .Where(e => e.CategoryId == i)
                      .Skip((pagingRequestDto.pageSize - productsDtos.Count) * (pagingRequestDto.pageIndex - 1))
                      .Take(pagingRequestDto.pageSize)
+                   
+                    .Include(c => c.Rating)
                      .AsQueryable();
 
                     var Listproducts = products.ToList();
@@ -103,18 +112,17 @@ namespace E_Ecommerce_Backend.Services.ProductService
             else
             {
                 ProductPagingDto.products = await _context.Products
-                       .Include(c => c.Brand)
-                     .Include(c => c.Categories)
-                     .Include(c => c.Origin)
+                    
                      .Where(e => e.CategoryId == pagingRequestDto.id)
                     .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
+  .Include(c => c.Rating)
                     .ProjectTo<ProductsDto>(_mapper.ConfigurationProvider)
                     .ToListAsync();
             }
             ProductPagingDto.products = productsDtos;
             return ProductPagingDto;
         }
-        public async Task<ProductPagingDto> GetProductProductBySearchAsync(PagingRequestDto pagingRequestDto)
+        public async Task<ProductPagingDto> GetProductBySearchAsync(PagingRequestDto pagingRequestDto)
         {
             ProductPagingDto ProductPagingDto = new ProductPagingDto();
             if (pagingRequestDto.Search == null)
@@ -124,11 +132,10 @@ namespace E_Ecommerce_Backend.Services.ProductService
             else { 
             ProductPagingDto.totalCount = _context.Products.Where(c => c.ProductName!.Contains(pagingRequestDto.Search)).Count();
             var products = await _context.Products
-                .Include(c => c.Brand)
-                .Include(c => c.Categories)
-                .Include(c => c.Origin)
+             
                 .Where(c => c.ProductName!.Contains(pagingRequestDto.Search))
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
+                .Include(c => c.Rating)
                 .ToListAsync();
             
             ProductPagingDto.products = _mapper.Map<List<Product>, List<ProductsDto>>(products);
@@ -156,13 +163,20 @@ namespace E_Ecommerce_Backend.Services.ProductService
             return total;
         }
 
-        public async Task<List<RatingDto>> PostProductRatingAsync(RatingDto ratingDto)
+        public async Task<ProductsDto> PostProductRatingAsync(RatingDto ratingDto)
         {
-            var Rating = _mapper.Map<Rating>(ratingDto);
-            _context.ratings.Add(Rating);
+            var rating = _mapper.Map<Rating>(ratingDto);
+            rating.Product = await _context.Products.Where(e => e.ProductId == ratingDto.ProductId).FirstOrDefaultAsync();
+            _context.ratings.Add(rating);
             _context.SaveChanges();
-            var RatingList = await _context.ratings.Where(e => e.Product!.ProductId == ratingDto.Product!.ProductId).ProjectTo<RatingDto>(_mapper.ConfigurationProvider).ToListAsync();
-            return RatingList ?? new List<RatingDto>();
+            var product = await _context.Products
+                .Where(e => e.ProductId == ratingDto.ProductId)
+                .Include(c => c.Brand)
+                .Include(c => c.Categories)
+                .Include(c => c.Origin).Include(c => c.Rating).FirstOrDefaultAsync();
+            var productDto = _mapper.Map<ProductsDto>(product);
+            
+            return productDto ?? new ProductsDto();
         }
     }
 }

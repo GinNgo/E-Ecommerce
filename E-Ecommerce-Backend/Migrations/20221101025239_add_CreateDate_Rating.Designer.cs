@@ -4,6 +4,7 @@ using E_Ecommerce_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Ecommerce_Backend.Migrations
 {
     [DbContext(typeof(EcommecreDbContext))]
-    partial class EcommecreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221101025239_add_CreateDate_Rating")]
+    partial class add_CreateDate_Rating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

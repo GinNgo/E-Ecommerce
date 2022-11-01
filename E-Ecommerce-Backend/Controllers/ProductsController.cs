@@ -66,22 +66,31 @@ namespace E_Ecommerce_Backend.Controllers
             return products;
         }
 
-        [HttpPost("GetProductProductBySearch")]
-        public async Task<ProductPagingDto> GetProductProductBySearchAsync([FromBody] PagingRequestDto pagingRequestDto)
+        [HttpPost("GetProductBySearch")]
+        public async Task<IActionResult> GetProductBySearchAsync([FromBody] PagingRequestDto pagingRequestDto)
         {
            
-            var products = await _productService.GetProductProductBySearchAsync(pagingRequestDto);
+            var products = await _productService.GetProductBySearchAsync(pagingRequestDto);
 
-            return products;
+            return Ok(products);
+        }
+
+        [HttpPost("GetProductPaging")]
+        public async Task<IActionResult> GetProductPagingAsync([FromBody] PagingRequestDto pagingRequestDto)
+        {
+
+            var products = await _productService.GetAllProductsPaingAsync(pagingRequestDto);
+
+            return Ok(products);
         }
 
         [HttpPost("PostProductRating")]
-        public async Task<List<RatingDto>> PostProductRating([FromBody] RatingDto ratingDto)
+        public async Task<ProductsDto> PostProductRating([FromBody] RatingDto ratingDto)
         {
 
-            var ratings = await _productService.PostProductRatingAsync(ratingDto);
+            var product = await _productService.PostProductRatingAsync(ratingDto);
 
-            return ratings;
+            return product;
         }
 
         [HttpPut("{id}")]

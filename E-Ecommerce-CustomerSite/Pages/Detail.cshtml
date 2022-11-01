@@ -1,87 +1,65 @@
 ﻿@page "{id}"
 @using E_Ecommerce_CustomerSite.Pages
 @using E_Ecommerce_Shared.DTO
+@using E_Ecommerce_CustomerSite.Models
 @model DetailModel
 @{
     string ApiUrl = "https://localhost:44324/wwwroot/Upload";
-    
+
     var width = 100;
 
-   
+
 }
-@functions{
-    public static string RemoveUnicode(string text)
-    {
 
-        string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ", "đ", "é", "è", "ẻ", "ẽ", "ẹ", "ê", "ế", "ề", "ể", "ễ", "ệ", "í", "ì", "ỉ", "ĩ", "ị", "ó", "ò", "ỏ", "õ", "ọ", "ô", "ố", "ồ", "ổ", "ỗ", "ộ", "ơ", "ớ", "ờ", "ở", "ỡ", "ợ", "ú", "ù", "ủ", "ũ", "ụ", "ư", "ứ", "ừ", "ử", "ữ", "ự", "ý", "ỳ", "ỷ", "ỹ", "ỵ", };
-
-        string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "d", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "i", "i", "i", "i", "i", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "y", "y", "y", "y", "y", };
-
-        for (int i = 0; i < arr1.Length; i++)
-
-        {
-
-            text = text.Replace(arr1[i], arr2[i]);
-
-            text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
-
-        }
-
-        return text;
-
-    }
-}
 <!-- breadcrumb  -->
-    <section class="breadcrumbbar">
-        <div class="container-xl">
-            <ol class="breadcrumb mb-0 p-0 bg-transparent">
-                 <li class="breadcrumb-item"><a asp-page="Index">Trang chủ</a></li>
+<section class="breadcrumbbar">
+    <div class="container-xl">
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a asp-page="Index">Trang chủ</a></li>
             @foreach (var item in Model.categoriesDtos!)
-                {
-                    <li class="breadcrumb-item"><a asp-page="Category"  asp-route-id="@item.CategoryId">@item.CategoryName</a></li>
-                }
-               
-                
-                <li class="breadcrumb-item active"><a asp-page="Detail" asp-route-id="@Model.Pro.ProductId">@Model.Pro!.ProductName</a></li>
-            </ol>
-        </div>
-    </section>
-    <!-- nội dung của trang  -->
-    <section class="product-page mb-4">
-        <div class="container-xl">
-            <!-- chi tiết 1 sản phẩm -->
-            <div class="product-detail bg-white p-4">
-                <div class="row">
-                    <!-- ảnh  -->
-                    <div class="col-md-5 khoianh">
-                        <div class="anhto mb-4">
+            {
+                <li class="breadcrumb-item"><a asp-page="Category" asp-route-id="@item.CategoryId">@item.CategoryName</a></li>
+            }
+            <li class="breadcrumb-item active"><a asp-page="Detail" asp-route-id="@Model.Pro.ProductId">@Model.Pro!.ProductName</a></li>
+        </ol>
+    </div>
+</section>
+<!-- nội dung của trang  -->
+<section class="product-page mb-4">
+    <div class="container-xl">
+        <!-- chi tiết 1 sản phẩm -->
+        <div class="product-detail bg-white p-4">
+            <div class="row">
+                <!-- ảnh  -->
+                <div class="col-md-5 khoianh">
+                    <div class="anhto mb-4">
                         <a class="active" href="@ApiUrl/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
-                           <img class="product-image" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;"> 
-                            </a>
-         
-                        </div>
-                        <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
-                        <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
-                            <img class="thumb-img thumb img-fluid" src="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg"alt="lap-ke-hoach-kinh-doanh-hieu-qua-ms">
-                        </div>
+                            <img class="product-image" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;">
+                        </a>
+
                     </div>
-                    <!-- thông tin sản phẩm: tên, giá bìa giá bán tiết kiệm, các khuyến mãi, nút chọn mua.... -->
-                    <div class="col-md-7 khoithongtin">
-                        <div class="row">
-                            <div class="col-md-12 header">
-                                <h4 class="ten">@Model.Pro.ProductName</h4>
-                                <div class="rating-container">
+                    <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
+                        <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
+                        <img class="thumb-img thumb img-fluid" src="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg" alt="lap-ke-hoach-kinh-doanh-hieu-qua-ms">
+                    </div>
+                </div>
+                <!-- thông tin sản phẩm: tên, giá bìa giá bán tiết kiệm, các khuyến mãi, nút chọn mua.... -->
+                <div class="col-md-7 khoithongtin">
+                    <div class="row">
+                        <div class="col-md-12 header">
+                            <h4 class="ten">@Model.Pro.ProductName</h4>
+                            <div class="rating-container">
                                 <div class="rate">
                                     <ul class="d-flex" style="list-style: none; ">
-                                        <li ><i class="fa fa-star"></i></li>
-                                        <li ><i class="fa fa-star"></i></li>
-                                        <li ><i class="fa fa-star"></i></li>
-                                        <li ><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                 </div>
-                                <div class="rate " style="width:@width%">
-                                    <ul class="d-flex" style="list-style: none; ">
+                                <div class="rate ">
+                                    <ul class="d-flex" style="list-style: none; width:@width%;overflow:hidden">
                                         <li class="active"><i class="fa fa-star"></i></li>
                                         <li class="active"><i class="fa fa-star"></i></li>
                                         <li class="active"><i class="fa fa-star"></i></li>
@@ -89,74 +67,79 @@
                                         <li class="active"><i class="fa fa-star"></i></li>
                                     </ul>
                                 </div>
-                                </div>
-                                <hr>
                             </div>
-                            <div class="col-md-7">
-                                <div class="gia">
-                                    <div class="giabia">Giá:<span class="giacu ml-2">@String.Format("{0:0,0}",@Model.Pro.Price) ₫</span></div>
-                                    <div class="giaban">Giá khuyến mãi: <span class="giamoi font-weight-bold">@String.Format("{0:0,0}",@Model.Pro.PriceDiscount) </span><span class="donvitien">
-                                ₫</span></div>
+                            <hr>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="gia">
+                                <div class="giabia">Giá:<span class="giacu ml-2">@String.Format("{0:0,0}",@Model.Pro.Price) ₫</span></div>
+                                <div class="giaban">
+                                    Giá khuyến mãi: <span class="giamoi font-weight-bold">@String.Format("{0:0,0}",@Model.Pro.PriceDiscount) </span><span class="donvitien">
+                                        ₫
+                                    </span>
+                                </div>
                                 <div class="tietkiem">
                                     Tiết kiệm: <b>@String.Format("{0:0,0}",@Math.Abs(@Model.Pro.Price-@Model.Pro.PriceDiscount)) ₫</b> <span class="sale">-@String.Format("{0:0,0}",@Math.Abs((@Model.Pro.Price - @Model.Pro.PriceDiscount)*100/@Model.Pro.Price))%</span>
-                                    </div>
                                 </div>
-                             @*   <div class="uudai my-3">
-                                    <h6 class="header font-weight-bold">Khuyến mãi & Ưu đãi tại DealBook:</h6>
-                                    <ul>
-                                        <li><b>Miễn phí giao hàng </b>cho đơn hàng từ 150.000đ ở TP.HCM và 300.000đ ở
-                                            Tỉnh/Thành khác <a href="#">>> Chi tiết</a></li>
-                                        <li><b>Combo sách HOT - GIẢM 25% </b><a href="#">>>Xem ngay</a></li>
-                                        <li>Tặng Bookmark cho mỗi đơn hàng</li>
-                                        <li>Bao sách miễn phí (theo yêu cầu)</li>
-                                    </ul>
-                                </div>*@
-                                <div class="soluong d-flex ">
-                                    <label class="font-weight-bold">Số lượng: </label>
-                                    <div class="input-number input-group mb-3 w-100 mt-2">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text btn-spin btn-dec">-</span>
-                                        </div>
-                                        <input type="text" value="1" class="soluongsp  text-center">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text btn-spin btn-inc">+</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="nutmua btn w-100 text-uppercase" id="@Model.Pro.ProductId">Chọn mua</div>
-                           
-                                <small class="share">Share: </small>
-                                <div class="fb-like" data-href="https://www.facebook.com/DealBook-110745443947730/"
-                                    data-width="300px" data-layout="button" data-action="like" data-size="small"
-                                    data-share="true"></div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="thongtinsach">
-                                    <ul>
-                                    <li>Xuất xứ: <a class="tacgia">@Model.Pro.OriginName</a></li>
-                                        <li>Thương hiệu: @Model.Pro.BrandName</li>
-                                    </ul>
+                            @*   <div class="uudai my-3">
+                            <h6 class="header font-weight-bold">Khuyến mãi & Ưu đãi tại DealBook:</h6>
+                            <ul>
+                            <li><b>Miễn phí giao hàng </b>cho đơn hàng từ 150.000đ ở TP.HCM và 300.000đ ở
+                            Tỉnh/Thành khác <a href="#">>> Chi tiết</a></li>
+                            <li><b>Combo sách HOT - GIẢM 25% </b><a href="#">>>Xem ngay</a></li>
+                            <li>Tặng Bookmark cho mỗi đơn hàng</li>
+                            <li>Bao sách miễn phí (theo yêu cầu)</li>
+                            </ul>
+                            </div>*@
+                            <div class="soluong d-flex ">
+                                <label class="font-weight-bold">Số lượng: </label>
+                                <div class="input-number input-group mb-3 w-100 mt-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text btn-spin btn-dec">-</span>
+                                    </div>
+                                    <input type="text" value="1" class="soluongsp  text-center">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text btn-spin btn-inc">+</span>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="nutmua btn w-100 text-uppercase" id="@Model.Pro.ProductId">Chọn mua</div>
+
+                            <small class="share">Share: </small>
+                            <div class="fb-like" data-href="https://www.facebook.com/DealBook-110745443947730/"
+                                 data-width="300px" data-layout="button" data-action="like" data-size="small"
+                                 data-share="true"></div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="thongtinsach">
+                                <ul>
+                                    <li>Xuất xứ: <a class="tacgia">@Model.Pro.OriginName</a></li>
+                                    <li>Thương hiệu: @Model.Pro.BrandName</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <!-- decripstion của 1 sản phẩm: giới thiệu , đánh giá độc giả  -->
-                    <div class="product-description col-md-9">
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active text-uppercase" id="nav-gioithieu-tab"
+                </div>
+                <!-- decripstion của 1 sản phẩm: giới thiệu , đánh giá độc giả  -->
+                <div class="product-description col-md-9">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link  text-uppercase" id="nav-gioithieu-tab"
                                data-bs-toggle="tab" data-bs-target="#nav-gioithieu" role="tab" aria-controls="nav-gioithieu"
-                                    aria-selected="true">Giới thiệu</a>
-                            <a class="nav-item nav-link text-uppercase" id="nav-danhgia-tab" data-bs-toggle="tab"
+                               aria-selected="true">Giới thiệu</a>
+                            <a class="nav-item nav-link text-uppercase active" id="nav-danhgia-tab" data-bs-toggle="tab"
                                data-bs-target="#nav-danhgia" role="tab" aria-controls="nav-danhgia"
-                                    aria-selected="false">Đánh
-                                    giá của độc giả</a>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active ml-3" id="nav-gioithieu" role="tabpanel"
-                                aria-labelledby="nav-gioithieu-tab">
-                                <h6 class="tieude font-weight-bold">@Model.Pro.ProductName</h6>
+                               aria-selected="false">
+                                Đánh
+                                giá của độc giả
+                            </a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show  ml-3" id="nav-gioithieu" role="tabpanel"
+                             aria-labelledby="nav-gioithieu-tab">
+                            <h6 class="tieude font-weight-bold">@Model.Pro.ProductName</h6>
                             <div id="description"></div>
                             <input type="hidden" value="@Model.Pro.FullDescription" id="descHidden">
 
@@ -166,77 +149,154 @@
                                 document.getElementById("description").innerHTML = str
 
                             </script>
-                            </div>
-                        <div class="tab-pane fade " id="nav-danhgia" role="tabpanel" aria-labelledby="nav-danhgia-tab">
-                                <div class="row">
-                                    <div class="col-md-3 text-center">
-                                        <p class="tieude">Đánh giá trung bình</p>
-                                        <div class="diem">0/5</div>
-                                        <div class="sao">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <p class="sonhanxet text-muted">(0 nhận xét)</p>
+                        </div>
+                        <div class="tab-pane fade show active" id="nav-danhgia" role="tabpanel" aria-labelledby="nav-danhgia-tab">
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <p class="tieude">Đánh giá trung bình</p>
+                                    <div class="diem"> @String.Format(" {0:#,##0.0}", Model.ScoreRating.total*5 /(float) (Model.ScoreRating.countTotal*5))/5</div>
+                                    <div class="sao">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="tiledanhgia text-center">
-                                            <div class="motthanh d-flex align-items-center">5 <i class="fa fa-star"></i>
-                                                <div class="progress mx-2">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div> 0%
-                                            </div>
-                                            <div class="motthanh d-flex align-items-center">4 <i class="fa fa-star"></i>
-                                                <div class="progress mx-2">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div> 25%
-                                            </div>
-                                            <div class="motthanh d-flex align-items-center">3 <i class="fa fa-star"></i>
-                                                <div class="progress mx-2">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div> 0%
-                                            </div>
-                                            <div class="motthanh d-flex align-items-center">2 <i class="fa fa-star"></i>
-                                                <div class="progress mx-2">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div> 0%
-                                            </div>
-                                            <div class="motthanh d-flex align-items-center">1 <i class="fa fa-star"></i>
-                                                <div class="progress mx-2">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div> 0%
-                                            </div>
-                                            <div class="btn vietdanhgia mt-3">Viết đánh giá của bạn</div>
+                                    <p class="sonhanxet text-muted">(@ViewData["countTotal"] nhận xét)</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="tiledanhgia text-center">
+                                        <div class="motthanh d-flex align-items-center">
+                                            5 <i class="fa fa-star"></i>
+                                            @await Component.InvokeAsync("Progress",
+                                            new ScoreProgressViewModel(){countTotal = @Model.ScoreRating.countTotal,score=@Model.ScoreRating.five})
                                         </div>
-                                        <!-- nội dung của form đánh giá  -->
+                                        <div class="motthanh d-flex align-items-center">
+                                            4 <i class="fa fa-star"></i>
+                                            <div class="progress mx-2">
+                                                <div class="progress-bar" role="progressbar"
+                                                     style="width: 
+                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.four * 100 /(float) @Model.ScoreRating.countTotal)%"
+                                                     aria-valuenow="
+                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.four * 100 /(float) @Model.ScoreRating.countTotal)"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>          @String.Format(" {0:#,##0}", @Model.ScoreRating.four * 100 /(float) @Model.ScoreRating.countTotal)%
+                                        </div>
+                                        <div class="motthanh d-flex align-items-center">
+                                            3 <i class="fa fa-star"></i>
+                                            <div class="progress mx-2">
+                                                <div class="progress-bar" role="progressbar"
+                                                     style="width: 
+                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.three * 100 /(float) @Model.ScoreRating.countTotal)%"
+                                                     aria-valuenow="
+                                                        @String.Format(" {0:#,##0}", @Model.ScoreRating.three * 100 /(float) @Model.ScoreRating.countTotal)"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>  @String.Format(" {0:#,##0}", @Model.ScoreRating.three * 100 /(float) @Model.ScoreRating.countTotal)%
+                                        </div>
+                                        <div class="motthanh d-flex align-items-center">
+                                            2 <i class="fa fa-star"></i>
+                                            <div class="progress mx-2">
+                                                <div class="progress-bar" role="progressbar"
+                                                     style="width: 
+                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.two * 100 / (float)Model.ScoreRating.countTotal)%"
+                                                     aria-valuenow="
+                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.two * 100 /(float) Model.ScoreRating.countTotal)"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>  @String.Format(" {0:#,##0}", @Model.ScoreRating.two * 100 /(float) @Model.ScoreRating.countTotal)%
+                                        </div>
+                                        <div class="motthanh d-flex align-items-center">
+                                            1 <i class="fa fa-star"></i>
+                                            <div class="progress mx-2">
+                                                <div class="progress-bar" role="progressbar"
+                                                     style="width: 
+                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.one * 100 /(float) Model.ScoreRating.countTotal)%"
+                                                     aria-valuenow="
+                                                        @String.Format(" {0:#,##0}", Model.ScoreRating.one * 100 /(float) Model.ScoreRating.countTotal)"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>  @String.Format(" {0:#,##0}", @Model.ScoreRating.one * 100 /(float) @Model.ScoreRating.countTotal)%
+                                        </div>
+                                        <div class="btn vietdanhgia mt-3">Viết đánh giá của bạn</div>
+                                    </div>
+                                    <!-- nội dung của form đánh giá  -->
                                     <form method="post" class="formdanhgia" asp-page="Detail" asp-route-id="@Model.Pro.ProductId" asp-page-handler="Rating">
-                                            <h6 class="tieude text-uppercase">GỬI ĐÁNH GIÁ CỦA BẠN</h6>
-                                            <span class="danhgiacuaban">Đánh giá của bạn về sản phẩm này:</span>
-                                            <div class="rating d-flex flex-row-reverse align-items-center justify-content-end">
-                                                <input type="radio"  name="star" id="star1" value="1"><label for="star1"></label>
-                                                <input type="radio" name="star" id="star2" value="2"><label for="star2"></label>
-                                                <input type="radio" name="star" id="star3" value="3"><label for="star3"></label>
-                                                <input type="radio" name="star" id="star4" value="4"><label for="star4"></label>
-                                                <input type="radio" name="star" id="star5" value="5"><label for="star5"></label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="txtFullname w-100" name="name" placeholder="Mời bạn nhập tên(Bắt buộc)" >
-                                            </div>
-                                            <div class="form-group">
+                                        <h6 class="tieude text-uppercase">GỬI ĐÁNH GIÁ CỦA BẠN</h6>
+                                        <span class="danhgiacuaban">Đánh giá của bạn về sản phẩm này:</span>
+                                        <div class="rating d-flex flex-row-reverse align-items-center justify-content-end">
+                                            <input type="radio" name="star" id="star1" value="5"><label for="star1"></label>
+                                            <input type="radio" name="star" id="star2" value="4"><label for="star2"></label>
+                                            <input type="radio" name="star" id="star3" value="3"><label for="star3"></label>
+                                            <input type="radio" name="star" id="star4" value="2"><label for="star4"></label>
+                                            <input type="radio" name="star" id="star5" value="1"><label for="star5"></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="txtFullname w-100" name="name" placeholder="Mời bạn nhập tên(Bắt buộc)">
+                                        </div>
+                                        <div class="form-group">
                                             <input type="text" class="txtEmail w-100" name="email" placeholder="Mời bạn nhập email(Bắt buộc)">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="txtComment w-100" name="comment" placeholder="Đánh giá của bạn về sản phẩm này">
+                                        </div>
+                                        <button class="btn nutguibl" type="submit">Gửi bình luận</button>
+                                    </form>
+
+
+                                </div>
+                                <div class="container">
+                                    <div class="be-comment-block">
+                                        <h1 class="comments-title">Comments (@Model.ScoreRating.countTotal)</h1>
+                                        @foreach (var comment in Model.Pro.Rating!)
+                                        {
+                                            <div class="be-comment">
+                                                @*   <div class="be-img-comment">
+                                            <a href="blog-detail-2.html">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                                            </a>
+                                            </div>*@
+
+                                                <div class="be-comment-content">
+
+                                                    <div class="be-comment-name">
+                                                        <a href="" class="comment-name"> @comment.Name</a>
+                                                        <div class="rating-container-comment">
+                                                            <div class="rate">
+                                                                <ul class="d-flex" style="list-style: none; ">
+                                                                    <li><i class="fa fa-star"></i></li>
+                                                                    <li><i class="fa fa-star"></i></li>
+                                                                    <li><i class="fa fa-star"></i></li>
+                                                                    <li><i class="fa fa-star"></i></li>
+                                                                    <li><i class="fa fa-star"></i></li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <div class="rate ">
+                                                                <ul class="d-flex" style="list-style: none; width: @String.Format("{0:#,##0}",@comment.Score*100/(float)5)%; overflow:hidden">
+                                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <span class="be-comment-time">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        @comment.CreateDate.ToString()
+                                                    </span>
+
+
+
+                                                    <p class="be-comment-text">
+                                                        @comment.Comment
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                            <input type="text" class="txtComment w-100" name="comment" placeholder="Đánh giá của bạn về sản phẩm này" >
-                                            </div>
-                                        <button class="btn nutguibl" type="submit" >Gửi bình luận</button>
-                                        </form>
+                                        }
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -246,10 +306,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
-    <!-- thanh cac dich vu :mien phi giao hang, qua tang mien phi ........ -->
-  
-
+<!-- thanh cac dich vu :mien phi giao hang, qua tang mien phi ........ -->

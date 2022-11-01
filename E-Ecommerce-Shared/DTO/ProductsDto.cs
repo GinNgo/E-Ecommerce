@@ -24,7 +24,7 @@ namespace E_Ecommerce_Shared.DTO
         public  List<CategoriesDto>? Categories { get; set; }
         public int CategoryId { get; set; }
         public string? BrandName { get; set; }
-        public decimal Rating { get; set; }
+        public ICollection<RatingDto>? Rating { get; set; }
 
     }
 }

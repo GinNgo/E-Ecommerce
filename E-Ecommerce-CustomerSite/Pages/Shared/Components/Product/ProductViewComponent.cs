@@ -8,7 +8,7 @@ namespace E_Ecommerce_CustomerSite.Pages.Shared.Components.Product
         public IViewComponentResult Invoke(ProductViewModel productViewModel)
         {
 
-            return View( productViewModel);
+            return View(productViewModel);
         }
     }
 }

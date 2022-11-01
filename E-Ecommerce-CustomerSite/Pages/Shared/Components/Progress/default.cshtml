@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="progress mx-2">
+    <div class="progress-bar" role="progressbar"
+         style="width:
+          @String.Format("{0:#,##0}",  Model.score * 100 /(float)  Model.countTotal)%"
+         aria-valuenow="@String.Format(" {0:#,##0}", Model.score * 100 /(float)  Model.countTotal)"
+         aria-valuemin="0" aria-valuemax="100">
+     </div>
+   
+</div>   @String.Format(" {0:#,##0}", Model.score* 100 /(float)  Model.countTotal)%

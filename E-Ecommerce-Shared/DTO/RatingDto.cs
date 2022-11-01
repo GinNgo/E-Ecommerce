@@ -15,8 +15,9 @@ namespace E_Ecommerce_Shared.DTO
             public string? Comment { get; set; }
             public string? Email { get; set; }
             public string ?Name { get; set; }
-            public ProductsDto? Product { get; set; }
 
-        }
+            public int ProductId { get; set; }
+            public DateTime CreateDate { get; set; }
+    }
 
 }

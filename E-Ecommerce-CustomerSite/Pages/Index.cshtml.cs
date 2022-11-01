@@ -17,12 +17,24 @@ namespace E_Ecommerce_CustomerSite.Pages
             _productService = productService;
            
         }
-       
+        public ProductPagingDto productsNew = new ProductPagingDto();
+        public ProductPagingDto productsSuggest = new ProductPagingDto();
         public async Task<IActionResult> OnGet()
         {
-
-            ViewData["ListPro"] = await  _productService.GetAllProductsAsync();
-            
+            PagingRequestDto pagingProductNew = new PagingRequestDto()
+            {
+                pageIndex = 1,
+                pageSize = 8,
+                sort = 1
+            };
+            PagingRequestDto pagingProductSuggest = new PagingRequestDto()
+            {
+                pageIndex = 1,
+                pageSize = 12,
+                sort = 1
+            };
+            productsNew = await  _productService.GetProductPagingAsync(pagingProductNew);
+            productsSuggest = await _productService.GetProductPagingAsync(pagingProductSuggest);
             return Page();
         }
        

@@ -25,14 +25,13 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
 
         public async Task<ProductPagingDto> GetProductsBySearchAsync(PagingRequestDto pagingRequestDto)
         {
-
-
-            var products = await httpClient.PostAsJsonAsync<PagingRequestDto, ProductPagingDto>($"Products/GetProductProductBySearch/", pagingRequestDto);
-
-
+            var products = await httpClient.PostAsJsonAsync<PagingRequestDto, ProductPagingDto>($"Products/GetProductBySearch/", pagingRequestDto);
             return products ?? new ProductPagingDto();
-
-
+        }
+        public async Task<ProductPagingDto> GetProductPagingAsync(PagingRequestDto pagingRequestDto)
+        {
+            var products = await httpClient.PostAsJsonAsync<PagingRequestDto, ProductPagingDto>($"Products/GetProductPaging/", pagingRequestDto);
+            return products ?? new ProductPagingDto();
         }
         public async Task<ProductPagingDto> GetProductsByCatIdAsync(PagingRequestDto pagingRequestDto)
         {
@@ -55,7 +54,7 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
 
         public async Task<ProductsDto> PostProductsRatingAsync(RatingDto ratingDto)
         {
-            var product = await httpClient.PostAsJsonAsync<RatingDto, ProductsDto>("Products/PostRating/", ratingDto);
+            var product = await httpClient.PostAsJsonAsync<RatingDto, ProductsDto>("Products/PostProductRating/", ratingDto);
 
 
             return product ?? new ProductsDto();

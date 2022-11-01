@@ -37,7 +37,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
                 int index = categoriesDto.FindIndex(i=>i.CategoryId.Equals(check));
                 if (index != 0  )
                 {
-                    check = (int)categoriesDto[index].ParentId;
+                    check = (int)categoriesDto[index].ParentId!;
                     ListBreadCrumb.Add(categoriesDto[index]);
                 }
                 
@@ -46,7 +46,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
             {
                 ListBreadCrumb.Reverse();
             }
-            return ListBreadCrumb;
+            return ListBreadCrumb?? new List<CategoriesDto>();
         }
         public async Task<List<int>> GetCategoriesIdChild(int id)
         {

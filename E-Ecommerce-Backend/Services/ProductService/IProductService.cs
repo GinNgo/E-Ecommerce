@@ -9,8 +9,8 @@ namespace E_Ecommerce_Backend.Services.ProductService
         public Task<ProductPagingDto> GetAllProductsPaingAsync(PagingRequestDto pagingRequestDto);
         public Task<ActionResult<ProductsDto>> GetProductAsync(int id);
         public Task<ProductPagingDto> GetProductByCatIdAsync(PagingRequestDto pagingRequestDto);
-        public Task<ProductPagingDto> GetProductProductBySearchAsync(PagingRequestDto pagingRequestDto);
-        public Task<List<RatingDto>> PostProductRatingAsync(RatingDto ratingDto);
+        public Task<ProductPagingDto> GetProductBySearchAsync(PagingRequestDto pagingRequestDto);
+        public Task<ProductsDto> PostProductRatingAsync(RatingDto ratingDto);
 
 
     }
