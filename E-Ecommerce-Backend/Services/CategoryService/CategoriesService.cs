@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
-using E_Ecommerce_Shared.DTO;
+using E_Ecommerce_Shared.DTO.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
             _context = ecommecreDbContext;
             _mapper = mapper;
         }
-        public async Task<List<CategoriesDto>> GetCategories()
+        public async Task<List<CategoriesDto>> GetCategoriesAsync()
         {
             var categories = await _context.Categories.ToListAsync();
             var categoriesDto = _mapper.Map<List<Category>, List<CategoriesDto>>(categories);
@@ -102,5 +102,26 @@ namespace E_Ecommerce_Backend.Services.CategoryService
 
             return subNavId;
         }
+        //admin
+        public async Task<List<CategoryAdmin>> GetCategoriesAdminAsync()
+        {
+    
+            var categories = await _context.Categories.Where(c=>c.CategoryId!=0).ToListAsync();
+       
+       
+            var categoriesAdmin = _mapper.Map<List<Category>, List<CategoryAdmin>>(categories);
+            categories.ForEach(i =>
+            {
+                if (i.ParentId > 0)
+                {
+                    var nameParent = categories.FirstOrDefault(e => e.CategoryId == i.ParentId)!.CategoryName;
+                  
+                    categoriesAdmin.FirstOrDefault(e => e.CategoryId == i.CategoryId)!.ParentName = nameParent;
+                }
+            });
+
+            return categoriesAdmin;
+        }
+
     }
 }

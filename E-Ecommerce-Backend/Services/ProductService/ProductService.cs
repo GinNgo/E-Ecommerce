@@ -5,6 +5,8 @@ using E_Ecommerce_Backend.Models;
 
 using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Shared.DTO;
+using E_Ecommerce_Shared.DTO.Product;
+using E_Ecommerce_Shared.DTO.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -32,7 +34,6 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var products = _context.Products
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1))
                 .Take(pagingRequestDto.pageSize)
-               
              .Include(c => c.Rating)
             .AsQueryable();
             if (pagingRequestDto.sort == 1)
@@ -50,13 +51,16 @@ namespace E_Ecommerce_Backend.Services.ProductService
             return productPagingDto ?? new ProductPagingDto();
         }
 
-        public async Task<List<ProductsDto>> GetAllProductsAsync()
+        public async Task<List<ProductAdmin>> GetAllProductsAsync()
         {
             var products = await _context.Products
-                .Include(c => c.Rating) 
+                .Include(c => c.Rating)
+                .Include(c => c.Brand)
+                .Include(c => c.Categories)
+                .Include(c => c.Origin)
                 .ToListAsync();
-            var productsDto = _mapper.Map<List<Product>, List<ProductsDto>>(products);
-            return productsDto ?? new List<ProductsDto>();
+            var productAdmin = _mapper.Map<List<Product>, List<ProductAdmin>>(products);
+            return productAdmin ?? new List<ProductAdmin>();
         }
 
         public async Task<ActionResult<ProductsDto>> GetProductAsync(int id)
@@ -115,7 +119,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     
                      .Where(e => e.CategoryId == pagingRequestDto.id)
                     .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
-  .Include(c => c.Rating)
+                     .Include(c => c.Rating)
                     .ProjectTo<ProductsDto>(_mapper.ConfigurationProvider)
                     .ToListAsync();
             }

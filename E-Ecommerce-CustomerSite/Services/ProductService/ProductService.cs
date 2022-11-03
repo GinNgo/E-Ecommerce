@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http.Json;
 using System.Text;
+using E_Ecommerce_Shared.DTO.Product;
 
 namespace E_Ecommerce_CustomerSite.Services.ProductService
 {

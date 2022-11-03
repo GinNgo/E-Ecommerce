@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.CategoryService;
-using E_Ecommerce_Shared.DTO;
-
+using E_Ecommerce_Shared.DTO.Categories;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -28,12 +27,12 @@ namespace E_Ecommerce_Backend.Controllers
 
         // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult<List<CategoriesDto>>> GetCategories()
+        public async Task<ActionResult<List<CategoriesDto>>> GetCategoriesAsync()
         {
             try
             {
 
-                var categories = await _categoryService.GetCategories();
+                var categories = await _categoryService.GetCategoriesAsync();
 
 
                 return Ok(categories);
@@ -46,9 +45,17 @@ namespace E_Ecommerce_Backend.Controllers
 
         }
 
+        [HttpGet("admin")]
+        public async Task<List<CategoryAdmin>> GetCategoriesAdminAsync()
+        {
+                var categories = await _categoryService.GetCategoriesAdminAsync();
+                return categories;
+           
+        }
+
         // GET: api/Category/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<Category>> GetCategoryAsync(int id)
         {
             var category = await _context.Categories.FindAsync(id);
 

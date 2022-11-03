@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using E_Ecommerce_Shared.DTO.Categories;
 
-namespace E_Ecommerce_Shared.DTO
+namespace E_Ecommerce_Shared.DTO.Product
 {
     public class ProductsDto
     {
@@ -15,13 +16,13 @@ namespace E_Ecommerce_Shared.DTO
         public string? ProductName { get; set; }
         public string? DescDescription { get; set; }
         public string? FullDescription { get; set; }
-        public Decimal Price { get; set; }
-        public Decimal PriceDiscount { get; set; }
+        public decimal Price { get; set; }
+        public decimal PriceDiscount { get; set; }
         public int Quantity { get; set; }
-        public string? OriginName{ get; set; }
+        public string? OriginName { get; set; }
 
         public string? ImageUrl { get; set; }
-        public  List<CategoriesDto>? Categories { get; set; }
+        public List<CategoriesDto>? Categories { get; set; }
         public int CategoryId { get; set; }
         public string? BrandName { get; set; }
         public ICollection<RatingDto>? Rating { get; set; }

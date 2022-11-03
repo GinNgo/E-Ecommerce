@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Ecommerce_Shared.DTO
+namespace E_Ecommerce_Shared.DTO.Categories
 {
-    public class ProductPagingDto
+    public class CategoryPaging
     {
         public int totalCount { get; set; }
-        public List<ProductsDto>? products { get; set; }
+        public List<CategoryAdmin>? categoriesAdmin { get; set; }
     }
 }

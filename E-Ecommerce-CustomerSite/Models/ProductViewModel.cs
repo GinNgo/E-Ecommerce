@@ -1,4 +1,4 @@
-﻿using E_Ecommerce_Shared.DTO;
+﻿using E_Ecommerce_Shared.DTO.Product;
 
 namespace E_Ecommerce_CustomerSite.Models
 {

@@ -9,7 +9,8 @@ using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.ProductService;
 using E_Ecommerce_Shared.DTO;
-
+using E_Ecommerce_Shared.DTO.Product;
+using E_Ecommerce_Shared.DTO.Products;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -28,11 +29,10 @@ namespace E_Ecommerce_Backend.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<List<ProductsDto>>> GetProducts()
+        public async Task<ActionResult<List<ProductAdmin>>> GetProducts()
         {
             try
             {
-
                 var ListPro = await _productService.GetAllProductsAsync();
                 return Ok(ListPro);
             }

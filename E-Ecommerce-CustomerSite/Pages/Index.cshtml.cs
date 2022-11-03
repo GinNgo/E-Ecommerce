@@ -1,6 +1,7 @@
 ﻿using E_Ecommerce_CustomerSite.Services.CategoryService;
 using E_Ecommerce_CustomerSite.Services.ProductService;
 using E_Ecommerce_Shared.DTO;
+using E_Ecommerce_Shared.DTO.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
