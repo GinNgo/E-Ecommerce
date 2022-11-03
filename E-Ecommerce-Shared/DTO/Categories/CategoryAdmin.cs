@@ -13,6 +13,7 @@ namespace E_Ecommerce_Shared.DTO.Categories
     {
         public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
+        public int? CategoryDescription { get; set; }
         public string? ParentName { get; set; }
 
 

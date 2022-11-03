@@ -1,4 +1,4 @@
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Box, Grid, IconButton, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
@@ -35,41 +35,44 @@ const Product = () => {
     {
       field: "Status",
       headerName: "Status",
-      flex: 1,
-      justifyContent: "center",
 
       renderCell: ({ row: { status } }) => {
-        return status === true ? <CheckOutlinedIcon /> : <CloseOutlinedIcon />;
+        return status === true ? (
+          <CheckOutlinedIcon className="ckeck-colum--cell" />
+        ) : (
+          <CloseOutlinedIcon className="no-ckeck-colum--cell" />
+        );
       },
     },
+
     {
       field: "isDeleted",
       headerName: "IsDeleted",
-      flex: 1,
-      justifyContent: "center",
+      cellClassName: "MuiDataGrid-cell--textCenter",
+
       renderCell: ({ row: { isDeleted } }) => {
         return isDeleted === true ? (
-          <CheckOutlinedIcon />
+          <CheckOutlinedIcon className="ckeck-colum--cell" />
         ) : (
-          <CloseOutlinedIcon />
+          <CloseOutlinedIcon className="no-ckeck-colum--cell" />
         );
       },
     },
     {
+      field: "action",
       headerName: "Action",
       flex: 1,
-      justifyContent: "center",
 
-      renderCell: ({ row: { isDeleted } }) => {
+      renderCell: ({ row: { ID } }) => {
         return (
-          <Box>
+          <Grid>
             <IconButton>
-              <CreateOutlinedIcon />
+              <CreateOutlinedIcon className="create-colum--cell" />
             </IconButton>
             <IconButton>
-              <DeleteOutlinedIcon />
+              <DeleteOutlinedIcon className="no-ckeck-colum--cell" />
             </IconButton>
-          </Box>
+          </Grid>
         );
       },
     },
@@ -105,6 +108,15 @@ const Product = () => {
           },
           "& .name-column--cell": {
             color: colors.greenAccent[300],
+          },
+          "& .ckeck-colum--cell": {
+            color: colors.greenAccent[600],
+          },
+          "& .no-ckeck-colum--cell": {
+            color: colors.redAccent[500],
+          },
+          "& .create-colum--cell": {
+            color: colors.blueAccent[700],
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],

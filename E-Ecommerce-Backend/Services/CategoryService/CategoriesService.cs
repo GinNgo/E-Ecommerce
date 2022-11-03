@@ -107,19 +107,18 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         {
     
             var categories = await _context.Categories.Where(c=>c.CategoryId!=0).ToListAsync();
-       
-       
-            var categoriesAdmin = _mapper.Map<List<Category>, List<CategoryAdmin>>(categories);
             categories.ForEach(i =>
             {
                 if (i.ParentId > 0)
                 {
                     var nameParent = categories.FirstOrDefault(e => e.CategoryId == i.ParentId)!.CategoryName;
-                  
-                    categoriesAdmin.FirstOrDefault(e => e.CategoryId == i.CategoryId)!.ParentName = nameParent;
+                    var category = categories.FirstOrDefault(e => e.CategoryId == i.CategoryId);
+                    category!.CategoryName = nameParent + " >> " + category!.CategoryName;
+                    
                 }
             });
 
+            var categoriesAdmin = _mapper.Map<List<Category>, List<CategoryAdmin>>(categories);
             return categoriesAdmin;
         }
 

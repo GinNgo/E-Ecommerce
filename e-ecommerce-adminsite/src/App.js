@@ -7,6 +7,9 @@ import SideBar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard/index";
 import Category from "./scenes/category";
 import Product from "./scenes/product";
+import CreateCategory from "./scenes/category/Create";
+import UpdateCategory from "./scenes/category/Update";
+import DeleteCategory from "./scenes/category/Delete";
 // // import Contacts from './scenes/contacts';
 // // import Bar from './scenes/bar';
 // // import Form from './scenes/form';
@@ -31,16 +34,9 @@ function App() {
               <Route path="/" element={<Dashboard />}></Route>
               <Route path="/category" element={<Category />}></Route>
               <Route path="/product" element={<Product />}></Route>
-              {/* 
-           
-              <Route path="/invoices" element={<Invoices/>}></Route>
-              <Route path="/form" element={<Form/>}></Route>
-              <Route path="/bar" element={<Bar/>}></Route>
-              <Route path="/pie" element={<Pie/>}></Route>
-              <Route path="/line" element={<Line/>}></Route>
-              <Route path="/faq" element={<FAQ/>}></Route>
-              <Route path="/geography" element={<Geography/>}></Route>
-              <Route path="/calendar" element={<Calendar/>}></Route> */}
+              <Route path="/category/create" element={<CreateCategory />} />
+              <Route path="/category/update/:id" element={<UpdateCategory />} />
+              <Route path="/category/delete" element={<DeleteCategory />} />
             </Routes>
           </main>
         </div>

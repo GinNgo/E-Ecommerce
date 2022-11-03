@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Grid, Button, IconButton, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
@@ -8,23 +8,24 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import Header from "../../Components/Header";
 import { useEffect, useState } from "react";
 import Categories from "../../Services/Category/CategoriesApi";
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutline";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "categoryId", headerName: "ID", flex: 0.5 },
+    { field: "categoryId", headerName: "ID" },
     {
       field: "categoryName",
       headerName: "CategoryName",
       flex: 1,
+
       cellClassName: "name-column--cell",
     },
-    {
-      field: "parentName",
-      headerName: "ParentName",
-      flex: 1,
-    },
+
     {
       field: "createBy",
       headerName: "CreateBy",
@@ -32,24 +33,47 @@ const Category = () => {
     {
       field: "Status",
       headerName: "Status",
-      flex: 1,
-      justifyContent: "center",
 
       renderCell: ({ row: { status } }) => {
-        return status === true ? <CheckOutlinedIcon /> : <CloseOutlinedIcon />;
+        return status === true ? (
+          <CheckOutlinedIcon className="ckeck-colum--cell" />
+        ) : (
+          <CloseOutlinedIcon className="no-ckeck-colum--cell" />
+        );
       },
     },
 
     {
       field: "isDeleted",
       headerName: "IsDeleted",
-      flex: 1,
-      justifyContent: "center",
+      cellClassName: "MuiDataGrid-cell--textCenter",
+
       renderCell: ({ row: { isDeleted } }) => {
         return isDeleted === true ? (
-          <CheckOutlinedIcon />
+          <CheckOutlinedIcon className="ckeck-colum--cell" />
         ) : (
-          <CloseOutlinedIcon />
+          <CloseOutlinedIcon className="no-ckeck-colum--cell" />
+        );
+      },
+    },
+    {
+      field: "action",
+      headerName: "Action",
+
+      renderCell: ({ row: { categoryId } }) => {
+        return (
+          <Grid>
+            <Link to={`/category/update/${categoryId}`}>
+              <IconButton>
+                <CreateOutlinedIcon className="create-colum--cell" />
+              </IconButton>
+            </Link>
+            <Link to="/category/update">
+              <IconButton>
+                <DeleteOutlinedIcon className="no-ckeck-colum--cell" />
+              </IconButton>
+            </Link>
+          </Grid>
         );
       },
     },
@@ -64,7 +88,6 @@ const Category = () => {
   const fetchData = async () => {
     try {
       const resp = await Categories.GetCategories();
-      console.log(resp.data);
       setResponseData(resp.data);
     } catch (error) {
       console.log(error);
@@ -72,7 +95,22 @@ const Category = () => {
   };
   return (
     <Box m="20px">
-      <Header title="CATEGORY" subtitle="Managing the Catalog" />
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Header title="CATEGORY" subtitle="Managing the Catalog" />{" "}
+        <Link to={`/category/create`} style={{ listStyleType: "none" }}>
+          <Button
+            sx={{
+              color: colors.blueAccent[400],
+              backgroundColor: colors.greenAccent[700],
+              ml: "20px",
+              height: "50%",
+            }}
+          >
+            <AddCircleOutlineOutlinedIcon />
+            CREATE CATEGORY
+          </Button>
+        </Link>
+      </Box>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -85,6 +123,15 @@ const Category = () => {
           },
           "& .name-column--cell": {
             color: colors.greenAccent[300],
+          },
+          "& .ckeck-colum--cell": {
+            color: colors.greenAccent[600],
+          },
+          "& .no-ckeck-colum--cell": {
+            color: colors.redAccent[500],
+          },
+          "& .create-colum--cell": {
+            color: colors.blueAccent[700],
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.blueAccent[700],
@@ -103,11 +150,13 @@ const Category = () => {
           "& .MuiDataGrid-cell--textCenter": {
             justifyContent: "center",
           },
+          "& .MuiDataGrid-columnHeaderTitle": {},
         }}
       >
         <DataGrid
           checkboxSelection
           rows={responseData}
+          style={{ fontSize: 14 }}
           columns={columns}
           loading={responseData.length === 0}
           getRowId={(row) => row.categoryId}
