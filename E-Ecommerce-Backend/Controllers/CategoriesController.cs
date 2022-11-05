@@ -52,7 +52,14 @@ namespace E_Ecommerce_Backend.Controllers
                 return categories;
            
         }
+        [HttpGet("catParentList")]
+        public async Task<List<CategoryParent>> GetCategoriesParentAsync()
+        {
+            var categories = await _categoryService.GetCategoriesParentAsync();
+            return categories;
 
+        }
+      
         // GET: api/Category/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategoryAsync(int id)
@@ -129,10 +136,14 @@ namespace E_Ecommerce_Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
+            var result =await _categoryService.PostCategory(category);
+            if (result == true)
+                return Ok(true);
+            else
+            {
+                return BadRequest();
+            }
+         
         }
 
         // DELETE: api/Category/5

@@ -11,5 +11,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public Task<List<int>> GetCategoriesIdChild(int id);
         public  Task<List<CategoriesDto>> GetBreadCrumb(int id);
         public Task<List<CategoryAdmin>> GetCategoriesAdminAsync();
+        public Task<List<CategoryParent>> GetCategoriesParentAsync();
+        public  Task<Boolean> PostCategory(Category category);
     }
 }

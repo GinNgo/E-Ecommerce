@@ -30,6 +30,10 @@ namespace E_Ecommerce_Backend.Mappings
               .ReverseMap();
             CreateMap<Category, CategoryAdmin>()    
                 .ReverseMap();
+            CreateMap<Category, CategoryParent>()
+              .ForMember(item => item.value, options => options.MapFrom(item => item.CategoryId))
+              .ForMember(item => item.label, options => options.MapFrom(item => item.CategoryName))
+         .ReverseMap();
         }
     }
 }

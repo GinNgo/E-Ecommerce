@@ -5,7 +5,7 @@ using E_Ecommerce_Shared.DTO.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-
+using System.Data.Common;
 
 namespace E_Ecommerce_Backend.Services.CategoryService
 {
@@ -122,5 +122,51 @@ namespace E_Ecommerce_Backend.Services.CategoryService
             return categoriesAdmin;
         }
 
+        public async Task<List<CategoryParent>> GetCategoriesParentAsync()
+        {
+
+            var categories = await _context.Categories.Where(c => c.CategoryId != 0).ToListAsync();
+            categories.ForEach(i =>
+            {
+                if (i.ParentId > 0)
+                {
+                    var nameParent = categories.FirstOrDefault(e => e.CategoryId == i.ParentId)!.CategoryName;
+                    var category = categories.FirstOrDefault(e => e.CategoryId == i.CategoryId);
+                    category!.CategoryName = nameParent + " >> " + category!.CategoryName;
+
+                }
+            });
+            var categoriesParent = new List<CategoryParent>()
+            {
+                new CategoryParent
+                {
+                    value=0,
+                    label="None"
+                }
+            };
+            categoriesParent.AddRange(
+                _mapper.Map<List<Category>, List<CategoryParent>>(categories));
+            return categoriesParent;
+        }
+
+        public async Task<Boolean> PostCategory(Category category)
+        {
+           
+            try
+            {
+                category.CreateDate = DateTime.Now;
+                category.CreateBy = "Admin";
+                category.Status = true;
+                category.IsDeleted = false;
+                _context.Categories.Add(category);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (DbException)
+            {
+                return false;
+            }
+        }
     }
 }

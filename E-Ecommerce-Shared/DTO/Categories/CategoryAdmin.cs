@@ -11,10 +11,13 @@ namespace E_Ecommerce_Shared.DTO.Categories
 {
     public class CategoryAdmin : AuditableDto
     {
+
         public int CategoryId { get; set; }
+       
         public string? CategoryName { get; set; }
-        public int? CategoryDescription { get; set; }
-        public string? ParentName { get; set; }
+        public string? CategoryDescription { get; set; }
+        public int? ParentId { get; set; }
+
 
 
     }

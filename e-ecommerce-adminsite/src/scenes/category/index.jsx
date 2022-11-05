@@ -98,14 +98,7 @@ const Category = () => {
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Header title="CATEGORY" subtitle="Managing the Catalog" />{" "}
         <Link to={`/category/create`} style={{ listStyleType: "none" }}>
-          <Button
-            sx={{
-              color: colors.blueAccent[400],
-              backgroundColor: colors.greenAccent[700],
-              ml: "20px",
-              height: "50%",
-            }}
-          >
+          <Button color="secondary" variant="contained">
             <AddCircleOutlineOutlinedIcon />
             CREATE CATEGORY
           </Button>
