@@ -52,6 +52,7 @@ namespace E_Ecommerce_Backend.Controllers
                 return categories;
            
         }
+
         [HttpGet("catParentList")]
         public async Task<List<CategoryParent>> GetCategoriesParentAsync()
         {
@@ -62,9 +63,9 @@ namespace E_Ecommerce_Backend.Controllers
       
         // GET: api/Category/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategoryAsync(int id)
+        public async Task<ActionResult<CategoryAdmin>> GetCategoryAsync(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoryService.GetOneCategoryAsync(id);
 
             if (category == null)
             {

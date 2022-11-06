@@ -8,6 +8,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
     public interface ICategoriesService
     {
         public Task<List<CategoriesDto>> GetCategoriesAsync();
+        public  Task<CategoryAdmin> GetOneCategoryAsync(int id);
         public Task<List<int>> GetCategoriesIdChild(int id);
         public  Task<List<CategoriesDto>> GetBreadCrumb(int id);
         public Task<List<CategoryAdmin>> GetCategoriesAdminAsync();

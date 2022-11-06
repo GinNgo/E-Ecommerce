@@ -26,6 +26,13 @@ namespace E_Ecommerce_Backend.Services.CategoryService
             categoriesDto = SubCategories(categoriesDto);
             return categoriesDto;
         }
+
+        public async Task<CategoryAdmin> GetOneCategoryAsync(int id)
+        {
+            var categories = await _context.Categories.Where(i=>i.CategoryId==id).FirstOrDefaultAsync();
+            var categoryAdmin = _mapper.Map<Category, CategoryAdmin>(categories!);
+            return categoryAdmin;
+        }
         public async Task<List<CategoriesDto>> GetBreadCrumb(int id)
         {
             List<CategoriesDto> ListBreadCrumb = new List<CategoriesDto>();
@@ -106,7 +113,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public async Task<List<CategoryAdmin>> GetCategoriesAdminAsync()
         {
     
-            var categories = await _context.Categories.Where(c=>c.CategoryId!=0).ToListAsync();
+            var categories = await _context.Categories.Where(c=>c.CategoryId!=0 &c.Status==true&c.IsDeleted==false).ToListAsync();
             categories.ForEach(i =>
             {
                 if (i.ParentId > 0)

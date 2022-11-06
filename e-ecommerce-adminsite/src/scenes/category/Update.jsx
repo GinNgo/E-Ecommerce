@@ -6,6 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useState, useEffect } from "react";
 import Header from "../../Components/Header";
 import Categories from "../../Services/Category/CategoriesApi";
+import { useParams } from "react-router-dom";
 
 const initialValues = {
   categoryName: "",
@@ -20,25 +21,36 @@ const catSchema = yup.object().shape({
 
 const UpdateCategory = () => {
   const isNonMoblie = useMediaQuery("(min-width:600px)");
+  const { id } = useParams();
   const handleFromSubmit = async (values) => {
     values.parentId = parentId;
-    var result = await Categories.PostUpdate(values);
-    console.log(result);
+
+    console.log(values);
   };
 
   const [responseData, setResponseData] = useState([]);
+  const [category, setCategory] = useState([]);
   const [parentId, setParentId] = useState(0);
   const handleChanges = (selectedOption) => {
     if (!selectedOption) setParentId(selectedOption.value);
   };
   useEffect(() => {
+    getCategory(id);
+
     fetchData();
-  }, []);
+  }, [id]);
   const fetchData = async () => {
     try {
       const resp = await Categories.GetCatParentList();
-      console.log(resp.data);
       setResponseData(resp.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getCategory = async (id) => {
+    try {
+      const category = await Categories.GetOneCategory(id);
+      setCategory(category.data);
     } catch (error) {
       console.log(error);
     }
@@ -78,6 +90,7 @@ const UpdateCategory = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.categoryName}
+                defaultValue={values.categoryName}
                 name="categoryName"
                 error={!!touched.categoryName && !!errors.categoryName}
                 helperText={touched.categoryName && errors.categoryName}
@@ -90,7 +103,7 @@ const UpdateCategory = () => {
                 label="Category Description"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.categoryDescription}
+                defaultValue={values.categoryDescription || ""}
                 name="categoryDescription"
                 error={
                   !!touched.categoryDescription && !!errors.categoryDescription
@@ -114,7 +127,7 @@ const UpdateCategory = () => {
                   isSearchable={true}
                   onChange={(handleChange, handleChanges)}
                   options={responseData}
-                  defaultValue={0}
+                  defaultValue={category.parentId}
                 />
               </FormControl>
             </Box>
