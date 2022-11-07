@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import Select from "react-select";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -10,7 +10,7 @@ import Categories from "../../Services/Category/CategoriesApi";
 const initialValues = {
   categoryName: "",
   categoryDescription: "",
-  parentId: "",
+  parentId: 0,
 };
 
 const catSchema = yup.object().shape({
@@ -22,6 +22,7 @@ const CreateCategory = () => {
   const isNonMoblie = useMediaQuery("(min-width:600px)");
   const handleFromSubmit = async (values) => {
     values.parentId = parentId;
+
     var result = await Categories.PostCreate(values);
     console.log(result);
   };
@@ -29,7 +30,7 @@ const CreateCategory = () => {
   const [responseData, setResponseData] = useState([]);
   const [parentId, setParentId] = useState(0);
   const handleChanges = (selectedOption) => {
-    if (!selectedOption) setParentId(selectedOption.value);
+    setParentId(selectedOption.value);
   };
   useEffect(() => {
     fetchData();
@@ -100,28 +101,22 @@ const CreateCategory = () => {
                 }
                 sx={{ gridColumn: "span 2" }}
               />
-              <FormControl
-                sx={{ gridColumn: "span 2" }}
-                onChange={handleChange}
-              >
-                <Select
-                  className="basic-single"
-                  classNamePrefix="select"
-                  fullWidth
-                  variant="filled"
-                  name="parentId"
-                  isClearable={true}
-                  isSearchable={true}
-                  onChange={(handleChange, handleChanges)}
-                  options={responseData}
-                  defaultValue={0}
-                />
-              </FormControl>
+
+              <Select
+                fullWidth
+                variant="filled"
+                name="parentId"
+                isClearable={true}
+                isSearchable={true}
+                options={responseData}
+                onBlur={handleBlur}
+                onChange={(handleChange, handleChanges)}
+              />
             </Box>
 
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New Vcategory
+                Create New category
               </Button>
             </Box>
           </form>

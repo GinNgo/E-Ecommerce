@@ -9,36 +9,42 @@ import Categories from "../../Services/Category/CategoriesApi";
 import { useParams } from "react-router-dom";
 
 const initialValues = {
+  categoryId: "",
   categoryName: "",
   categoryDescription: "",
   parentId: "",
 };
 
-const catSchema = yup.object().shape({
-  categoryName: yup.string().required("reaquired"),
-  categoryDescription: yup.string().required("reaquired"),
-});
+const catSchema = yup.object().shape({});
 
 const UpdateCategory = () => {
   const isNonMoblie = useMediaQuery("(min-width:600px)");
   const { id } = useParams();
-  const handleFromSubmit = async (values) => {
-    values.parentId = parentId;
-
-    console.log(values);
-  };
 
   const [responseData, setResponseData] = useState([]);
   const [category, setCategory] = useState([]);
-  const [parentId, setParentId] = useState(0);
+  const [parentIdChange, setParentIdChange] = useState("");
+  const { categoryId, categoryName, categoryDescription, parentId } = category;
+
+  const handleFromSubmit = async (values) => {
+    if (values.categoryName === "") values.categoryName = categoryName;
+    if (values.categoryDescription === "")
+      values.categoryDescription = categoryDescription;
+    values.parentId = parentIdChange.value;
+    values.categoryId = categoryId;
+    values.createBy = category.createBy;
+    values.updateBy = category.createDate;
+    var result = await Categories.PutUpdate(values);
+    console.log(result);
+  };
   const handleChanges = (selectedOption) => {
-    if (!selectedOption) setParentId(selectedOption.value);
+    setParentIdChange(selectedOption);
   };
   useEffect(() => {
-    getCategory(id);
-
     fetchData();
+    getCategory(id);
   }, [id]);
+
   const fetchData = async () => {
     try {
       const resp = await Categories.GetCatParentList();
@@ -49,8 +55,8 @@ const UpdateCategory = () => {
   };
   const getCategory = async (id) => {
     try {
-      const category = await Categories.GetOneCategory(id);
-      setCategory(category.data);
+      const cat = await Categories.GetOneCategory(id);
+      setCategory(cat.data);
     } catch (error) {
       console.log(error);
     }
@@ -87,13 +93,12 @@ const UpdateCategory = () => {
                 variant="filled"
                 type="text"
                 label="Category Name"
+                value={values.categoryName || categoryName || ""}
+                name="categoryName"
+                error={!!errors.categoryName}
+                helperText={errors.categoryName}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.categoryName}
-                defaultValue={values.categoryName}
-                name="categoryName"
-                error={!!touched.categoryName && !!errors.categoryName}
-                helperText={touched.categoryName && errors.categoryName}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
@@ -103,7 +108,7 @@ const UpdateCategory = () => {
                 label="Category Description"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                defaultValue={values.categoryDescription || ""}
+                value={values.categoryDescription || categoryDescription || ""}
                 name="categoryDescription"
                 error={
                   !!touched.categoryDescription && !!errors.categoryDescription
@@ -113,21 +118,19 @@ const UpdateCategory = () => {
                 }
                 sx={{ gridColumn: "span 2" }}
               />
-              <FormControl
-                sx={{ gridColumn: "span 2" }}
-                onChange={handleChange}
-              >
+              <FormControl sx={{ gridColumn: "span 2" }}>
                 <Select
-                  className="basic-single"
-                  classNamePrefix="select"
                   fullWidth
                   variant="filled"
                   name="parentId"
+                  value={
+                    parentIdChange ||
+                    responseData.filter((option) => option.value === parentId)
+                  }
                   isClearable={true}
-                  isSearchable={true}
+                  onBlur={handleBlur}
                   onChange={(handleChange, handleChanges)}
                   options={responseData}
-                  defaultValue={category.parentId}
                 />
               </FormControl>
             </Box>

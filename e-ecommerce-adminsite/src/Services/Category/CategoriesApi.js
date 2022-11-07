@@ -6,4 +6,5 @@ export default {
   GetOneCategory: async (id) => await axios.get(url + id),
   GetCatParentList: async () => await axios.get(url + "catParentList/"),
   PostCreate: async (category) => await axios.post(url, category),
+  PutUpdate: async (category) => await axios.put(url, category),
 };

@@ -103,33 +103,18 @@ namespace E_Ecommerce_Backend.Controllers
         }
         // PUT: api/Category/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        [HttpPut]
+        public async Task<IActionResult> PutCategory(Category category)
         {
-            if (id != category.CategoryId)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(category).State = EntityState.Modified;
 
-            try
+            var result = await _categoryService.PutCategoryAsync(category);
+            if (result == true)
+                return Ok(true);
+            else
             {
-                await _context.SaveChangesAsync();
+                return BadRequest(false);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         // POST: api/Category
@@ -137,12 +122,12 @@ namespace E_Ecommerce_Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            var result =await _categoryService.PostCategory(category);
+            var result =await _categoryService.PostCategoryAsync(category);
             if (result == true)
                 return Ok(true);
             else
             {
-                return BadRequest();
+                return BadRequest(false);
             }
          
         }

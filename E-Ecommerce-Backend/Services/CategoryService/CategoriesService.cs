@@ -113,7 +113,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public async Task<List<CategoryAdmin>> GetCategoriesAdminAsync()
         {
     
-            var categories = await _context.Categories.Where(c=>c.CategoryId!=0 &c.Status==true&c.IsDeleted==false).ToListAsync();
+            var categories = await _context.Categories.Where(c=>c.CategoryId!=0 &c.Status==true&c.IsDeleted==false).OrderByDescending(c=>c.CategoryId).ToListAsync();
             categories.ForEach(i =>
             {
                 if (i.ParentId > 0)
@@ -156,7 +156,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
             return categoriesParent;
         }
 
-        public async Task<Boolean> PostCategory(Category category)
+        public async Task<Boolean> PostCategoryAsync(Category category)
         {
            
             try
@@ -168,6 +168,24 @@ namespace E_Ecommerce_Backend.Services.CategoryService
                 _context.Categories.Add(category);
                 await _context.SaveChangesAsync();
 
+                return true;
+            }
+            catch (DbException)
+            {
+                return false;
+            }
+        }
+        public async Task<Boolean> PutCategoryAsync(Category category)
+        {
+
+            try
+            {
+                category.UpdateDate = DateTime.Now;
+                category.UpdateBy = "Admin";
+                category.Status = true;
+                category.IsDeleted = false;
+                _context.Entry(category).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (DbException)
