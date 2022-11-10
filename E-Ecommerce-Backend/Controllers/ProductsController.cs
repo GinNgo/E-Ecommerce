@@ -10,7 +10,7 @@ using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.ProductService;
 using E_Ecommerce_Shared.DTO;
 using E_Ecommerce_Shared.DTO.Product;
-using E_Ecommerce_Shared.DTO.Products;
+using E_Ecommerce_Shared.DTO.Admin;
 
 namespace E_Ecommerce_Backend.Controllers
 {

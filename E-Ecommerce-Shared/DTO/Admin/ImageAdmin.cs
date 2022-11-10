@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using E_Ecommerce_Shared.DTO.Product;
 
-namespace E_Ecommerce_Shared.DTO
+namespace E_Ecommerce_Shared.DTO.Admin
 {
-    public class ImagesDto
+    public class ImageAdmin
     {
         public int ImageId { get; set; }
         public string? ImageName { get; set; }

@@ -16,7 +16,8 @@ namespace E_Ecommerce_Backend.Data
         public DbSet<Image> Images { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Origin> Origins { get; set; }
-        public DbSet<Rating>ratings { get; set; }
+        public DbSet<Rating> ratings { get; set; }
+        public DbSet<User> Users { get; set; }
         #endregion
     }
 }

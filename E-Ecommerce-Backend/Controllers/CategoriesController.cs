@@ -9,6 +9,7 @@ using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
 using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Shared.DTO.Categories;
+using E_Ecommerce_Shared.DTO.Admin;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -48,9 +49,17 @@ namespace E_Ecommerce_Backend.Controllers
         [HttpGet("admin")]
         public async Task<List<CategoryAdmin>> GetCategoriesAdminAsync()
         {
-                var categories = await _categoryService.GetCategoriesAdminAsync();
-                return categories;
-           
+            var categories = await _categoryService.GetCategoriesAdminAsync();
+            return categories;
+
+        }
+
+        [HttpGet("adminTrash")]
+        public async Task<List<CategoryAdmin>> GetCategoriesAdminTrashAsync()
+        {
+            var categories = await _categoryService.GetCategoriesAdminTrashAsync();
+            return categories;
+
         }
 
         [HttpGet("catParentList")]
@@ -60,7 +69,7 @@ namespace E_Ecommerce_Backend.Controllers
             return categories;
 
         }
-      
+
         // GET: api/Category/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryAdmin>> GetCategoryAsync(int id)
@@ -117,35 +126,46 @@ namespace E_Ecommerce_Backend.Controllers
             }
         }
 
-        // POST: api/Category
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        [HttpPut("Trash")]
+        public async Task<IActionResult> PutCategoryTrash(List<int> ids)
         {
-            var result =await _categoryService.PostCategoryAsync(category);
+
+
+            var result = await _categoryService.PutCategoryTrashAsync(ids);
             if (result == true)
                 return Ok(true);
             else
             {
                 return BadRequest(false);
             }
-         
+        }
+
+        // POST: api/Category
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Category>> PostCategory(Category category)
+        {
+            var result = await _categoryService.PostCategoryAsync(category);
+            if (result == true)
+                return Ok(true);
+            else
+            {
+                return BadRequest(false);
+            }
+
         }
 
         // DELETE: api/Category/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCategory(List<int> ids)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var result = await _categoryService.DeletedCategoryAsync(ids);
+            if (result == true)
+                return Ok(true);
+            else
             {
-                return NotFound();
+                return BadRequest(false);
             }
-
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool CategoryExists(int id)

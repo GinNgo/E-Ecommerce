@@ -15,6 +15,10 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   const theme = useTheme();
+  const checkSelection = () => {
+    Categories.PutTrash(selectedRows);
+    window.location.reload();
+  };
   const colors = tokens(theme.palette.mode);
   const columns = [
     { field: "categoryId", headerName: "ID" },
@@ -81,7 +85,7 @@ const Category = () => {
   const [responseData, setResponseData] = useState([]);
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(0);
-
+  const [selectedRows, setSelectedRows] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
@@ -103,6 +107,16 @@ const Category = () => {
             CREATE CATEGORY
           </Button>
         </Link>
+        <Link to={`/category/delete`} style={{ listStyleType: "none" }}>
+          <Button color="secondary" variant="contained">
+            <DeleteOutlinedIcon />
+            GO TO CATEGORY TRASH
+          </Button>
+        </Link>
+        <Button color="secondary" variant="contained" onClick={checkSelection}>
+          <DeleteOutlinedIcon />
+          DElELE CATEGORY
+        </Button>
       </Box>
       <Box
         m="40px 0 0 0"
@@ -159,6 +173,11 @@ const Category = () => {
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[5, 10, 20]}
           pagination
+          onSelectionModelChange={(ids) => {
+            const selectedIDs = ids;
+            console.log(selectedIDs);
+            setSelectedRows(selectedIDs);
+          }}
           {...responseData}
         />
       </Box>

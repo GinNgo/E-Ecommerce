@@ -109,8 +109,8 @@
                         <a asp-page="Detail" asp-route-id="@product!.ProductId" class="motsanpham"
                        style="text-decoration: none; color: black;" data-bs-toogle="tooltip" data-placement="bottom"
                        title=@AliasName(@product.ProductName!)>
-                            <img class="card-img-top anh" src="@ViewData["url"]/@product?.ImageUrl" height="238px"
-                             alt="@AliasImage(@product!.ImageUrl!.ToString())">
+                            <img class="card-img-top anh" src="@ViewData["url"]/@product.Images.FirstOrDefault().ImageUrl" height="238px"
+                             alt="@AliasImage(@product!.Images!.FirstOrDefault().ImageUrl)">
                             <div class="card-body noidungsp mt-3">
                                 <h3 class="card-title ten">@product?.ProductName</h3>
 
@@ -147,7 +147,7 @@
                     <a asp-page="Detail" asp-route-id="@product.ProductId" class="motsanpham"
                        style="text-decoration: none; color: black;" data-toggle="tooltip" data-placement="bottom"
                        title="@product.ProductName">
-                            <img class="card-img-top anh" src="@ViewData["url"]/@product.ImageUrl" height="172px"
+                            <img class="card-img-top anh" src="@ViewData["url"]/@product.Images!.FirstOrDefault().ImageUrl" height="172px"
                              alt="@product.ProductName">
                         <div class="card-body noidungsp mt-3">
                             <h3 class="card-title ten">@product.ProductName</h3>

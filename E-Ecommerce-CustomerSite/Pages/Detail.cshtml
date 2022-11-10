@@ -33,14 +33,16 @@
                 <!-- ảnh  -->
                 <div class="col-md-5 khoianh">
                     <div class="anhto mb-4">
-                        <a class="active" href="@ApiUrl/@Model.Pro.ImageUrl" data-fancybox="thumb-img">
-                            <img class="product-image" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;">
+                        <a class="active" href="@ApiUrl/@Model.Pro.Images!.FirstOrDefault().ImageUrl" data-fancybox="thumb-img">
+                            <img class="product-image" src="@ApiUrl/@Model.Pro.Images!.FirstOrDefault().ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;">
                         </a>
 
                     </div>
                     <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
-                        <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@Model.Pro.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
-                        <img class="thumb-img thumb img-fluid" src="~/images/lap-ke-hoach-kinh-doanh-hieu-qua-ms.jpg" alt="lap-ke-hoach-kinh-doanh-hieu-qua-ms">
+                        @foreach (var image in @Model.Pro.Images)
+                        {
+                            <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@image.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
+                        }
                     </div>
                 </div>
                 <!-- thông tin sản phẩm: tên, giá bìa giá bán tiết kiệm, các khuyến mãi, nút chọn mua.... -->

@@ -1,6 +1,6 @@
 ﻿using E_Ecommerce_Shared.DTO;
+using E_Ecommerce_Shared.DTO.Admin;
 using E_Ecommerce_Shared.DTO.Product;
-using E_Ecommerce_Shared.DTO.Products;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_Backend.Services.ProductService

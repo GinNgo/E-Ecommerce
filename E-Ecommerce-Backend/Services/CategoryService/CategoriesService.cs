@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
+using E_Ecommerce_Shared.DTO.Admin;
 using E_Ecommerce_Shared.DTO.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -113,7 +114,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public async Task<List<CategoryAdmin>> GetCategoriesAdminAsync()
         {
     
-            var categories = await _context.Categories.Where(c=>c.CategoryId!=0 &c.Status==true&c.IsDeleted==false).OrderByDescending(c=>c.CategoryId).ToListAsync();
+            var categories = await _context.Categories.Where(c=>c.CategoryId!=0&c.IsDeleted==false).OrderByDescending(c=>c.CategoryId).ToListAsync();
             categories.ForEach(i =>
             {
                 if (i.ParentId > 0)
@@ -128,7 +129,23 @@ namespace E_Ecommerce_Backend.Services.CategoryService
             var categoriesAdmin = _mapper.Map<List<Category>, List<CategoryAdmin>>(categories);
             return categoriesAdmin;
         }
+        public async Task<List<CategoryAdmin>> GetCategoriesAdminTrashAsync()
+        {
 
+            var categories = await _context.Categories.Where(c => c.CategoryId != 0  & c.IsDeleted == true).OrderByDescending(c => c.CategoryId).ToListAsync();
+            categories.ForEach(i =>
+            {
+                if (i.ParentId > 0)
+                {
+                    var nameParent = _context.Categories.FirstOrDefault(e => e.CategoryId == i.ParentId)!.CategoryName;
+                    var category = _context.Categories.FirstOrDefault(e => e.CategoryId == i.CategoryId);
+                    category!.CategoryName = nameParent + " >> " + category!.CategoryName;
+
+                }
+            });
+            var categoriesAdmin = _mapper.Map<List<Category>, List<CategoryAdmin>>(categories);
+            return categoriesAdmin;
+        }
         public async Task<List<CategoryParent>> GetCategoriesParentAsync()
         {
 
@@ -185,6 +202,72 @@ namespace E_Ecommerce_Backend.Services.CategoryService
                 category.Status = true;
                 category.IsDeleted = false;
                 _context.Entry(category).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbException)
+            {
+                return false;
+            }
+        }
+
+        public async Task<Boolean> PutCategoryTrashAsync(List<int> ids)
+        {
+            List<Category> categories = new List<Category>();
+
+            try
+            {
+                ids.ForEach(id =>
+                {
+                    var category = _context.Categories.Find(id);
+                    if (category != null)
+                    {
+                        category.UpdateDate = DateTime.Now;
+                        category.UpdateBy = "Admin";
+                   if(category.IsDeleted == true)
+                        {
+                            category.IsDeleted = false;
+                        }
+                        else { category.IsDeleted = true; }
+                        categories.Add(category);
+                    }
+
+                });
+                if (ids.Count() != categories.Count()) return false;
+                categories.ForEach(
+                    category =>
+                    {
+                        _context.Entry(category).State = EntityState.Modified;
+                    });
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbException)
+            {
+                return false;
+            }
+        }
+
+        public async Task<Boolean> DeletedCategoryAsync(List<int> ids)
+        {
+            List<Category> categories = new List<Category>();
+            try
+            {
+                ids.ForEach(id =>
+                {
+                    var category = _context.Categories.Find(id);
+                    if (category != null)
+                    {
+                        categories.Add(category);
+                    }
+
+                });
+                if (ids.Count() != categories.Count()) return false;
+                categories.ForEach(
+                    category =>
+                    {
+                        _context.Categories.Remove(category);
+                    });
                 await _context.SaveChangesAsync();
                 return true;
             }

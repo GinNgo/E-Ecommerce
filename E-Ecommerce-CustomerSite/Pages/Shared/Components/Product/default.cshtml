@@ -13,7 +13,7 @@
                 <a asp-page="Detail" asp-route-id="@item.ProductId" class="motsanpham"
                style="text-decoration: none; color: black;" data-toggle="tooltip" data-placement="bottom"
                title="Lập Kế Hoạch Kinh Doanh Hiệu Quả">
-                    <img class="card-img-top anh" src="@ApiUrl@item.ImageUrl " style="height:173px"
+                    <img class="card-img-top anh" src="@ApiUrl@item.Images.FirstOrDefault().ImageUrl " style="height:173px"
                      alt="lap-ke-hoach-kinh-doanh-hieu-qua">
                     <div class="card-body noidungsp mt-3">
                         <h3 class="card-title ten">@item.ProductName</h3>

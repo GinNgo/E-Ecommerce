@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Printing;
 using E_Ecommerce_Shared.DTO.Categories;
+using E_Ecommerce_Shared.DTO.Admin;
 
 namespace E_Ecommerce_Backend.Services.CategoryService
 {
@@ -13,7 +14,10 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public  Task<List<CategoriesDto>> GetBreadCrumb(int id);
         public Task<List<CategoryAdmin>> GetCategoriesAdminAsync();
         public Task<List<CategoryParent>> GetCategoriesParentAsync();
+        public Task<List<CategoryAdmin>> GetCategoriesAdminTrashAsync();
+        public Task<Boolean> PutCategoryTrashAsync(List<int> ids);
         public  Task<Boolean> PostCategoryAsync(Category category);
         public Task<Boolean> PutCategoryAsync(Category category);
+        public Task<Boolean> DeletedCategoryAsync(List<int> ids);
     }
 }

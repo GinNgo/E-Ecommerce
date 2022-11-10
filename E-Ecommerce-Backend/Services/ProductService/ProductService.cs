@@ -5,8 +5,8 @@ using E_Ecommerce_Backend.Models;
 
 using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Shared.DTO;
+using E_Ecommerce_Shared.DTO.Admin;
 using E_Ecommerce_Shared.DTO.Product;
-using E_Ecommerce_Shared.DTO.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var products = _context.Products
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1))
                 .Take(pagingRequestDto.pageSize)
-             .Include(c => c.Rating)
+                .Include(c => c.Rating).Include(c=>c.Images)
             .AsQueryable();
             if (pagingRequestDto.sort == 1)
             {
@@ -57,7 +57,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                 .Include(c => c.Rating)
                 .Include(c => c.Brand)
                 .Include(c => c.Categories)
-                .Include(c => c.Origin)
+                .Include(c => c.Origin).Include(c => c.Images)
                 .ToListAsync();
             var productAdmin = _mapper.Map<List<Product>, List<ProductAdmin>>(products);
             return productAdmin ?? new List<ProductAdmin>();
@@ -69,7 +69,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var product = await _context.Products
                 .Where(e => e.ProductId == id)
                 .Include(c => c.Brand)
-                .Include(c => c.Categories)
+                .Include(c => c.Categories).Include(c => c.Images)
                 .Include(c => c.Origin).Include(c => c.Rating!.OrderByDescending(r=>r.RatingId)).FirstOrDefaultAsync();
             if (product != null)
             {
@@ -93,13 +93,17 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     {
                         break;
                     }
-                    var products = _context.Products
-            
-                     .Where(e => e.CategoryId == i)
+                    var products = (from p in _context.Products
+                                   join c in _context.Categories
+                                   on p.CategoryId equals c.CategoryId
+                                   where c.CategoryId == i
+                                   select p).AsQueryable();
+
+
+                    products= products
                      .Skip((pagingRequestDto.pageSize - productsDtos.Count) * (pagingRequestDto.pageIndex - 1))
                      .Take(pagingRequestDto.pageSize)
-                   
-                    .Include(c => c.Rating)
+                    .Include(c => c.Rating).Include(c => c.Images)
                      .AsQueryable();
 
                     var Listproducts = products.ToList();
@@ -112,16 +116,19 @@ namespace E_Ecommerce_Backend.Services.ProductService
                         });
                     }
                 };
+               
             }
             else
             {
-                ProductPagingDto.products = await _context.Products
-                    
-                     .Where(e => e.CategoryId == pagingRequestDto.id)
+              var  Listproducts = await (from p in _context.Products
+                                         join c in _context.Categories
+                                         on p.CategoryId equals c.CategoryId
+                                         where c.CategoryId == ListId.First()
+                                         select p)
                     .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
-                     .Include(c => c.Rating)
-                    .ProjectTo<ProductsDto>(_mapper.ConfigurationProvider)
+                    .Include(c => c.Rating).Include(c => c.Images)
                     .ToListAsync();
+                productsDtos= _mapper.Map<List<Product>, List<ProductsDto>>(Listproducts);
             }
             ProductPagingDto.products = productsDtos;
             return ProductPagingDto;
@@ -139,7 +146,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
              
                 .Where(c => c.ProductName!.Contains(pagingRequestDto.Search))
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
-                .Include(c => c.Rating)
+                .Include(c => c.Rating).Include(c => c.Images)
                 .ToListAsync();
             
             ProductPagingDto.products = _mapper.Map<List<Product>, List<ProductsDto>>(products);
@@ -154,14 +161,21 @@ namespace E_Ecommerce_Backend.Services.ProductService
             {
                 ListId.ForEach(e =>
                 {
-                    var numberPro = _context.Products
-                    .Where(i => i.CategoryId == e).Count();
-                    total += numberPro;
+                    var numberPro =(from p in _context.Products
+                                    join c in _context.Categories
+                                    on p.CategoryId equals c.CategoryId
+                                    where c.CategoryId == e
+                                    select p).Count();
+                total += numberPro;
                 });
             }
             else
             {
-                var numberPro = await _context.Products.Where(i => i.CategoryId == ListId.First()).CountAsync();
+                var numberPro = await (from p in _context.Products
+                                        join c in _context.Categories
+                                        on p.CategoryId equals c.CategoryId
+                                        where c.CategoryId == ListId.First()
+                                        select p).CountAsync();
                 total += numberPro;
             }
             return total;
@@ -176,7 +190,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var product = await _context.Products
                 .Where(e => e.ProductId == ratingDto.ProductId)
                 .Include(c => c.Brand)
-                .Include(c => c.Categories)
+                .Include(c => c.Categories).Include(c => c.Images!.OrderBy(i=>i.DisplayOrder))
                 .Include(c => c.Origin).Include(c => c.Rating).FirstOrDefaultAsync();
             var productDto = _mapper.Map<ProductsDto>(product);
             

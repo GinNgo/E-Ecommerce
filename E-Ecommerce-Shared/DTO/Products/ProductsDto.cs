@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using E_Ecommerce_Shared.DTO.Categories;
+using E_Ecommerce_Shared.DTO.Admin;
 
 namespace E_Ecommerce_Shared.DTO.Product
 {
@@ -21,9 +22,8 @@ namespace E_Ecommerce_Shared.DTO.Product
         public int Quantity { get; set; }
         public string? OriginName { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public List<ImagesDto>? Images { get; set; }
         public List<CategoriesDto>? Categories { get; set; }
-        public int CategoryId { get; set; }
         public string? BrandName { get; set; }
         public ICollection<RatingDto>? Rating { get; set; }
 

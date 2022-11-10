@@ -7,13 +7,13 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Ecommerce_Shared.DTO.Categories
+namespace E_Ecommerce_Shared.DTO.Admin
 {
     public class CategoryAdmin : AuditableDto
     {
 
         public int CategoryId { get; set; }
-       
+
         public string? CategoryName { get; set; }
         public string? CategoryDescription { get; set; }
         public int? ParentId { get; set; }

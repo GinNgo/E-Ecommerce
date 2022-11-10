@@ -64,7 +64,7 @@ namespace E_Ecommerce_CustomerSite.Pages
                 ScoreRating.one = 0;
             }
      
-            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.CategoryId);
+            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.Categories.FirstOrDefault().CategoryId);
             if (Pro != null)
             {
                 return  Redirect("/Detail/" + Pro.ProductId);
@@ -104,7 +104,7 @@ namespace E_Ecommerce_CustomerSite.Pages
          
             
            
-            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.CategoryId);
+            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.Categories.FirstOrDefault().CategoryId);
             return Page();
         }
 
