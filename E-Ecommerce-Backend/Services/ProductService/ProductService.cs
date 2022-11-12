@@ -32,6 +32,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             List<Product> Listproducts = new List<Product>(); 
             productPagingDto.totalCount = await _context.Products.CountAsync();
             var products = _context.Products
+                .Where(p=>p.Status==true&& p.IsDeleted == false)
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1))
                 .Take(pagingRequestDto.pageSize)
                 .Include(c => c.Rating).Include(c=>c.Images)
@@ -54,15 +55,29 @@ namespace E_Ecommerce_Backend.Services.ProductService
         public async Task<List<ProductAdmin>> GetAllProductsAsync()
         {
             var products = await _context.Products
+                 .Where(p => p.IsDeleted == false)
                 .Include(c => c.Rating)
                 .Include(c => c.Brand)
                 .Include(c => c.Categories)
                 .Include(c => c.Origin).Include(c => c.Images)
+                .OrderByDescending(p=>p.ProductId)
                 .ToListAsync();
             var productAdmin = _mapper.Map<List<Product>, List<ProductAdmin>>(products);
             return productAdmin ?? new List<ProductAdmin>();
         }
-
+        public async Task<List<ProductAdmin>> GetAllProductsTrashAsync()
+        {
+            var products = await _context.Products
+                 .Where(p => p.IsDeleted == true)
+                .Include(c => c.Rating)
+                .Include(c => c.Brand)
+                .Include(c => c.Categories)
+                .Include(c => c.Origin).Include(c => c.Images)
+                .OrderByDescending(p => p.ProductId)
+                .ToListAsync();
+            var productAdmin = _mapper.Map<List<Product>, List<ProductAdmin>>(products);
+            return productAdmin ?? new List<ProductAdmin>();
+        }
         public async Task<ActionResult<ProductsDto>> GetProductAsync(int id)
         {
             ProductsDto productsDto = new ProductsDto();
@@ -77,9 +92,23 @@ namespace E_Ecommerce_Backend.Services.ProductService
             }
             return productsDto;
         }
+
+        public async Task<ActionResult<ProductAdmin>> GetProductAdminAsync(int id)
+        {
+            ProductAdmin productAdmin = new ProductAdmin();
+            var product = await _context.Products
+                .Where(e => e.ProductId == id)
+                .Include(c => c.Brand)
+                .Include(c => c.Categories).Include(c => c.Images)
+                .Include(c => c.Origin).Include(c => c.Rating!.OrderByDescending(r => r.RatingId)).FirstOrDefaultAsync();
+            if (product != null)
+            {
+                productAdmin = _mapper.Map<Product, ProductAdmin>(product);
+            }
+            return productAdmin;
+        }
         public async Task<ProductPagingDto> GetProductByCatIdAsync(PagingRequestDto pagingRequestDto)
         {
-
             ProductPagingDto ProductPagingDto = new ProductPagingDto();
             List<ProductsDto> productsDtos = new List<ProductsDto>();
             List<int> ListId = await _categoriesService.GetCategoriesIdChild(pagingRequestDto.id);
@@ -96,7 +125,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     var products = (from p in _context.Products
                                    join c in _context.Categories
                                    on p.CategoryId equals c.CategoryId
-                                   where c.CategoryId == i
+                                   where c.CategoryId == i&& p.Status == true && p.IsDeleted == false
                                    select p).AsQueryable();
 
 
@@ -123,7 +152,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
               var  Listproducts = await (from p in _context.Products
                                          join c in _context.Categories
                                          on p.CategoryId equals c.CategoryId
-                                         where c.CategoryId == ListId.First()
+                                         where c.CategoryId == ListId.First() && p.Status == true && p.IsDeleted == false
                                          select p)
                     .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
                     .Include(c => c.Rating).Include(c => c.Images)
@@ -164,7 +193,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     var numberPro =(from p in _context.Products
                                     join c in _context.Categories
                                     on p.CategoryId equals c.CategoryId
-                                    where c.CategoryId == e
+                                    where c.CategoryId == e && p.Status == true && p.IsDeleted == false
                                     select p).Count();
                 total += numberPro;
                 });
@@ -174,8 +203,8 @@ namespace E_Ecommerce_Backend.Services.ProductService
                 var numberPro = await (from p in _context.Products
                                         join c in _context.Categories
                                         on p.CategoryId equals c.CategoryId
-                                        where c.CategoryId == ListId.First()
-                                        select p).CountAsync();
+                                        where c.CategoryId == ListId.First() && p.Status == true && p.IsDeleted == false
+                                       select p).CountAsync();
                 total += numberPro;
             }
             return total;

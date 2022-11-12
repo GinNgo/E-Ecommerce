@@ -4,6 +4,7 @@ using E_Ecommerce_Shared.DTO;
 using E_Ecommerce_Shared.DTO.Admin;
 using E_Ecommerce_Shared.DTO.Categories;
 using E_Ecommerce_Shared.DTO.Product;
+using E_Ecommerce_Shared.DTO.Users;
 
 namespace E_Ecommerce_Backend.Mappings
 {
@@ -33,6 +34,9 @@ namespace E_Ecommerce_Backend.Mappings
               .ForMember(item => item.value, options => options.MapFrom(item => item.CategoryId))
               .ForMember(item => item.label, options => options.MapFrom(item => item.CategoryName))
          .ReverseMap();
+
+            CreateMap<User, UserInfo>()
+              .ReverseMap();
         }
     }
 }

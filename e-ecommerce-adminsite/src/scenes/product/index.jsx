@@ -1,37 +1,52 @@
-import { Box, Grid, IconButton, useTheme } from "@mui/material";
+import { Box, Grid, Button, IconButton, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutline";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import Header from "../../Components/Header";
 import { useEffect, useState } from "react";
 import ProductApi from "../../Services/Product/ProductApi";
+import { Link } from "react-router-dom";
 
 const Product = () => {
+  const url = "https://localhost:44324/wwwroot/upload/";
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
     { field: "productId", headerName: "ID", flex: 0.5 },
     {
+      field: "image",
+      headerName: "Image",
+
+      renderCell: ({ row: { images } }) => {
+        return (
+          <Grid>
+            <img
+              width="60px"
+              src={url + images[0].imageUrl}
+              alt={images[0].imageName}
+            />
+          </Grid>
+        );
+      },
+    },
+    {
       field: "productName",
       headerName: "ProductName",
-      flex: 3,
+      flex: 2,
       cellClassName: "name-column--cell",
     },
-    {
-      field: "originName",
-      headerName: "OriginName",
-      flex: 1,
-    },
 
     {
-      field: "brandName",
-      headerName: "BrandName",
-      flex: 1,
+      field: "price",
+      headerName: "Price",
     },
-
+    {
+      field: "priceDiscount",
+      headerName: "PriceDiscount",
+    },
     {
       field: "Status",
       headerName: "Status",
@@ -61,17 +76,15 @@ const Product = () => {
     {
       field: "action",
       headerName: "Action",
-      flex: 1,
 
-      renderCell: ({ row: { ID } }) => {
+      renderCell: ({ row: { productId } }) => {
         return (
           <Grid>
-            <IconButton>
-              <CreateOutlinedIcon className="create-colum--cell" />
-            </IconButton>
-            <IconButton>
-              <DeleteOutlinedIcon className="no-ckeck-colum--cell" />
-            </IconButton>
+            <Link to={`/product/update/${productId}`}>
+              <IconButton>
+                <CreateOutlinedIcon className="create-colum--cell" />
+              </IconButton>
+            </Link>
           </Grid>
         );
       },
@@ -95,7 +108,15 @@ const Product = () => {
   };
   return (
     <Box m="20px">
-      <Header title="Product" subtitle="Managing the Product" />
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Header title="Product" subtitle="Managing the Product" />
+        <Link to={`/product/create`} style={{ listStyleType: "none" }}>
+          <Button color="secondary" variant="contained">
+            <AddCircleOutlineOutlinedIcon />
+            CREATE PRODUCT
+          </Button>
+        </Link>
+      </Box>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -103,7 +124,14 @@ const Product = () => {
           "& .MuiDataGrid-root": {
             border: "none",
           },
+          "& .MuiDataGrid-row": {
+            alignItems: "center",
+            minHeight: "68px !important",
+            maxHeight: "68px !important",
+          },
           "& .MuiDataGrid-cell": {
+            minHeight: "68px !important",
+            maxHeight: "68px !important",
             borderBottom: "none",
           },
           "& .name-column--cell": {

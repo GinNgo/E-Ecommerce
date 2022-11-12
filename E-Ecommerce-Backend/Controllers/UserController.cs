@@ -1,6 +1,8 @@
 ﻿using E_Ecommerce_Backend.Services.UserService;
 using E_Ecommerce_Shared.DTO.Register;
+using E_Ecommerce_Shared.DTO.Users;
 using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ecommerce_Backend.Controllers
@@ -15,10 +17,17 @@ namespace E_Ecommerce_Backend.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public async Task<IActionResult> Post(UserSignUp user)
+        public async Task<Boolean> Post(UserSignUp user)
         {
-            await _userService.CreateUser(user);
-            return NoContent();
+             var respon= await _userService.CreateUser(user);
+            return respon;
+        }
+        [HttpGet]
+
+        public async Task<List<UserInfo>> GetCustomerAsync()
+        {
+            var customers=await _userService.GetUserInfoAsync();
+            return customers;
         }
     }
 }

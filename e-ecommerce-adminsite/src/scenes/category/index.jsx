@@ -15,11 +15,12 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const checkSelection = () => {
     Categories.PutTrash(selectedRows);
     window.location.reload();
   };
-  const colors = tokens(theme.palette.mode);
+
   const columns = [
     { field: "categoryId", headerName: "ID" },
     {
@@ -70,11 +71,6 @@ const Category = () => {
             <Link to={`/category/update/${categoryId}`}>
               <IconButton>
                 <CreateOutlinedIcon className="create-colum--cell" />
-              </IconButton>
-            </Link>
-            <Link to="/category/update">
-              <IconButton>
-                <DeleteOutlinedIcon className="no-ckeck-colum--cell" />
               </IconButton>
             </Link>
           </Grid>

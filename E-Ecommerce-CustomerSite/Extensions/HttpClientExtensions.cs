@@ -7,7 +7,7 @@ namespace E_Ecommerce_CustomerSite.Extensions
 {
     public static class HttpClientExtensions
     {
- 
+
         public static async Task<T?> GetAsJsonAsync<T>(this HttpClient httpClient, string url)
         {
             var response = await httpClient.GetAsync(url);
@@ -17,7 +17,7 @@ namespace E_Ecommerce_CustomerSite.Extensions
             return results;
         }
 
-        public static async Task<T?> PostAsJsonAsync<Param,T>(this HttpClient httpClient, string url, Param param)
+        public static async Task<T?> PostAsJsonAsync<Param, T>(this HttpClient httpClient, string url, Param param)
         {
             var objParam = JsonConvert.SerializeObject(param);
             var response = await httpClient.PostAsync(url, new StringContent(objParam, Encoding.UTF8, "application/json"));
@@ -26,7 +26,8 @@ namespace E_Ecommerce_CustomerSite.Extensions
 
             return result;
         }
-      
+    
+
 
 
     }

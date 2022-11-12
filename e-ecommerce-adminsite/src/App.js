@@ -10,6 +10,9 @@ import Product from "./scenes/product";
 import CreateCategory from "./scenes/category/Create";
 import UpdateCategory from "./scenes/category/Update";
 import DeleteCategory from "./scenes/category/Delete";
+import UpdateProduct from "./scenes/product/Update";
+import Customer from "./scenes/Customer";
+import CreateProduct from "./scenes/product/Create";
 // // import Contacts from './scenes/contacts';
 // // import Bar from './scenes/bar';
 // // import Form from './scenes/form';
@@ -33,10 +36,14 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />}></Route>
               <Route path="/category" element={<Category />}></Route>
-              <Route path="/product" element={<Product />}></Route>
               <Route path="/category/create" element={<CreateCategory />} />
               <Route path="/category/update/:id" element={<UpdateCategory />} />
               <Route path="/category/delete" element={<DeleteCategory />} />
+              <Route path="/product" element={<Product />}></Route>
+              <Route path="/product/create" element={<CreateProduct />} />
+              <Route path="/product/update/:id" element={<UpdateProduct />} />
+              <Route path="/product/delete" element={<DeleteCategory />} />
+              <Route path="/customer" element={<Customer />}></Route>
             </Routes>
           </main>
         </div>
