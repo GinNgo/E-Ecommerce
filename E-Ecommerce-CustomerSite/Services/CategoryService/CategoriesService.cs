@@ -6,7 +6,7 @@ namespace E_Ecommerce_CustomerSite.Services.CategoryService
 {
     public class CategoriesService :BaseService, ICategoriesService
     {
-        public CategoriesService(IHttpClientFactory clientFactory) : base(clientFactory)
+        public CategoriesService(IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor) : base(clientFactory, httpContextAccessor)
         {
         }
 

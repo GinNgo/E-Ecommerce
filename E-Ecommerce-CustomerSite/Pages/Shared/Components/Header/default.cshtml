@@ -83,6 +83,7 @@
                 </form>
 
                 <div class="navbar-nav mb-1 ml-auto">
+                    @if(ViewBag.Token==null){
                     <ul class="dropdown mb-0">
                         <li class="nav-item account" type="button" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                             <a href="#" class="btn btn-secondary rounded-circle">
@@ -95,9 +96,25 @@
                         </li>
                         <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item nutdangky text-center mb-2" asp-page="SignUp">Đăng ký</a>
-                            <a class="dropdown-item nutdangnhap text-center" href="#" data-bs-toggle="modal" data-bs-target="#formdangnhap">Đăng nhập</a>
+                            <a class="dropdown-item nutdangnhap text-center" asp-page="Login">Đăng nhập</a>
                         </li>
-                    </ul>
+                        </ul>
+                    }
+                    else
+                    {
+                        <div>Xin chào, @ViewBag.Username</div>
+                        <div class="nav-item giohang account">
+                        <a class="btn btn-secondary rounded-circle" asp-page="Index" asp-page-handler="LogOut">
+                            <i class="fa fa-arrow-right-from-bracket"> </i>
+                  
+                        </a>
+                        <a  asp-page="Index" asp-page-handler="LogOut" class="nav-link text-dark giohang text-uppercase"  style="display:inline-block">
+                            Logout
+                        </a>
+                        </div>
+                      
+                    }
+
                     <div class="nav-item giohang account">
                         <a  class="btn btn-secondary rounded-circle" asp-page="shoppingcart">
                             <i class="fa fa-shopping-cart"></i>
@@ -114,62 +131,7 @@
         </nav>
       
 
-        <!-- form dang nhap khi click vao button tren header-->
-        <div class="modal fade mt-5" id="formdangnhap" data-bs-backdrop="static" tabindex="-1"
-             aria-labelledby="dangnhap_tieude" aria-hidden="true">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <ul class="tabs d-flex justify-content-around list-unstyled mb-0">
-                            <li class="tab tab-dangnhap text-center">
-                                <a class=" text-decoration-none" >Đăng nhập</a>
-                                <hr>
-                            </li>
-                            <li class="tab tab-dangky text-center">
-                                <a class="text-decoration-none">Đăng ký</a>
-                                <hr>
-                            </li>
-                        </ul>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="form-signin" class="form-signin mt-2">
-                            <div class="form-label-group">
-                                <input type="email" class="form-control" placeholder="Nhập địa chỉ email" name="email"
-                                       required autofocus>
-                            </div>
-
-                            <div class="form-label-group">
-                                <input type="password" class="form-control" placeholder="Mật khẩu" name="password" required>
-                            </div>
-
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Nhớ mật khẩu</label>
-                                <a href="#" class="float-right text-decoration-none" style="color: #F5A623">
-                                    Quên mật
-                                    khẩu
-                                </a>
-                            </div>
-
-                            <button class="btn btn-lg btn-block btn-signin text-uppercase text-white w-100" type="submit"
-                                    style="background: #F5A623">
-                                Đăng nhập
-                            </button>
-                            <hr class="my-4">
-                            <button class="btn btn-lg btn-google btn-block text-uppercase  w-100" type="submit">
-                                <i class="fab fa-google mr-2"></i> Đăng nhập bằng Google
-                            </button>
-                            <button class="btn btn-lg btn-facebook btn-block text-uppercase  w-100" type="submit">
-                                <i class="fab fa-facebook-f mr-2"></i> Đăng nhập bằng Facebook
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+ 
 
 
 

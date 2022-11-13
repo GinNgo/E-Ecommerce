@@ -13,7 +13,7 @@ namespace E_Ecommerce_CustomerSite.Services.ProductService
 {
     public class ProductService : BaseService, IProductService
     {
-        public ProductService(IHttpClientFactory clientFactory) : base(clientFactory)
+        public ProductService(IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor) : base(clientFactory, httpContextAccessor)
         {
         }
 

@@ -20,7 +20,7 @@ namespace E_Ecommerce_Backend.Services.UserService
         {
             User user = new User();
             var userData = await _context.Users.Where(u=>u.Username!.Equals(userSignUp.UserName)).FirstOrDefaultAsync();
-            if (userData == null) { return false; }
+            if (userData != null) { return false; }
             else { 
             try
             {
@@ -47,6 +47,11 @@ namespace E_Ecommerce_Backend.Services.UserService
             List<UserInfo> userInfo = _mapper.Map<List<User>, List<UserInfo>>(userData);
             return userInfo;
 
+        }
+
+        public async Task<User> GetUser(string username, string password)
+        {
+            return await _context.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefaultAsync();
         }
     }
 }

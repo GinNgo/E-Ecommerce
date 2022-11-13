@@ -17,6 +17,17 @@ namespace E_Ecommerce_CustomerSite.Extensions
             return results;
         }
 
+        public static async Task<string> GetAsstringAsync(this HttpClient httpClient, string url)
+        {
+            var response = await httpClient.GetAsync(url);
+            var contents = await response.Content.ReadAsStringAsync();
+          
+
+            return contents;
+        }
+
+        
+
         public static async Task<T?> PostAsJsonAsync<Param, T>(this HttpClient httpClient, string url, Param param)
         {
             var objParam = JsonConvert.SerializeObject(param);
@@ -26,7 +37,16 @@ namespace E_Ecommerce_CustomerSite.Extensions
 
             return result;
         }
-    
+        public static async Task<string> PostAsTokenAsync<Param>(this HttpClient httpClient, string url, Param param)
+        {
+            var objParam = JsonConvert.SerializeObject(param);
+            var response = await httpClient.PostAsync(url, new StringContent(objParam, Encoding.UTF8, "application/json"));
+            var content = await response.Content.ReadAsStringAsync();
+            
+
+            return content;
+        }
+
 
 
 

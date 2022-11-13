@@ -1,0 +1,48 @@
+﻿@page
+@model E_Ecommerce_CustomerSite.Pages.LoginModel
+@{
+}
+<!-- form dang nhap khi click vao button tren header-->
+<div>
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="tabs d-flex justify-content-around list-unstyled mb-0">
+                    <li class="tab tab-dangnhap text-center">
+                        <a class=" text-decoration-none">Đăng nhập</a>
+                        <hr>
+                    </li>
+                </ul>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-signin" class="form-signin mt-2" method="post">
+                    <div class="form-label-group">
+                        <input type="text" class="form-control" placeholder="Nhập địa chỉ email" name="username"
+                               required autofocus>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" class="form-control" placeholder="Mật khẩu" name="password" required>
+                    </div>
+                    <button class="btn btn-lg btn-block btn-signin text-uppercase text-white w-100"
+                            asp-page="Login" asp-page-handler="Login"
+                            type="submit"
+                            style="background: #F5A623">
+                        Đăng nhập
+                    </button>
+                    <hr class="my-4">
+                    <p class="text-center w-100"><a asp-page="SignUp">Ban chưa có tài khoản?</a></p>
+                    <button class="btn btn-lg btn-google btn-block text-uppercase  w-100" type="submit">
+                        <i class="fab fa-google mr-2"></i> Đăng nhập bằng Google
+                    </button>
+                    <button class="btn btn-lg btn-facebook btn-block text-uppercase  w-100" type="submit">
+                        <i class="fab fa-facebook-f mr-2"></i> Đăng nhập bằng Facebook
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

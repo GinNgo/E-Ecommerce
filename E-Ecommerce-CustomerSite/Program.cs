@@ -13,6 +13,10 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation().AddRazorOptions(op
 {
     options.ViewLocationFormats.Add("/{0}.cshtml");
 }); ;
+builder.Services.AddSession(option =>
+{
+    option.IdleTimeout = TimeSpan.FromMinutes(10);
+});
 builder.Services.Configure<RouteOptions>(options =>
 {
     options.LowercaseUrls = true;
@@ -49,7 +53,7 @@ else
     app.UseHsts();
 }
 
-
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

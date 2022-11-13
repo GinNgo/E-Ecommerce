@@ -1,6 +1,7 @@
 ﻿using E_Ecommerce_Backend.Services.UserService;
 using E_Ecommerce_Shared.DTO.Register;
 using E_Ecommerce_Shared.DTO.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,15 @@ namespace E_Ecommerce_Backend.Controllers
         {
             var customers=await _userService.GetUserInfoAsync();
             return customers;
+        }
+        [HttpGet("Username")]
+        [Authorize]
+        public  string GetUsernameAsync()
+        {
+            var Username = User.Claims.FirstOrDefault(u=>u.Type== "FullName")?.Value;
+
+            return  Username;
+            
         }
     }
 }
