@@ -9,6 +9,7 @@ import Header from "../../Components/Header";
 import { useEffect, useState } from "react";
 import ProductApi from "../../Services/Product/ProductApi";
 import { Link } from "react-router-dom";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutline";
 
 const Product = () => {
   const url = "https://localhost:44324/wwwroot/upload/";
@@ -90,17 +91,21 @@ const Product = () => {
       },
     },
   ];
+  const checkSelection = () => {
+    ProductApi.PutTrash(selectedRows);
+    window.location.reload();
+  };
   const [responseData, setResponseData] = useState([]);
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(0);
-
+  const [selectedRows, setSelectedRows] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
   const fetchData = async () => {
     try {
       const resp = await ProductApi.GetProduct();
-      console.log(resp.data);
+
       setResponseData(resp.data);
     } catch (error) {
       console.log(error);
@@ -109,13 +114,29 @@ const Product = () => {
   return (
     <Box m="20px">
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Header title="Product" subtitle="Managing the Product" />
-        <Link to={`/product/create`} style={{ listStyleType: "none" }}>
-          <Button color="secondary" variant="contained">
-            <AddCircleOutlineOutlinedIcon />
-            CREATE PRODUCT
-          </Button>
-        </Link>
+        <Box sx={{ mr: 2 }}>
+          <Header title="Product" subtitle="Managing the Product" />
+        </Box>
+        <Box sx={{ mr: 2 }}>
+          <Link to={`/product/create`} style={{ listStyleType: "none" }}>
+            <Button color="secondary" variant="contained">
+              <AddCircleOutlineOutlinedIcon />
+              CREATE PRODUCT
+            </Button>
+          </Link>
+        </Box>
+        <Box sx={{ mr: 2 }}>
+          <Link to={`/product/delete`} style={{ listStyleType: "none" }}>
+            <Button color="secondary" variant="contained">
+              <DeleteOutlinedIcon />
+              GO TO PRODUCT TRASH
+            </Button>
+          </Link>
+        </Box>
+        <Button color="secondary" variant="contained" onClick={checkSelection}>
+          <DeleteOutlinedIcon />
+          DElELE PRODUCT
+        </Button>
       </Box>
       <Box
         m="40px 0 0 0"
@@ -177,6 +198,11 @@ const Product = () => {
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[5, 10, 20]}
           pagination
+          onSelectionModelChange={(ids) => {
+            const selectedIDs = ids;
+            console.log(selectedIDs);
+            setSelectedRows(selectedIDs);
+          }}
           {...responseData}
         />
       </Box>

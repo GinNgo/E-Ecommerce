@@ -15,6 +15,7 @@ namespace E_Ecommerce_CustomerSite.Pages.Shared.Components.Header
             ViewBag.Token = HttpContext.Session.GetString("JWToken");
             if(ViewBag.Token!=null) 
               ViewBag.Username =await _userService.GetUserNameAsync();
+  
             return View();
         }
     }

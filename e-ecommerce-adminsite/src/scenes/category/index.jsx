@@ -96,19 +96,26 @@ const Category = () => {
   return (
     <Box m="20px">
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Header title="CATEGORY" subtitle="Managing the Catalog" />{" "}
-        <Link to={`/category/create`} style={{ listStyleType: "none" }}>
-          <Button color="secondary" variant="contained">
-            <AddCircleOutlineOutlinedIcon />
-            CREATE CATEGORY
-          </Button>
-        </Link>
-        <Link to={`/category/delete`} style={{ listStyleType: "none" }}>
-          <Button color="secondary" variant="contained">
-            <DeleteOutlinedIcon />
-            GO TO CATEGORY TRASH
-          </Button>
-        </Link>
+        {" "}
+        <Box sx={{ mr: 2 }}>
+          <Header title="CATEGORY" subtitle="Managing the Catalog" />{" "}
+        </Box>
+        <Box sx={{ mr: 2 }}>
+          <Link to={`/category/create`} style={{ listStyleType: "none" }}>
+            <Button color="secondary" variant="contained">
+              <AddCircleOutlineOutlinedIcon />
+              CREATE CATEGORY
+            </Button>
+          </Link>
+        </Box>
+        <Box sx={{ mr: 2 }}>
+          <Link to={`/category/delete`} style={{ listStyleType: "none" }}>
+            <Button color="secondary" variant="contained">
+              <DeleteOutlinedIcon />
+              GO TO CATEGORY TRASH
+            </Button>
+          </Link>
+        </Box>
         <Button color="secondary" variant="contained" onClick={checkSelection}>
           <DeleteOutlinedIcon />
           DElELE CATEGORY

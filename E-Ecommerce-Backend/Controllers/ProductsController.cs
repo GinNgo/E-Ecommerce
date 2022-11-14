@@ -11,6 +11,7 @@ using E_Ecommerce_Backend.Services.ProductService;
 using E_Ecommerce_Shared.DTO;
 using E_Ecommerce_Shared.DTO.Product;
 using E_Ecommerce_Shared.DTO.Admin;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -43,7 +44,21 @@ namespace E_Ecommerce_Backend.Controllers
 
          
         }
+        [HttpGet("AdminTrash")]
+        public async Task<ActionResult<List<ProductAdmin>>> GetProductsTrash()
+        {
+            try
+            {
+                var ListPro = await _productService.GetAllProductsTrashAsync();
+                return Ok(ListPro);
+            }
+            catch
+            {
+                return BadRequest();
+            }
 
+
+        }
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductsDto>> GetProduct(int id)
@@ -85,14 +100,28 @@ namespace E_Ecommerce_Backend.Controllers
         }
 
         [HttpPost("PostProductRating")]
+        [Authorize]
         public async Task<ProductsDto> PostProductRating([FromBody] RatingDto ratingDto)
         {
-
-            var product = await _productService.PostProductRatingAsync(ratingDto);
+            var userId = int.Parse(User.Claims.FirstOrDefault(u => u.Type == "UserId")?.Value);
+            var product = await _productService.PostProductRatingAsync(ratingDto, userId);
 
             return product;
         }
 
+        [HttpPut("Trash")]
+        public async Task<IActionResult> PutCategoryTrash(List<int> ids)
+        {
+
+
+            var result = await _productService.PutProductTrashAsync(ids);
+            if (result == true)
+                return Ok(true);
+            else
+            {
+                return BadRequest(false);
+            }
+        }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
@@ -133,6 +162,17 @@ namespace E_Ecommerce_Backend.Controllers
             return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCategory(List<int> ids)
+        {
+            var result = await _productService.DeletedProdutAsync(ids);
+            if (result == true)
+                return Ok(true);
+            else
+            {
+                return BadRequest(false);
+            }
+        }
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)

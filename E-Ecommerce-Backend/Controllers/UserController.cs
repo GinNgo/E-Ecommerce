@@ -36,7 +36,7 @@ namespace E_Ecommerce_Backend.Controllers
         {
             var Username = User.Claims.FirstOrDefault(u=>u.Type== "FullName")?.Value;
 
-            return  Username;
+            return  Username??"";
             
         }
     }

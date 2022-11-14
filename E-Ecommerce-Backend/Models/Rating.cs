@@ -16,6 +16,8 @@ namespace E_Ecommerce_Backend.Models
         public string? Email { get; set; }
         public string ?Name { get; set; }
         public Product? Product { get; set; }
+
+        public User user { get; set; }
         public DateTime CreateDate { get; set; }
 
     }

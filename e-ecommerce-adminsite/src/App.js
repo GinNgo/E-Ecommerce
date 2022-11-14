@@ -13,6 +13,7 @@ import DeleteCategory from "./scenes/category/Delete";
 import UpdateProduct from "./scenes/product/Update";
 import Customer from "./scenes/Customer";
 import CreateProduct from "./scenes/product/Create";
+import DeleteProduct from "./scenes/product/Delete";
 // // import Contacts from './scenes/contacts';
 // // import Bar from './scenes/bar';
 // // import Form from './scenes/form';
@@ -42,7 +43,7 @@ function App() {
               <Route path="/product" element={<Product />}></Route>
               <Route path="/product/create" element={<CreateProduct />} />
               <Route path="/product/update/:id" element={<UpdateProduct />} />
-              <Route path="/product/delete" element={<DeleteCategory />} />
+              <Route path="/product/delete" element={<DeleteProduct />} />
               <Route path="/customer" element={<Customer />}></Route>
             </Routes>
           </main>

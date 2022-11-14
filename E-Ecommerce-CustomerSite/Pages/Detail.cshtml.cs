@@ -25,14 +25,11 @@ namespace E_Ecommerce_CustomerSite.Pages
         {
                      
         int score = int.Parse(Request.Form["star"]);
-            var name = Request.Form["name"];
-            var email = Request.Form["email"];
+       
             var comment = Request.Form["comment"];
             RatingDto ratingDto = new RatingDto()
             {
                 Score = score,
-                Name = name,
-                Email = email,
                 Comment = comment,
                 CreateDate = DateTime.UtcNow,
                     ProductId=Id

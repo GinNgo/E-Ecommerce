@@ -17,12 +17,12 @@ namespace E_Ecommerce_Backend.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly EcommecreDbContext _context;
+ 
         private readonly ICategoriesService _categoryService;
 
-        public CategoriesController(EcommecreDbContext context, ICategoriesService categoryService)
+        public CategoriesController( ICategoriesService categoryService)
         {
-            _context = context;
+        
             _categoryService = categoryService;
         }
 
@@ -168,9 +168,9 @@ namespace E_Ecommerce_Backend.Controllers
             }
         }
 
-        private bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(e => e.CategoryId == id);
-        }
+        //private bool CategoryExists(int id)
+        //{
+        //    return _context.Categories.Any(e => e.CategoryId == id);
+        //}
     }
 }

@@ -10,6 +10,7 @@ using E_Ecommerce_Shared.DTO.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 
 namespace E_Ecommerce_Backend.Services.ProductService
@@ -210,8 +211,11 @@ namespace E_Ecommerce_Backend.Services.ProductService
             return total;
         }
 
-        public async Task<ProductsDto> PostProductRatingAsync(RatingDto ratingDto)
+        public async Task<ProductsDto> PostProductRatingAsync(RatingDto ratingDto,int userId)
         {
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            ratingDto.Email = user.Email;
+            ratingDto.Name = user.FullName;
             var rating = _mapper.Map<Rating>(ratingDto);
             rating.Product = await _context.Products.Where(e => e.ProductId == ratingDto.ProductId).FirstOrDefaultAsync();
             _context.ratings.Add(rating);
@@ -224,6 +228,70 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var productDto = _mapper.Map<ProductsDto>(product);
             
             return productDto ?? new ProductsDto();
+        }
+        public async Task<Boolean> PutProductTrashAsync(List<int> ids)
+        {
+            List<Product> products = new List<Product>();
+
+            try
+            {
+                ids.ForEach(id =>
+                {
+                    var product = _context.Products.Find(id);
+                    if (product != null)
+                    {
+                        product.UpdateDate = DateTime.Now;
+                        product.UpdateBy = "Admin";
+                        if (product.IsDeleted == true)
+                        {
+                            product.IsDeleted = false;
+                        }
+                        else { product.IsDeleted = true; }
+                        products.Add(product);
+                    }
+
+                });
+                if (ids.Count() != products.Count()) return false;
+                products.ForEach(
+                    product =>
+                    {
+                        _context.Entry(product).State = EntityState.Modified;
+                    });
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbException)
+            {
+                return false;
+            }
+        }
+        public async Task<Boolean> DeletedProdutAsync(List<int> ids)
+        {
+            List<Product> products = new List<Product>();
+            try
+            {
+                ids.ForEach(id =>
+                {
+                    var product = _context.Products.Find(id);
+                    if (product != null)
+                    {
+                        products.Add(product);
+                    }
+
+                });
+                if (ids.Count() != products.Count()) return false;
+                products.ForEach(
+                    product =>
+                    {
+                        _context.Products.Remove(product);
+                    });
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbException)
+            {
+                return false;
+            }
         }
     }
 }
