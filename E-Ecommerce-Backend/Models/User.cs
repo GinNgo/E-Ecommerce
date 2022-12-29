@@ -20,7 +20,6 @@ namespace E_Ecommerce_Backend.Models
         public string? Address { get; set; }
         public string? Password { get; set; }
         public string? Username { get; set; }
-        public ICollection<Rating> Rating { get; set; }
         public Roles Role { get; set; }
     }
     public class Jwt

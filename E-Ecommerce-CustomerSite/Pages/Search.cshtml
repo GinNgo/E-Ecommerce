@@ -9,7 +9,7 @@
         {
             <div class="noidung bg-white position-relative" style=" width: 100%;">
                 <!-- header của khối sản phẩm : tag(tác giả), bộ lọc và sắp xếp  -->
-
+                <div>Có @Model.productViewModel.totalCount sản phẩm </div>
                 <div class="header-khoi-sp d-flex">
                     <div class="sort d-flex ml-auto">
                         <div class="hien-thi d-flex">
@@ -17,20 +17,20 @@
                             <div class="dropdown">
                                 <button aria-expanded="false" aria-haspopup="true" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" id="pagingDropDownMenuBtn" type="button">@Model.productViewModel.pageSize</button>
                                 <div aria-labelledby="pagingDropDownMenuBtn" class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item active" asp-page="category" asp-route-id="@Model.pagingRequestDto.Search" asp-route-p=1&amp asp-route-s=10>10</a>
-                                    <a class="dropdown-item active" asp-page="category" asp-route-id="@Model.pagingRequestDto.Search" asp-route-p=1&amp asp-route-s=20>20</a>
-                                    <a class="dropdown-item active" asp-page="category" asp-route-id="@Model.pagingRequestDto.Search" asp-route-p=1&amp asp-route-s=30>30</a>
+                                    <a class="dropdown-item active" asp-page="search" asp-route-id="@Model.pagingRequestDto.Search" asp-route-p=1&amp asp-route-s=10>10</a>
+                                    <a class="dropdown-item active" asp-page="search" asp-route-id="@Model.pagingRequestDto.Search" asp-route-p=1&amp asp-route-s=20>20</a>
+                                    <a class="dropdown-item active" asp-page="search" asp-route-id="@Model.pagingRequestDto.Search" asp-route-p=1&amp asp-route-s=30>30</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="sap-xep">
+               @*         <div class="sap-xep">
                             <label for="sapxep-select" class="label-select">Sắp xếp</label>
                             <select class="sapxep-select">
                                 <option value="moinhat">Mới nhất</option>
                                 <option value="thap-cao">Giá: Thấp - Cao</option>
                                 <option value="cao-thap">Giá: Cao - Thấp</option>
                             </select>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
         }
         else
         {
-            <p>Sản phẩm không còn</p>
+            <p>Không tìm thấy sản phẩm</p>
         }
 
         <!--het div noidung-->

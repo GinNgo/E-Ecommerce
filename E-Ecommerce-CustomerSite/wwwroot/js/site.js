@@ -55,7 +55,7 @@ jQuery(function () {
         }
     );
     jQuery(window).scroll(function () {
-        if (jQuery("body,html").scrollTop() > 650) {
+        if (jQuery("body,html").scrollTop() > 550) {
             jQuery(".navbar").addClass("fixed-top");
             jQuery(".main-nav").css("display", "none");
             jQuery(".top-header").css("display", "none");
@@ -66,8 +66,16 @@ jQuery(function () {
             jQuery(".navbar").removeClass("fixed-top");
             jQuery(".top-header").css("display", "flex");
             jQuery("#categories").hover(function () {
-                jQuery(" .main-nav").css("display", "none");
-            });
+
+                jQuery(" .main-nav").css("display", "block");
+
+
+            }
+                , function () {
+
+                    jQuery(" .main-nav").css("display", "none");
+
+                });
 
         }
     });
@@ -486,7 +494,7 @@ jQuery(document).ready(function () {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text btn-spin btn-dec-cart "id=${item.id}>-</span>
                                         </div>
-                                        <input type="text" value="${item.inCart}"   class="soluongsp  text-center">
+                                        <input type="text" value="${item.inCart}" disabled  class="soluongsp  text-center">
                                         <div class="input-group-append">
                                             <span class="input-group-text btn-spin btn-inc-cart" id=${item.id}  >+</span>
                                         </div>    </div>

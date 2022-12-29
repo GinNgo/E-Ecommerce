@@ -9,7 +9,7 @@ namespace E_Ecommerce_Shared.DTO.Admin
 {
     public class BrandAdmin
     {
-        public int BrandId { get; set; }
-        public string? BrandName { get; set; }
+        public int value { get; set; }
+        public string? label { get; set; }
     }
 }

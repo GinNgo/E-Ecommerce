@@ -23,50 +23,60 @@ namespace E_Ecommerce_CustomerSite.Pages
        public  ScoreRatingViewModel ScoreRating = new ScoreRatingViewModel();
         public async Task<IActionResult> OnPostRating(int Id)
         {
-                     
-        int score = int.Parse(Request.Form["star"]);
-       
-            var comment = Request.Form["comment"];
-            RatingDto ratingDto = new RatingDto()
+            var token = HttpContext.Session.GetString("JWToken");
+            if(token == null)
             {
-                Score = score,
-                Comment = comment,
-                CreateDate = DateTime.UtcNow,
-                    ProductId=Id
-            };
-           
-            Pro = await _productService.PostProductsRatingAsync(ratingDto);
-            if (Pro.Rating!.Count > 0) { 
-            foreach (var rating in Pro.Rating!)
-            {
-                ScoreRating.total += rating.Score;
-                switch (rating.Score)
-                {
-                    case 1: ScoreRating.one++; ScoreRating.countTotal++; break;
-                    case 2: ScoreRating.two++; ScoreRating.countTotal++; break;
-                    case 3: ScoreRating.three++; ScoreRating.countTotal++; break;
-                    case 4: ScoreRating.four++; ScoreRating.countTotal++; break;
-                    case 5: ScoreRating.five++; ScoreRating.countTotal++; break;
-                }
-            }
+             
+                return RedirectToPage("./Login");
             }
             else
             {
-                ScoreRating.countTotal =1;
-                ScoreRating.total = 0;
-                ScoreRating.one = 0;
-                ScoreRating.one = 0;
-                ScoreRating.one = 0;
-                ScoreRating.one = 0;
-                ScoreRating.one = 0;
+                int score = int.Parse(Request.Form["star"]);
+
+                var comment = Request.Form["comment"];
+                RatingDto ratingDto = new RatingDto()
+                {
+                    Score = score,
+                    Comment = comment,
+                    CreateDate = DateTime.UtcNow,
+                    ProductId = Id
+                };
+
+                Pro = await _productService.PostProductsRatingAsync(ratingDto);
+                if (Pro.Rating!.Count > 0)
+                {
+                    foreach (var rating in Pro.Rating!)
+                    {
+                        ScoreRating.total += rating.Score;
+                        switch (rating.Score)
+                        {
+                            case 1: ScoreRating.one++; ScoreRating.countTotal++; break;
+                            case 2: ScoreRating.two++; ScoreRating.countTotal++; break;
+                            case 3: ScoreRating.three++; ScoreRating.countTotal++; break;
+                            case 4: ScoreRating.four++; ScoreRating.countTotal++; break;
+                            case 5: ScoreRating.five++; ScoreRating.countTotal++; break;
+                        }
+                    }
+                }
+                else
+                {
+                    ScoreRating.countTotal = 1;
+                    ScoreRating.total = 0;
+                    ScoreRating.one = 0;
+                    ScoreRating.one = 0;
+                    ScoreRating.one = 0;
+                    ScoreRating.one = 0;
+                    ScoreRating.one = 0;
+                }
+
+                categoriesDtos = await _categoriesService.GetBreadbrum(Pro.Categories!.FirstOrDefault()!.CategoryId);
+                if (Pro != null)
+                {
+                    return Redirect("/Detail/" + Pro.ProductId);
+                }
+                return Page();
             }
-     
-            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.Categories.FirstOrDefault().CategoryId);
-            if (Pro != null)
-            {
-                return  Redirect("/Detail/" + Pro.ProductId);
-            }
-            return Page();
+           
         }
         public async Task<IActionResult> OnGet(int Id)
         {
@@ -101,7 +111,7 @@ namespace E_Ecommerce_CustomerSite.Pages
          
             
            
-            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.Categories.FirstOrDefault().CategoryId);
+            categoriesDtos = await _categoriesService.GetBreadbrum(Pro.Categories!.FirstOrDefault()!.CategoryId);
             return Page();
         }
 

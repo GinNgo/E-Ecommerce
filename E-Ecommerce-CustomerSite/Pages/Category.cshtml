@@ -28,13 +28,15 @@
 <section class="content my-4">
     <div class="container-xl d-flex ">
         <div class="filter" style="width:420px"></div>
-        @if (@Model.productViewModel.productsDtos != null)
+        @if (@Model.productViewModel.productsDtos?.Count >0)
         {
             <div class="noidung bg-white position-relative" style=" width: 100%;">
                 <!-- header của khối sản phẩm : tag(tác giả), bộ lọc và sắp xếp  -->
-
+                <div>Có @Model.productViewModel.totalCount sản phẩm </div>
                 <div class="header-khoi-sp d-flex">
+        
                     <div class="sort d-flex ml-auto">
+                     
                         <div class="hien-thi d-flex">
                             <label for="hienthi-select" class="label-select">Hiển thị</label>
                             <div class="dropdown">
@@ -46,14 +48,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sap-xep">
+                   @*     <div class="sap-xep">
                             <label for="sapxep-select" class="label-select">Sắp xếp</label>
                             <select class="sapxep-select">
                                 <option value="moinhat">Mới nhất</option>
                                 <option value="thap-cao">Giá: Thấp - Cao</option>
                                 <option value="cao-thap">Giá: Cao - Thấp</option>
                             </select>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
 
@@ -68,7 +70,7 @@
         }
         else
         {
-            <p>Sản phẩm không còn</p>
+            <p>Sản phẩm đang nhập khẩu</p>
         }
 
         <!--het div noidung-->

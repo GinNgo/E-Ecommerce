@@ -33,13 +33,13 @@
                 <!-- ảnh  -->
                 <div class="col-md-5 khoianh">
                     <div class="anhto mb-4">
-                        <a class="active" href="@ApiUrl/@Model.Pro.Images!.FirstOrDefault().ImageUrl" data-fancybox="thumb-img">
-                            <img class="product-image" src="@ApiUrl/@Model.Pro.Images!.FirstOrDefault().ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;">
+                        <a class="active" href="@ApiUrl/@Model.Pro.Images!.FirstOrDefault()!.ImageUrl" data-fancybox="thumb-img">
+                            <img class="product-image" src="@ApiUrl/@Model.Pro!.Images!.FirstOrDefault()!.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt" style="width: 100%;">
                         </a>
 
                     </div>
                     <div class="list-anhchitiet d-flex mb-4" style="margin-left: 2rem;">
-                        @foreach (var image in @Model.Pro.Images)
+                        @foreach (var image in @Model.Pro.Images!)
                         {
                             <img class="thumb-img thumb mr-3 img-fluid" src="@ApiUrl/@image.ImageUrl" alt="lap-ke-hoach-kinh-doanh-hieu-qua-mt">
                         }
@@ -129,10 +129,10 @@
                 <div class="product-description col-md-9">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link  text-uppercase" id="nav-gioithieu-tab"
+                            <a class="nav-item nav-link  text-uppercase active" id="nav-gioithieu-tab"
                                data-bs-toggle="tab" data-bs-target="#nav-gioithieu" role="tab" aria-controls="nav-gioithieu"
                                aria-selected="true">Giới thiệu</a>
-                            <a class="nav-item nav-link text-uppercase active" id="nav-danhgia-tab" data-bs-toggle="tab"
+                            <a class="nav-item nav-link text-uppercase " id="nav-danhgia-tab" data-bs-toggle="tab"
                                data-bs-target="#nav-danhgia" role="tab" aria-controls="nav-danhgia"
                                aria-selected="false">
                                 Đánh
@@ -141,7 +141,7 @@
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show  ml-3" id="nav-gioithieu" role="tabpanel"
+                        <div class="tab-pane fade show  ml-3 active" id="nav-gioithieu" role="tabpanel"
                              aria-labelledby="nav-gioithieu-tab">
                             <h6 class="tieude font-weight-bold">@Model.Pro.ProductName</h6>
                             <div id="description"></div>
@@ -154,7 +154,7 @@
 
                             </script>
                         </div>
-                        <div class="tab-pane fade show active" id="nav-danhgia" role="tabpanel" aria-labelledby="nav-danhgia-tab">
+                        <div class="tab-pane fade show " id="nav-danhgia" role="tabpanel" aria-labelledby="nav-danhgia-tab">
                             <div class="row">
                                 <div class="col-md-3 text-center">
                                     <p class="tieude">Đánh giá trung bình</p>

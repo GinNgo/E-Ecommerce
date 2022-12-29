@@ -1,5 +1,7 @@
 using E_Ecommerce_Backend.Data;
+using E_Ecommerce_Backend.Services.BrandService;
 using E_Ecommerce_Backend.Services.CategoryService;
+using E_Ecommerce_Backend.Services.OriginService;
 using E_Ecommerce_Backend.Services.ProductService;
 using E_Ecommerce_Backend.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -81,6 +83,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IOriginService, OriginService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 

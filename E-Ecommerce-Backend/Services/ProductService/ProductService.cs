@@ -7,6 +7,7 @@ using E_Ecommerce_Backend.Services.CategoryService;
 using E_Ecommerce_Shared.DTO;
 using E_Ecommerce_Shared.DTO.Admin;
 using E_Ecommerce_Shared.DTO.Product;
+using E_Ecommerce_Shared.DTO.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -20,12 +21,13 @@ namespace E_Ecommerce_Backend.Services.ProductService
         private readonly EcommecreDbContext _context;
         private readonly IMapper _mapper;
         private readonly ICategoriesService _categoriesService;
-
+  
         public ProductService(EcommecreDbContext context, IMapper mapper, ICategoriesService categoriesService)
         {
             _context = context;
             _mapper = mapper;
             _categoriesService = categoriesService;
+ 
         }
         public async Task<ProductPagingDto> GetAllProductsPaingAsync(PagingRequestDto pagingRequestDto)
         {
@@ -34,6 +36,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             productPagingDto.totalCount = await _context.Products.CountAsync();
             var products = _context.Products
                 .Where(p=>p.Status==true&& p.IsDeleted == false)
+                  .OrderByDescending(i => i.ProductId)
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1))
                 .Take(pagingRequestDto.pageSize)
                 .Include(c => c.Rating).Include(c=>c.Images)
@@ -79,19 +82,17 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var productAdmin = _mapper.Map<List<Product>, List<ProductAdmin>>(products);
             return productAdmin ?? new List<ProductAdmin>();
         }
-        public async Task<ActionResult<ProductsDto>> GetProductAsync(int id)
+        public async Task<ProductsDto> GetProductAsync(int id)
         {
-            ProductsDto productsDto = new ProductsDto();
+           
             var product = await _context.Products
-                .Where(e => e.ProductId == id)
-                .Include(c => c.Brand)
-                .Include(c => c.Categories).Include(c => c.Images)
-                .Include(c => c.Origin).Include(c => c.Rating!.OrderByDescending(r=>r.RatingId)).FirstOrDefaultAsync();
-            if (product != null)
-            {
-                productsDto = _mapper.Map<Product, ProductsDto>(product);
-            }
-            return productsDto;
+               .Where(e => e.ProductId == id)
+               .Include(c => c.Brand)
+               .Include(c => c.Categories).Include(c => c.Images)
+               .Include(c => c.Origin).Include(c => c.Rating).FirstOrDefaultAsync();
+            var productDto = _mapper.Map<ProductsDto>(product);
+         
+            return productDto;
         }
 
         public async Task<ActionResult<ProductAdmin>> GetProductAdminAsync(int id)
@@ -101,7 +102,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                 .Where(e => e.ProductId == id)
                 .Include(c => c.Brand)
                 .Include(c => c.Categories).Include(c => c.Images)
-                .Include(c => c.Origin).Include(c => c.Rating!.OrderByDescending(r => r.RatingId)).FirstOrDefaultAsync();
+                .Include(c => c.Origin).Include(c => c.Rating).FirstOrDefaultAsync();
             if (product != null)
             {
                 productAdmin = _mapper.Map<Product, ProductAdmin>(product);
@@ -171,10 +172,10 @@ namespace E_Ecommerce_Backend.Services.ProductService
                 ProductPagingDto = await GetAllProductsPaingAsync(pagingRequestDto);
             }
             else { 
-            ProductPagingDto.totalCount = _context.Products.Where(c => c.ProductName!.Contains(pagingRequestDto.Search)).Count();
+            ProductPagingDto.totalCount = _context.Products.Where(c => c.ProductName!.Contains(pagingRequestDto.Search)&&c.Status==true&&c.IsDeleted==false).Count();
             var products = await _context.Products
              
-                .Where(c => c.ProductName!.Contains(pagingRequestDto.Search))
+                .Where(c => c.ProductName!.Contains(pagingRequestDto.Search) && c.Status == true && c.IsDeleted == false)
                 .Skip(pagingRequestDto.pageSize * (pagingRequestDto.pageIndex - 1)).Take(pagingRequestDto.pageSize)
                 .Include(c => c.Rating).Include(c => c.Images)
                 .ToListAsync();
@@ -223,7 +224,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
             var product = await _context.Products
                 .Where(e => e.ProductId == ratingDto.ProductId)
                 .Include(c => c.Brand)
-                .Include(c => c.Categories).Include(c => c.Images!.OrderBy(i=>i.DisplayOrder))
+                .Include(c => c.Categories).Include(c => c.Images)
                 .Include(c => c.Origin).Include(c => c.Rating).FirstOrDefaultAsync();
             var productDto = _mapper.Map<ProductsDto>(product);
             
@@ -241,7 +242,7 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     if (product != null)
                     {
                         product.UpdateDate = DateTime.Now;
-                        product.UpdateBy = "Admin";
+                        product.UpdateBy = "admin";
                         if (product.IsDeleted == true)
                         {
                             product.IsDeleted = false;
@@ -279,10 +280,22 @@ namespace E_Ecommerce_Backend.Services.ProductService
                     }
 
                 });
+
                 if (ids.Count() != products.Count()) return false;
                 products.ForEach(
                     product =>
                     {
+                        _context.Images.Where(i => i.Product == product).ToList().ForEach(e =>
+                        {
+                     var   imgdel = Path.Combine("wwwroot", "Upload", e.ImageUrl);
+                        FileInfo fileInfo = new FileInfo(imgdel);
+                            if (fileInfo.Exists)
+                            {
+                                System.IO.File.Delete(imgdel);
+                                fileInfo.Delete();
+                            } 
+                            _context.Images.Remove(e);
+                        } );
                         _context.Products.Remove(product);
                     });
                 await _context.SaveChangesAsync();
@@ -291,6 +304,42 @@ namespace E_Ecommerce_Backend.Services.ProductService
             catch (DbException)
             {
                 return false;
+            }
+        }
+
+        public async Task<int> PostProductAsync(ProductCreate productCreate)
+        {
+            List<Category> categories = new List<Category>();
+            foreach(var cat in productCreate.Categories!)
+            {
+                categories.Add(_context.Categories.FirstOrDefault(c => c.CategoryId == cat.value)!);
+            };
+
+            Product product = new Product
+            {
+
+                ProductName = productCreate.ProductName,
+                FullDescription = productCreate.FullDescription,
+                Price = productCreate.Price,
+                PriceDiscount = productCreate.PriceDiscount,
+                Quantity = productCreate.Quantity,
+                Categories = categories,
+                BrandId = productCreate.BrandId,
+                OriginId = productCreate.OriginId,
+                Status = true,
+                CreateBy = "admin",
+                CreateDate = DateTime.Now
+            };
+            try
+            {
+              
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return await _context.Products!.Where(p => p.ProductName == product.ProductName).OrderByDescending(p=>p.ProductId).Select(p=>p.ProductId)!.FirstOrDefaultAsync();
+            }
+            catch (DbException)
+            {
+                return 0;
             }
         }
     }

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
+using E_Ecommerce_Backend.Services.OriginService;
+using E_Ecommerce_Shared.DTO.Admin;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -15,17 +17,18 @@ namespace E_Ecommerce_Backend.Controllers
     public class OriginsController : ControllerBase
     {
         private readonly EcommecreDbContext _context;
-
-        public OriginsController(EcommecreDbContext context)
+        private readonly IOriginService _originService;
+        public OriginsController(EcommecreDbContext context, IOriginService originService)
         {
             _context = context;
+            _originService = originService;
         }
 
         // GET: api/Origins
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Origin>>> GetOrigins()
+        public async Task<ActionResult<IEnumerable<OriginAdmin>>> GetOrigins()
         {
-            return await _context.Origins.ToListAsync();
+            return await _originService.GetCategoriesParentAsync();
         }
 
         // GET: api/Origins/5

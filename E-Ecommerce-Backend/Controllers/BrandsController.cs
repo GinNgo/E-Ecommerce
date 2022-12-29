@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using E_Ecommerce_Backend.Data;
 using E_Ecommerce_Backend.Models;
+using E_Ecommerce_Backend.Services.BrandService;
+using E_Ecommerce_Shared.DTO.Admin;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -15,17 +17,18 @@ namespace E_Ecommerce_Backend.Controllers
     public class BrandsController : ControllerBase
     {
         private readonly EcommecreDbContext _context;
-
-        public BrandsController(EcommecreDbContext context)
+        private readonly IBrandService _brandService;
+        public BrandsController(EcommecreDbContext context,IBrandService brandService)
         {
             _context = context;
+            _brandService = brandService;
         }
 
         // GET: api/Brands
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Brand>>> GetBrands()
+        public async Task<ActionResult<IEnumerable<BrandAdmin>>> GetBrands()
         {
-            return await _context.Brands.ToListAsync();
+            return await _brandService.GetCategoriesParentAsync();
         }
 
         // GET: api/Brands/5

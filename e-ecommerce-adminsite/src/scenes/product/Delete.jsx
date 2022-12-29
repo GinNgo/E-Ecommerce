@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import ProductApi from "../../Services/Product/ProductApi";
 import { Link } from "react-router-dom";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutline";
-
+import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 const DeleteProduct = () => {
   const url = "https://localhost:44324/wwwroot/upload/";
   const theme = useTheme();
@@ -125,7 +125,7 @@ const DeleteProduct = () => {
         <Box sx={{ mr: 2 }}>
           <Link to={`/product`} style={{ listStyleType: "none" }}>
             <Button color="secondary" variant="contained">
-              <DeleteOutlinedIcon />
+              <KeyboardBackspaceOutlinedIcon />
               BACK TO PRODUCT
             </Button>
           </Link>

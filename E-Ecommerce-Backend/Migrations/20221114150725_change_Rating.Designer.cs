@@ -4,6 +4,7 @@ using E_Ecommerce_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Ecommerce_Backend.Migrations
 {
     [DbContext(typeof(EcommecreDbContext))]
-    partial class EcommecreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221114150725_change_Rating")]
+    partial class change_Rating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -306,9 +308,14 @@ namespace E_Ecommerce_Backend.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("RatingId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Rating");
                 });
@@ -396,6 +403,10 @@ namespace E_Ecommerce_Backend.Migrations
                         .WithMany("Rating")
                         .HasForeignKey("ProductId");
 
+                    b.HasOne("E_Ecommerce_Backend.Models.User", null)
+                        .WithMany("Rating")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Product");
                 });
 
@@ -413,6 +424,11 @@ namespace E_Ecommerce_Backend.Migrations
                 {
                     b.Navigation("Images");
 
+                    b.Navigation("Rating");
+                });
+
+            modelBuilder.Entity("E_Ecommerce_Backend.Models.User", b =>
+                {
                     b.Navigation("Rating");
                 });
 #pragma warning restore 612, 618

@@ -12,6 +12,8 @@ using E_Ecommerce_Shared.DTO;
 using E_Ecommerce_Shared.DTO.Product;
 using E_Ecommerce_Shared.DTO.Admin;
 using Microsoft.AspNetCore.Authorization;
+using NuGet.Packaging.Signing;
+using E_Ecommerce_Shared.DTO.Products;
 
 namespace E_Ecommerce_Backend.Controllers
 {
@@ -19,12 +21,11 @@ namespace E_Ecommerce_Backend.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly EcommecreDbContext _context;
         private readonly IProductService _productService;
 
-        public ProductsController(EcommecreDbContext context,IProductService productService)
+        public ProductsController( IProductService productService)
         {
-            _context = context;
+         
             _productService = productService;
         }
 
@@ -42,7 +43,7 @@ namespace E_Ecommerce_Backend.Controllers
                 return BadRequest();
             }
 
-         
+
         }
         [HttpGet("AdminTrash")]
         public async Task<ActionResult<List<ProductAdmin>>> GetProductsTrash()
@@ -84,7 +85,7 @@ namespace E_Ecommerce_Backend.Controllers
         [HttpPost("GetProductBySearch")]
         public async Task<IActionResult> GetProductBySearchAsync([FromBody] PagingRequestDto pagingRequestDto)
         {
-           
+
             var products = await _productService.GetProductBySearchAsync(pagingRequestDto);
 
             return Ok(products);
@@ -122,48 +123,24 @@ namespace E_Ecommerce_Backend.Controllers
                 return BadRequest(false);
             }
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
-        {
-            if (id != product.ProductId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult<int>> PostProduct(ProductCreate product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
+            var result = await _productService.PostProductAsync(product);
+            if (result != 0)
+                return Ok(result);
+            else
+            {
+                return BadRequest("Them that bai!");
+            }
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteCategory(List<int> ids)
+        public async Task<IActionResult> DeleteProduct(List<int> ids)
         {
             var result = await _productService.DeletedProdutAsync(ids);
             if (result == true)
@@ -173,25 +150,9 @@ namespace E_Ecommerce_Backend.Controllers
                 return BadRequest(false);
             }
         }
-        // DELETE: api/Products/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+ 
+    
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ProductExists(int id)
-        {
-            return _context.Products.Any(e => e.ProductId == id);
-        }
+       
     }
 }

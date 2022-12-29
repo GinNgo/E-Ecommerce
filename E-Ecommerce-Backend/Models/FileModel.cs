@@ -2,7 +2,9 @@
 {
     public class FileModel
     {
-        public string ?Filename { get; set; }
+        public int Id { get; set; }
+
+        public int DisplayOrder { get; set; }
         public IFormFile? FormFiles { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace E_Ecommerce_Shared.DTO.Admin
 {
     public class OriginAdmin
     {
-        public int OriginId { get; set; }
-        public string? OriginName { get; set; }
+        public int value { get; set; }
+        public string? label { get; set; }
     }
 }

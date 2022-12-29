@@ -1,4 +1,5 @@
-﻿using E_Ecommerce_Backend.Models;
+﻿using E_Ecommerce_Backend.Data;
+using E_Ecommerce_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
@@ -9,8 +10,13 @@ namespace E_Ecommerce_Backend.Controllers
     [ApiController]
     public class FileController : ControllerBase
     {
+        private readonly EcommecreDbContext _context;
+        public FileController(EcommecreDbContext context) {
+            _context = context;
+                }
         [HttpPost]
-        public ActionResult Post([FromForm] FileModel fileModel)
+
+        public async Task<ActionResult> Post([FromForm] FileModel fileModel)
         {
             try
             {
@@ -20,30 +26,28 @@ namespace E_Ecommerce_Backend.Controllers
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 if (file.Length > 0)
                 {
-                    if (fileModel.Filename == null)
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
-                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                        var fullPath = Path.Combine(pathToSave, fileName);
-                        var dbPath = Path.Combine(folderName, fileName);
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            file.CopyTo(stream);
-                        }
-                        return Ok(new { dbPath });
+                        file.CopyTo(stream);
                     }
-                    else
+                    var product = _context.Products.FirstOrDefault(p=>p.ProductId==fileModel.Id);
+
+                    Image image = new Image
                     {
-                        //var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                        var fullPath = Path.Combine(pathToSave, fileModel.Filename, ".jpg");
-                        var dbPath = Path.Combine(folderName, fileModel.Filename,".jpg");
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            file.CopyTo(stream);
-                        }
-                        return Ok(new { dbPath });
-                    }
-                  
-                 
+                        ImageUrl = fileName,
+                        ImageName = fileName,
+                        DisplayOrder = fileModel.DisplayOrder,
+                        Product = product,
+                        Status = true,
+                        CreateBy = "admin",
+                        CreateDate = DateTime.Now
+                    };
+                     _context.Images.Add(image);
+                    _context.SaveChanges();
+                    return Ok(new { dbPath });
                 }
                 else
                 {

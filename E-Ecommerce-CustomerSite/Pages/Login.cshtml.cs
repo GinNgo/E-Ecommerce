@@ -17,11 +17,15 @@ namespace E_Ecommerce_CustomerSite.Pages
             _notyf = notyf;
             _userService = userService;
         }
+      
         public void OnGet()
         {
+         
         }
+     
         public async Task<IActionResult> OnPostLogin()
         {
+           
             var username = Request.Form["username"];
             var password = Request.Form["password"];
             UserDto user = new UserDto()
@@ -39,7 +43,7 @@ namespace E_Ecommerce_CustomerSite.Pages
             {
                 HttpContext.Session.SetString("JWToken", token);
                 _notyf.Success("Ðãng nhâòp thaÌnh công");
-                return RedirectToPage("./Index");
+                return RedirectToPage("/") ;
             }
         
 

@@ -1,59 +1,101 @@
-import { Box, FormControl, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import Select from "react-select";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useState, useEffect } from "react";
 import Header from "../../Components/Header";
+import Categories from "../../Services/Category/CategoriesApi";
+import Origins from "../../Services/Origin/OriginApi";
+import Brands from "../../Services/Brand/BrandApi";
+import { useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import ProductApi from "../../Services/Product/ProductApi";
-import CategoriesApi from "../../Services/Category/CategoriesApi";
+import ImageApi from "../../Services/Image/ImageApi";
 import { useParams } from "react-router-dom";
-import { Button } from "antd";
+
 const initialValues = {
-  productId: "",
   productName: "",
-  descDescription: "",
   fullDescription: "",
+  categories: [],
   price: "",
   priceDiscount: "",
-  quatity: "",
+  quantity: "",
   originId: "",
-  categories: [],
-  images: [],
   brandId: "",
 };
 
-const proSchema = yup.object().shape({});
+const catSchema = yup.object().shape({
+  productName: yup.string().required("reaquired"),
+  price: yup.string().required("reaquired"),
+  priceDiscount: yup.string().required("reaquired"),
+  quantity: yup.string().required("reaquired"),
+});
 
 const UpdateProduct = () => {
   const isNonMoblie = useMediaQuery("(min-width:600px)");
-  const { id } = useParams();
-  const [responseData, setResponseData] = useState([]);
-  const [product, setProduct] = useState([]);
-
   const handleFromSubmit = async (values) => {
-    console.log(values);
+    values.categories = categories;
+    values.brandId = brandId.value;
+    values.originId = originId.value;
+    values.fullDescription = editorRef.current.getContent();
+    var result = await ProductApi.PostCreate(values);
+    const files = [...MultipleFiles];
+    files.forEach((file, index) => {
+      const formData = new FormData();
+      formData.append("id", result.data.productId);
+      formData.append("displayOrder", index + 1);
+      formData.append("filename", file);
+      var resultEnd = ImageApi.PostImage(formData);
+      console.log(resultEnd);
+    });
   };
+  const { id } = useParams();
+  const [categoryData, setCategoryData] = useState([]);
+  const [originData, setOriginData] = useState([]);
+  const [brandData, setBrandData] = useState([]);
+  const [categories, setcategoriesId] = useState([]);
+  const [brandId, setBrandId] = useState([]);
+  const [originId, setoriginId] = useState([]);
+  const [product, setProduct] = useState("");
+  const [MultipleFiles, setMultipleFiles] = useState("");
+  const editorRef = useRef();
+  const MultipleFileChange = (e) => {
+    setMultipleFiles(e.target.files);
+  };
+
   const handleChanges = (selectedOption) => {
-    //setParentIdChange(selectedOption);
+    setcategoriesId(selectedOption);
+  };
+  const handleOriginChanges = (selectedOption) => {
+    setoriginId(selectedOption);
+  };
+  const handleBrandChanges = (selectedOption) => {
+    setBrandId(selectedOption);
   };
   useEffect(() => {
     fetchData();
     getProduct(id);
   }, [id]);
-
-  const fetchData = async () => {
-    try {
-      const resp = await CategoriesApi.GetCatParentList();
-      setResponseData(resp.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const getProduct = async (id) => {
     try {
       const cat = await ProductApi.GetOneProduct(id);
       setProduct(cat.data);
+      console.log(cat.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchData = async () => {
+    try {
+      const catList = await Categories.GetCatParentList();
+      setCategoryData(catList.data);
+
+      const originList = await Origins.GetOrigin();
+      setOriginData(originList.data);
+
+      const brandList = await Brands.GetBrand();
+      setBrandData(brandList.data);
     } catch (error) {
       console.log(error);
     }
@@ -61,12 +103,12 @@ const UpdateProduct = () => {
 
   return (
     <Box m="20px">
-      <Header title="UPDATE PRODUCT" subtitle="update a Product" />
+      <Header title="CREATE PRODUCT" subtitle="Ceate new a Product" />
       <Formik
         onSubmit={handleFromSubmit}
         handleChange
         initialValues={initialValues}
-        validationSchema={proSchema}
+        validationSchema={catSchema}
       >
         {({
           values,
@@ -90,35 +132,100 @@ const UpdateProduct = () => {
                 variant="filled"
                 type="text"
                 label="Product Name"
-                value={values.productName || product.productName || ""}
-                name="productName"
-                error={!!errors.productName}
-                helperText={errors.productName}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                sx={{ gridColumn: "span 2" }}
+                value={values.productName}
+                name="productName"
+                error={!!touched.productName && !!errors.productName}
+                helperText={touched.productName && errors.productName}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label=" Description"
+                label="Product Price"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.fullDescription || product.fullDescription || ""}
-                name="fullDescription"
-                error={!!touched.fullDescription && !!errors.fullDescription}
-                helperText={touched.fullDescription && errors.fullDescription}
-                sx={{ gridColumn: "span 2" }}
+                value={values.price}
+                name="price"
+                error={!!touched.price && !!errors.price}
+                helperText={touched.price && errors.price}
               />
-              <FormControl sx={{ gridColumn: "span 2" }}>
-                <Select />
-              </FormControl>
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Product PriceDiscount"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.priceDiscount}
+                name="priceDiscount"
+                error={!!touched.priceDiscount && !!errors.priceDiscount}
+                helperText={touched.priceDiscount && errors.priceDiscount}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Quantity"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.quantity}
+                name="quantity"
+                error={!!touched.quantity && !!errors.quantity}
+                helperText={touched.quantity && errors.quantity}
+              />
+              <Editor
+                label="Product Description"
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                init={{ menubar: false, width: "1200px" }}
+              />
+
+              <br />
+              <label>Categories:</label>
+              <Select
+                fullWidth
+                isMulti
+                name="CategoriesId"
+                options={categoryData}
+                onChange={handleChanges}
+                className="basic-multi-select"
+                classNamePrefix="select"
+              />
+              <label>Origin:</label>
+              <Select
+                fullWidth
+                variant="filled"
+                name="originId"
+                isClearable={true}
+                isSearchable={true}
+                options={originData}
+                onChange={handleOriginChanges}
+              />
+              <label>Brand:</label>
+              <Select
+                fullWidth
+                variant="filled"
+                name="brandId"
+                isClearable={true}
+                isSearchable={true}
+                options={brandData}
+                onChange={handleBrandChanges}
+              />
+              <br />
+              <Box>
+                <label>Chọn hình ảnh</label>
+                <input
+                  type="file"
+                  multiple
+                  onChange={(e) => MultipleFileChange(e)}
+                />
+              </Box>
             </Box>
 
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Update product
+                Create New Product
               </Button>
             </Box>
           </form>

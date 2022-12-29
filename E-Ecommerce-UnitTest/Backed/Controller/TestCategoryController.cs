@@ -20,7 +20,7 @@ namespace E_Ecommerce_UnitTest.Backed.Controller
             //Arrange
             var categoryService = new Mock<ICategoriesService>();
             categoryService.Setup(sv=>sv.GetCategoriesAsync()).ReturnsAsync(CategoriesMockData.GetCategories());
-           var res = new CategoriesController(categoryService.Object);
+            var res = new CategoriesController(categoryService.Object);
             //Act
             var result = await res.GetCategoriesAsync();
             //Assert

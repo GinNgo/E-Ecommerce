@@ -59,7 +59,7 @@ namespace E_Ecommerce_Backend.Services.CategoryService
         public async Task<List<int>> GetCategoriesIdChild(int id)
         {
             List<int> subNavId = new List<int>();
-            var categories = await _context.Categories.Where(e => e.ParentId > 0).ToListAsync();
+            var categories = await _context.Categories.Where(e => e.ParentId > 0&& e.IsDeleted==false&&e.Status==true).ToListAsync();
             var categoriesDto = _mapper.Map<List<Category>, List<CategoriesDto>>(categories);
             categoriesDto = SubCategories(categoriesDto, id);
             if (categoriesDto.Count() > 0)

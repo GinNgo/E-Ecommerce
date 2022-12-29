@@ -6,6 +6,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useState, useEffect } from "react";
 import Header from "../../Components/Header";
 import Categories from "../../Services/Category/CategoriesApi";
+import { Link } from "react-router-dom";
+import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 
 const initialValues = {
   categoryName: "",
@@ -48,6 +50,12 @@ const CreateCategory = () => {
   return (
     <Box m="20px">
       <Header title="CREATE CATEGORY" subtitle="Ceate new a Catalog" />
+      <Link to={`/category`} style={{ listStyleType: "none" }}>
+        <Button color="secondary" variant="contained">
+          <KeyboardBackspaceOutlinedIcon />
+          BACK TO CATEGORY
+        </Button>
+      </Link>
       <Formik
         onSubmit={handleFromSubmit}
         handleChange

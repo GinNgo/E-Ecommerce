@@ -13,7 +13,5 @@ namespace E_Ecommerce_Backend.Abstract
         public string? UpdateBy { get; set; }
         public bool Status { get; set; }
         public bool IsDeleted { get; set; }
-   
-
     }
 }

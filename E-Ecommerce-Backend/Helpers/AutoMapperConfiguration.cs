@@ -34,6 +34,14 @@ namespace E_Ecommerce_Backend.Mappings
               .ForMember(item => item.value, options => options.MapFrom(item => item.CategoryId))
               .ForMember(item => item.label, options => options.MapFrom(item => item.CategoryName))
          .ReverseMap();
+            CreateMap<Brand, BrandAdmin>()
+         .ForMember(item => item.value, options => options.MapFrom(item => item.BrandId))
+         .ForMember(item => item.label, options => options.MapFrom(item => item.BrandName))
+    .ReverseMap();
+            CreateMap<Origin, OriginAdmin>()
+         .ForMember(item => item.value, options => options.MapFrom(item => item.OriginId))
+         .ForMember(item => item.label, options => options.MapFrom(item => item.OriginName))
+    .ReverseMap();
 
             CreateMap<User, UserInfo>()
               .ReverseMap();
